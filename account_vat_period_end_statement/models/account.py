@@ -631,6 +631,49 @@ class account_vat_period_end_statement(orm.Model):
 
         return True
 
+    def link_tax_code(self, tax, tax_parent, tax_tree):
+        type_use = tax.type_tax_use
+        if type_use not in tax_tree:
+            tax_tree[type_use] = {}
+        if tax_parent and tax_parent.type_tax_use != type_use:
+            raise orm.except_orm(
+                _('Error VAT Configuration!'),
+                _("Tax child use %s different from parent use %s") %
+                    (tax.name, tax_parent.name))
+        if tax_parent  and tax.type != 'percent':
+            return tax_tree
+        for basevat in ('tax_code_id', 'base_code_id',
+                        'ref_tax_code_id', 'ref_base_code_id'):
+            if basevat[-11:] == 'tax_code_id':
+                vatbase = basevat[0:-11] + 'base_code_id'
+            elif basevat[-12:] == 'base_code_id':
+                vatbase = basevat[0:-12] + 'tax_code_id'
+            else:
+                vatbase = False             # never should run here!
+            if basevat not in tax_tree[type_use]:
+                tax_tree[type_use][basevat] = {}
+            if getattr(tax, basevat):
+                left = getattr(tax, basevat).id
+                if getattr(tax, vatbase):
+                    right = getattr(tax, vatbase).id
+                    tax_tree[type_use][basevat][left] = right
+                elif tax_parent and getattr(tax_parent, vatbase):
+                    right = getattr(tax_parent, vatbase).id
+                    tax_tree[type_use][basevat][left] = right
+                elif left not in tax_tree[type_use][basevat]:
+                    tax_tree[type_use][basevat][left] = False
+            elif tax_parent and getattr(tax_parent, basevat):
+                left = getattr(tax_parent, basevat).id
+                if getattr(tax, vatbase):
+                    right = getattr(tax, vatbase).id
+                    tax_tree[type_use][basevat][left] = right
+                elif getattr(tax_parent, vatbase):
+                    right = getattr(tax_parent, vatbase).id
+                    tax_tree[type_use][basevat][left] = right
+                elif left not in tax_tree[type_use][basevat]:
+                    tax_tree[type_use][basevat][left] = False
+        return tax_tree
+
     def build_tax_tree(self, cr, uid, company_id, context=None):
         """[antoniov: 2017-06-03]
         account.tax.code records cannot be recognized as VAT or base amount and
@@ -641,8 +684,8 @@ class account_vat_period_end_statement(orm.Model):
         in this case some couple (base,VAT) may be wrong.
         However, all tutorial of Odoo Italian Comunity and standard Italian
         Localization have just one-2-one relationshiop on (base,VAT).
-        return: tax_tree[type][basevat][left], where
-        - type may be 'sale', 'purchase' or 'all'
+        return: tax_tree[type_use][basevat][left], where
+        - type_use may be 'sale', 'purchase' or 'all'
         - basevat may be 'tax_code_id', 'base_code_id', 'ref_tax_code_id' or
               'ref_base_code_id'
         - left is id of account.tax.code record
@@ -654,26 +697,10 @@ class account_vat_period_end_statement(orm.Model):
         tax_tree = {}
         for tax_id in tax_ids:
             tax = tax_pool.browse(cr, uid, tax_id)
-            type = tax.type_tax_use
-            if type not in tax_tree:
-                tax_tree[type] = {}
-            for basevat in ('tax_code_id', 'base_code_id',
-                            'ref_tax_code_id', 'ref_base_code_id'):
-                if basevat[-11:] == 'tax_code_id':
-                    vatbase = basevat[0:-11] + 'base_code_id'
-                elif basevat[-12:] == 'base_code_id':
-                    vatbase = basevat[0:-12] + 'tax_code_id'
-                else:
-                    vatbase = False             # never should run here!
-                if basevat not in tax_tree[type]:
-                    tax_tree[type][basevat] = {}
-                if getattr(tax, basevat):
-                    left = getattr(tax, basevat).id
-                    if getattr(tax, vatbase):
-                        right = getattr(tax, vatbase).id
-                        tax_tree[type][basevat][left] = right
-                    elif left not in tax_tree[type][basevat]:
-                        tax_tree[type][basevat][left] = False
+            tax_tree = self.link_tax_code(tax, None, tax_tree)
+            if tax.child_ids:
+                for tax_child in tax.child_ids:
+                    tax_tree = self.link_tax_code(tax_child, tax, tax_tree)
         return tax_tree
 
     def compute_amount_dbt_crd(self, cr, uid, statement, company_id,
