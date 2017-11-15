@@ -28,9 +28,9 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='buttons']" position="inside">
-                 <button name="button_complete_addr" type="object"
-                         attrs="{'invisible':[('zip', '!=', False), ('state_id', '!=', False) ]}"
-                         string="Complete address"/>
+                <button name="button_complete_addr" type="object"
+                        attrs="{'invisible':[('zip', '!=', False), ('state_id', '!=', False) ]}"
+                        string="Complete address"/>
             </xpath>
             <field name="state_id" position="replace"/>
             <field name="city" position="after">
