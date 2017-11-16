@@ -23,35 +23,34 @@ Available addons
 ----------------
 addon | version | OCA version | summary
 --- | --- | --- | ---
-[account_central_journal](account_central_journal/) | 3 | :repeat: | Account Central Journal
-[account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 | :repeat: | Fiscal Year Closing
-[account_invoice_entry_date](account_invoice_entry_date/) | 0.1 | :repeat: | Account Invoice entry Date
-[account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.4 | 7.0.0.1.3 (unported) | Check invoice date consistency
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.4.0.2 | :repeat: | Period End VAT Statement
-[l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 | :repeat: | Italy - 4th EU Directive - Consolidation Chart of Accounts
-[l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | :repeat: | DDT report using Webkit Library
-[l10n_it_abicab](l10n_it_abicab/) | 1.0 | :repeat: | Italian Localisation - Base Bank ABI/CAB codes
-[l10n_it_ade](l10n_it_ade/) | 7.0.0.1.6 | :repeat: | Codice con le definizioni dei file xml Agenzia delle Entrate
-[l10n_it_base](l10n_it_base/) | 7.0.0.2.11 | :repeat: | Italian Localisation - Base
-[l10n_it_base_crm](l10n_it_base_crm/) | 0.1 | :repeat: | Italian Localisation - CRM
-[l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 | :repeat: | Italian Localisation - Bill of Entry
-[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 | :repeat: | Italian Localisation - Corrispettivi
-[l10n_it_fatturapa](l10n_it_fatturapa/) | 7.0.2.1.0 | :repeat: | Electronic invoices
-[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 7.0.2.0.1 | :repeat: | Electronic invoices emission
-[l10n_it_fiscal](l10n_it_fiscal/) | 7.0.0.2.1 | :repeat: | Italy - Fiscal localization by zeroincombenze(R)
-[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 7.0.0.2.1 | :repeat: | Italian Localisation - Fiscal Code
-[l10n_it_ipa](l10n_it_ipa/) | 7.0.1.0.0 | :repeat: | IPA Code (IndicePA)
-[l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 | :repeat: | Italy - Partially Deductible VAT
-[l10n_it_pec](l10n_it_pec/) | 0.1 | :repeat: | Pec Mail
-[l10n_it_pec_messages](l10n_it_pec_messages/) | 1.0 | :repeat: | Pec Messages
-[l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 | :repeat: | Italian Localisation - Prima Nota Cassa
-[l10n_it_rea](l10n_it_rea/) | 0.1 | :repeat: | Manage fields for Economic Administrative catalogue
-[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 | :repeat: | Ricevute Bancarie
-[l10n_it_sale](l10n_it_sale/) | 0.2 | :repeat: | Italian Localisation - Sale
-[l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | :repeat: | Split Payment
-[l10n_it_vat_communication](l10n_it_vat_communication/) | 7.0.0.1.9 | :repeat: | Comunicazione periodica IVA
-[l10n_it_vat_registries](l10n_it_vat_registries/) | 0.2 | :repeat: | Italian Localisation - VAT Registries
-[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 7.0.0.2.1 | :repeat: | Italian Localisation - Withholding tax
+[account_central_journal](account_central_journal/) | 3 | :x: | Account Central Journal
+[account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 | :x: | Fiscal Year Closing
+[account_invoice_entry_date](account_invoice_entry_date/) | 0.1 | :x: | Account Invoice entry Date
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.4.0.2 | :x: | Period End VAT Statement
+[l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 | :x: | Italy - 4th EU Directive - Consolidation Chart of Accounts
+[l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | :x: | DDT report using Webkit Library
+[l10n_it_abicab](l10n_it_abicab/) | 1.0 | :x: | Italian Localisation - Base Bank ABI/CAB codes
+[l10n_it_ade](l10n_it_ade/) | 7.0.0.1.6 | :x: | Codice con le definizioni dei file xml Agenzia delle Entrate
+[l10n_it_base](l10n_it_base/) | 7.0.0.2.11 | :x: | Italian Localisation - Base
+[l10n_it_base_crm](l10n_it_base_crm/) | 0.1 | :x: | Italian Localisation - CRM
+[l10n_it_bill_of_entry](l10n_it_bill_of_entry/) | 0.1 | :x: | Italian Localisation - Bill of Entry
+[l10n_it_corrispettivi](l10n_it_corrispettivi/) | 0.1 | :x: | Italian Localisation - Corrispettivi
+[l10n_it_fatturapa](l10n_it_fatturapa/) | 7.0.2.1.0 | :x: | Electronic invoices
+[l10n_it_fatturapa_out](l10n_it_fatturapa_out/) | 7.0.2.0.1 | :x: | Electronic invoices emission
+[l10n_it_fiscal](l10n_it_fiscal/) | 7.0.0.2.1 | :x: | Italy - Fiscal localization by zeroincombenze(R)
+[l10n_it_fiscalcode](l10n_it_fiscalcode/) | 7.0.0.2.1 | :x: | Italian Localisation - Fiscal Code
+[l10n_it_ipa](l10n_it_ipa/) | 7.0.1.0.0 | :x: | IPA Code (IndicePA)
+[l10n_it_partially_deductible_vat](l10n_it_partially_deductible_vat/) | 0.1 | :x: | Italy - Partially Deductible VAT
+[l10n_it_pec](l10n_it_pec/) | 0.1 | :x: | Pec Mail
+[l10n_it_pec_messages](l10n_it_pec_messages/) | 1.0 | :x: | Pec Messages
+[l10n_it_prima_nota_cassa](l10n_it_prima_nota_cassa/) | 0.1 | :x: | Italian Localisation - Prima Nota Cassa
+[l10n_it_rea](l10n_it_rea/) | 0.1 | :x: | Manage fields for Economic Administrative catalogue
+[l10n_it_ricevute_bancarie](l10n_it_ricevute_bancarie/) | 1.3 | :x: | Ricevute Bancarie
+[l10n_it_sale](l10n_it_sale/) | 0.2 | :x: | Italian Localisation - Sale
+[l10n_it_split_payment](l10n_it_split_payment/) | 8.0.1.0.0 | :x: | Split Payment
+[l10n_it_vat_communication](l10n_it_vat_communication/) | 7.0.0.1.9 | :x: | Comunicazione periodica IVA
+[l10n_it_vat_registries](l10n_it_vat_registries/) | 0.2 | :x: | Italian Localisation - VAT Registries
+[l10n_it_withholding_tax](l10n_it_withholding_tax/) | 7.0.0.2.1 | :x: | Italian Localisation - Withholding tax
 
 
 Unported addons
@@ -61,6 +60,7 @@ addon | version | OCA version | summary
 [l10n_it_fatturapa_in](__unported__/l10n_it_fatturapa_in/) | deprecated | :x: | Electronic invoices reception
 [l10n_it_fatturapa_in_notifications](__unported__/l10n_it_fatturapa_in_notifications/) | deprecated | :x: | Supplier electronic invoices notifications
 [l10n_it_fatturapa_notifications](__unported__/l10n_it_fatturapa_notifications/) | deprecated | :x: | Electronic invoices notifications
+[account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.4 (unported) | :x: | Check invoice date consistency
 
 [//]: # (end addons)
 
