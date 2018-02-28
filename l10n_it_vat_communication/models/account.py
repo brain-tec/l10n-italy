@@ -649,7 +649,23 @@ class AccountVatCommunication(orm.Model):
 class commitment_line(orm.AbstractModel):
     _name = 'account.vat.communication.line'
 
+    # HACK: New function by BT-mgerecke
+    def _get_main_partner(self, partner):
+        """
+        Always use parent instead of partner.
+        :param partner: any res_partner
+        :return: partner or parent if exists
+        """
+        if partner.parent_id:
+            return partner.parent_id
+        else:
+            return partner
+
     def _dati_partner(self, cr, uid, partner, args, context=None):
+        # HACK by BT-mgerecke
+        # Always use parent instead of partner.
+        partner = self._get_main_partner(partner)
+        # End HACK
         if release.major_version == '6.1':
             address_id = self.pool['res.partner'].address_get(
                 cr, uid, [partner.id])['default']
@@ -754,18 +770,22 @@ class commitment_line(orm.AbstractModel):
 
     def _tipodocumento(self, cr, uid, invoice, context=None):
         doctype = invoice.type
+        # HACK by BT-mgerecke
+        # Always use parent insteat of partner.
+        partner = self._get_main_partner(invoice.partner_id)
+        # End HACK
         country_code = self.pool['account.vat.communication'].get_country_code(
-            cr, uid, invoice.partner_id)
+            cr, uid, partner)
         if doctype == 'out_invoice' and \
-                not invoice.partner_id.vat and \
-                not invoice.partner_id.fiscalcode:
+                not partner.vat and \
+                not partner.fiscalcode:
             if invoice.amount_total >= 0:
                 return 'TD07'
             else:
                 return 'TD08'
         elif doctype == 'out_refund' and \
-                not invoice.partner_id.vat and \
-                not invoice.partner_id.fiscalcode:
+                not partner.vat and \
+                not partner.fiscalcode:
             return 'TD08'
         elif country_code != 'IT' and country_code in EU_COUNTRIES and \
                 doctype == 'in_invoice':
