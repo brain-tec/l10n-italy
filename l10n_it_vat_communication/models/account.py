@@ -827,9 +827,16 @@ class commitment_DTE_line(orm.Model):
             #         _(u'Check VAT for partner %s!' % line.partner_id.name))
 
             result = {}
-            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
-                if fields.get(f, ''):
+            # HACK by BT-mgerecke
+            # xml_Aliquota and xml_Detraibile were not returned, leading to a nasty javascript error.
+            fields.update(self._dati_line(cr, uid, line, args,
+                                        context=context))
+            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale', 'xml_Aliquota', 'xml_Detraibile'):
+                if f in fields:
                     result[f] = fields[f]
+                else:
+                    _logger.warn(_('Field %s not found for partner %s' % (f, line.partner_id)))
+
 
             res[line.id] = result
         return res
@@ -965,9 +972,17 @@ class commitment_DTR_line(orm.Model):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=context)
             result = {}
-            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
-                if fields.get(f, ''):
+            # HACK by BT-mgerecke
+            fields.update((self._dati_line(cr, uid, line, args, context=context)))
+            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale', 'xml_Aliquota', 'xml_Detraibile'):
+                if f in fields:
                     result[f] = fields[f]
+<<<<<<< HEAD
+=======
+                else:
+                    _logger.warn(_('Field %s not found for partner %s' % (f, line.partner_id)))
+
+>>>>>>> 3958d53... [t9033] QWeb2 error on view. Some functional fields were not delivered to view.
             res[line.id] = result
         return res
 
