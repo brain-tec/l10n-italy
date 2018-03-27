@@ -22,17 +22,51 @@ class add_period(orm.TransientModel):
             'account.period', 'Period', required=True),
     }
 
-    def add_period(self, cr, uid, ids, context=None):
+    def linkable_period(self, cr, uid, ids, context):
         if 'active_id' not in context:
             raise orm.except_orm(_('Error'), _('Current statement not found'))
-        statement_pool = self.pool.get('account.vat.period.end.statement')
         wizard = self.browse(cr, uid, ids, context)[0]
-        if wizard.period_id.vat_statement_id:
+        statement_pool = self.pool.get('account.vat.period.end.statement')
+        type = statement_pool.browse(cr, uid, context['active_id']).type
+        linked_vat = False
+        field = ''
+        field2 = ''
+        if type == 'xml':
+            field = 'vat_statement_id'
+            field2 = 'e_vat_statement_id'
+            if wizard.period_id.vat_statement_id:
+                linked_vat = wizard.period_id.vat_statement_id
+            if wizard.period_id.e_vat_statement_id:
+                linked_vat = wizard.period_id.e_vat_statement_id
+        elif type == 'xml2':
+            field = 'e_vat_statement_id'
+            if wizard.period_id.e_vat_statement_id:
+                linked_vat = wizard.period_id.e_vat_statement_id
+        elif type == 'month':
+            field = 'vat_statement_id'
+            if wizard.period_id.vat_statement_id:
+                linked_vat = wizard.period_id.vat_statement_id
+        elif type == 'year':
+            field = 'y_vat_statement_id'
+            if wizard.period_id.y_vat_statement_id:
+                linked_vat = wizard.period_id.y_vat_statement_id
+        return field, field2, linked_vat
+
+    def add_period(self, cr, uid, ids, context=None):
+        wizard = self.browse(cr, uid, ids, context)[0]
+        statement_pool = self.pool.get('account.vat.period.end.statement')
+        field, field2, linked_vat = self.linkable_period(cr, uid, ids, context)
+        if linked_vat:
             raise orm.except_orm(
-                _('Error'), _('Period %s is associated to statement %s yet') %
-                (wizard.period_id.name, wizard.period_id.vat_statement_id.date)
+                _('Error'),
+                _('Period %s is associated to statement %s yet') %
+                (wizard.period_id.name,
+                 linked_vat.date)
             )
-        wizard.period_id.write({'vat_statement_id': context['active_id']})
+        vals = {field: context['active_id']}
+        if field2:
+            vals[field2] = context['active_id']
+        wizard.period_id.write(vals)
         statement_pool.compute_amounts(
             cr, uid, [context['active_id']], context=context)
         return {

@@ -15,6 +15,7 @@ from openerp.tools.translate import _
 import math
 import decimal_precision as dp
 import logging
+from encodings import search_function
 _logger = logging.getLogger(__name__)
 try:
     import codicefiscale
@@ -233,9 +234,25 @@ class account_vat_period_end_statement(orm.Model):
             return 0
         return company.of_account_end_vat_statement_interest_percent
 
+    def _get_default_journal(self, cr, uid, context=None):
+        journal_model = self.pool.get('account.journal')
+        ids = journal_model.search(cr, uid, [('code', 'like', 'MISC')])
+        if ids:
+            return ids[0]
+        return 0
+
+    def _get_default_soggetto_codice_fiscale(self, cr, uid, context=None):
+        user = self.pool.get('res.users').browse(cr, uid, uid, context)
+        company = user.company_id.partner_id
+        if company.fiscalcode:
+            return company.fiscalcode
+        return ''
+
     _name = "account.vat.period.end.statement"
     _rec_name = 'date'
     _columns = {
+        'name': fields.char('Descrizione',
+                            required=True,),
         'debit_vat_account_line_ids': fields.one2many(
             'statement.debit.account.line', 'statement_id', 'Debit VAT',
             help='The accounts containing the debit VAT amount to write-off',
@@ -427,7 +444,23 @@ class account_vat_period_end_statement(orm.Model):
                            size=5,
                            help="Eventuale numero iscrizione albo del C.A.F."),
         'incaricato_trasmissione_data_impegno':
-            fields.date('Data data impegno')    }
+            fields.date('Data data impegno'),
+        'type': fields.selection([
+            ('xml', 'Liquidazione elettronica + Ordinaria'),
+            ('xml2', 'Liquidazione elettronica'),
+            ('month', 'Liquidazione ordinaria'),
+            ('year', 'Liquidazione annuale'),],
+            'Tipo',
+            required=True,
+            help="Tipo di liquidazione\n"
+                 "liquidazione elettronica per generare file xml da inviare\n"
+                 "Liquidazione ordinaria: calcola IVA periodo\n"
+                 "Liquidazione annuale per riepilogo annuale"),
+        'y_period_ids': fields.one2many(
+            'account.period', 'y_vat_statement_id', 'Periods'),
+        'e_period_ids': fields.one2many(
+            'account.period', 'e_vat_statement_id', 'Periods'),
+        }
 
     _defaults = {
         'date': fields.date.context_today,
@@ -438,6 +471,10 @@ class account_vat_period_end_statement(orm.Model):
             self.pool.get('res.company')._company_default_get(
                 cr, uid, 'account.vat.period.end.statement', context=c),
         'show_zero': False,
+        'type': 'xml',
+        'journal_id': _get_default_journal,
+        'soggetto_codice_fiscale': _get_default_soggetto_codice_fiscale,
+        'name': 'Liquidazione periodica'
     }
 
     def _get_tax_code_amount(self, cr, uid, tax_code_id, period_id, context):
@@ -714,6 +751,15 @@ class account_vat_period_end_statement(orm.Model):
             ('exclude_from_registries', '=', False),
             ('company_id', '=', company_id),
         ], context=context)
+        stmt_type = statement.type
+        if stmt_type == 'xml':
+            stmt_periods = 'period_ids'
+        elif stmt_type == 'xml2':
+            stmt_periods = 'e_period_ids'
+        elif stmt_type == 'month':
+            stmt_periods = 'period_ids'
+        elif stmt_type == 'year':
+            stmt_periods = 'y_period_ids'
         for dbt_crd_tax_code_id in dbt_crd_tax_code_ids:
             if tax_code_pool.search(cr, uid, [('parent_id',
                                                '=',
@@ -722,7 +768,7 @@ class account_vat_period_end_statement(orm.Model):
             dbt_crd_tax_code = tax_code_pool.browse(
                 cr, uid, dbt_crd_tax_code_id, context)
             total = 0.0
-            for period in statement.period_ids:
+            for period in statement[stmt_periods]:
                 ctx = context.copy()
                 ctx['period_id'] = period.id
                 total += tax_code_pool.browse(
@@ -820,8 +866,10 @@ class account_vat_period_end_statement(orm.Model):
         for statement in self.browse(cr, uid, ids, context):
             company_id = statement.company_id.id
             statement.write({'previous_debit_vat_amount': 0.0})
+            type = statement.type
             prev_statement_ids = self.search(cr, uid, [(
-                'date', '<', statement.date)], order='date')
+                'date', '<', statement.date),
+                ('type', '=', type)], order='date')
             if prev_statement_ids:
                 prev_statement = self.browse(
                     cr, uid, prev_statement_ids[len(prev_statement_ids) - 1],
@@ -1054,6 +1102,10 @@ class account_period(orm.Model):
     _inherit = "account.period"
     _columns = {
         'vat_statement_id': fields.many2one(
+            'account.vat.period.end.statement', "VAT statement"),
+        'y_vat_statement_id': fields.many2one(
+            'account.vat.period.end.statement', "VAT statement"),
+        'e_vat_statement_id': fields.many2one(
             'account.vat.period.end.statement', "VAT statement"),
     }
 

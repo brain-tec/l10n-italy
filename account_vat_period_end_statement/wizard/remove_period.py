@@ -16,13 +16,32 @@ from openerp.tools.translate import _
 class remove_period(orm.TransientModel):
 
     def _get_period_ids(self, cr, uid, context=None):
-        statement_obj = self.pool.get('account.vat.period.end.statement')
         res = []
         if 'active_id' in context:
-            statement = statement_obj.browse(
+            statement_model = self.pool.get('account.vat.period.end.statement')
+            statement = statement_model.browse(
                 cr, uid, context['active_id'], context)
-            for period in statement.period_ids:
-                res.append((period.id, period.name))
+            type = statement.type
+            if type == 'xml':
+                for period in statement.period_ids:
+                    res.append((period.id, period.name))
+                for period in statement.e_period_ids:
+                    found = False
+                    for item in res:
+                        if period.id == item[0]:
+                           found = True
+                           break
+                    if not found:
+                        res.append((period.id, period.name))
+            elif type == 'xml2':
+                for period in statement.e_period_ids:
+                    res.append((period.id, period.name))
+            elif type == 'month':
+                for period in statement.period_ids:
+                    res.append((period.id, period.name))
+            elif type == 'year':
+                for period in statement.y_period_ids:
+                    res.append((period.id, period.name))
         return res
 
     _name = 'remove.period.from.vat.statement'
@@ -32,12 +51,35 @@ class remove_period(orm.TransientModel):
             _get_period_ids, 'Period', required=True),
     }
 
-    def remove_period(self, cr, uid, ids, context=None):
+    def linkable_period(self, cr, uid, ids, context):
         if 'active_id' not in context:
             raise orm.except_orm(_('Error'), _('Current statement not found'))
+        wizard = self.browse(cr, uid, ids, context)[0]
+        statement_model = self.pool.get('account.vat.period.end.statement')
+        type = statement_model.browse(cr, uid, context['active_id']).type
+        field = ''
+        field2 = ''
+        if type == 'xml':
+            field = 'vat_statement_id'
+            field2 = 'e_vat_statement_id'
+        elif type == 'xml2':
+            field = 'e_vat_statement_id'
+        elif type == 'month':
+            field = 'vat_statement_id'
+        elif type == 'year':
+            field = 'y_vat_statement_id'
+        return field, field2
+
+    def remove_period(self, cr, uid, ids, context=None):
+        wizard = self.browse(cr, uid, ids, context)[0]
+        statement_model = self.pool.get('account.vat.period.end.statement')
+        field, field2 = self.linkable_period(cr, uid, ids, context)
+        vals = {field: False}
+        if field2:
+            vals[field2] = False
         self.pool.get('account.period').write(
             cr, uid, [int(self.browse(cr, uid, ids, context)[0].period_id)],
-            {'vat_statement_id': False}, context=context)
+            vals, context=context)
         self.pool.get('account.vat.period.end.statement').compute_amounts(
             cr, uid, [context['active_id']], context=context)
         return {
