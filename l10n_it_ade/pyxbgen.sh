@@ -29,7 +29,7 @@ if [ -z "$Z0LIBDIR" ]; then
   exit 2
 fi
 
-__version__=0.1.5.3
+__version__=0.1.5.5
 
 
 OPTOPTS=(h        k        l        n           O       p          q            u       V           v           x)
@@ -63,7 +63,7 @@ if [ "$opt_version" ]; then
   exit 0
 fi
 if [ $opt_help -gt 0 ]; then
-  print_help "Agenzia delle Entrate pyxb generator"\
+  print_help "Agenzia delle Entrate pyxb generator\nEsegui questa app nella directory binding"\
   "(C) 2017 by zeroincombenze(R)\nhttp://wiki.zeroincombenze.org/en/Linux/dev\nAuthor: antoniomaria.vigliotti@gmail.com"
   exit 0
 fi

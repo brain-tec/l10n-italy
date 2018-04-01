@@ -34,12 +34,12 @@
   
   <xs:complexType name="DatiFatturaHeaderType">
     <xs:sequence>
-      <xs:element name="ProgressivoInvio" type="String10Type"                minOccurs="0" />
-      <xs:element name="Dichiarante"      type="DichiaranteType"             minOccurs="0" />
-      <xs:element name="IdSistema"        type="CodiceFiscaleType"           minOccurs="0" />
+      <xs:element name="ProgressivoInvio" type="String10Type"      minOccurs="0" />
+      <xs:element name="Dichiarante"      type="DichiaranteType"   minOccurs="0" />
+      <xs:element name="IdSistema"        type="CodiceFiscaleType" minOccurs="0" />
       <xs:element name="SpazioDatiFattura" type="xs:normalizedString" minOccurs="0" />
     </xs:sequence>
-  </xs:complexType>     
+  </xs:complexType>
   
   <xs:complexType name="DichiaranteType">
     <xs:sequence>
@@ -440,12 +440,12 @@
       <xs:maxLength value="1" />
       <xs:enumeration value="D">
         <xs:annotation>
-          <xs:documentation>esigibilit‡ differita</xs:documentation>
+          <xs:documentation>esigibilit√† differita</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="I">
         <xs:annotation>
-          <xs:documentation>esigibilit‡ immediata</xs:documentation>
+          <xs:documentation>esigibilit√† immediata</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="S">
