@@ -29,8 +29,8 @@ class remove_period(orm.TransientModel):
                     found = False
                     for item in res:
                         if period.id == item[0]:
-                           found = True
-                           break
+                            found = True
+                            break
                     if not found:
                         res.append((period.id, period.name))
             elif type == 'xml2':
@@ -54,7 +54,7 @@ class remove_period(orm.TransientModel):
     def linkable_period(self, cr, uid, ids, context):
         if 'active_id' not in context:
             raise orm.except_orm(_('Error'), _('Current statement not found'))
-        wizard = self.browse(cr, uid, ids, context)[0]
+        # wizard = self.browse(cr, uid, ids, context)[0]
         statement_model = self.pool.get('account.vat.period.end.statement')
         type = statement_model.browse(cr, uid, context['active_id']).type
         field = ''
@@ -71,8 +71,8 @@ class remove_period(orm.TransientModel):
         return field, field2
 
     def remove_period(self, cr, uid, ids, context=None):
-        wizard = self.browse(cr, uid, ids, context)[0]
-        statement_model = self.pool.get('account.vat.period.end.statement')
+        # wizard = self.browse(cr, uid, ids, context)[0]
+        # statement_model = self.pool.get('account.vat.period.end.statement')
         field, field2 = self.linkable_period(cr, uid, ids, context)
         vals = {field: False}
         if field2:

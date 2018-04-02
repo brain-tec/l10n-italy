@@ -939,18 +939,10 @@ class commitment_DTR_line(orm.Model):
         for line in self.browse(cr, uid, ids, context=context):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=context)
-
-            # if len(fields.get('xml_IdCodice', '')) < 2 and \
-            #         not fields.get('xml_CodiceFiscale', ''):
-            #     raise orm.except_orm(
-            #         _('Error!'),
-            #         _('Check VAT for partner %s!') % line.partner_id.name)
-
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
                 if fields.get(f, ''):
                     result[f] = fields[f]
-
             res[line.id] = result
         return res
 

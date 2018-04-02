@@ -64,9 +64,6 @@ addon | version | OCA version | summary
 
 [//]: # (end addons)
 
-Translation Status
-[![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0)
-
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
