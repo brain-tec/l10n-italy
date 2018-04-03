@@ -12,7 +12,12 @@ from openerp.tools.translate import _
 # from openerp import release
 import logging
 _logger = logging.getLogger(__name__)
+<<<<<<< HEAD
 _logger.setLevel(logging.DEBUG)
+=======
+# required for error
+import pyxb
+>>>>>>> 91744e1... Remove whitespaces from fields
 try:
     from unidecode import unidecode
     if os.environ.get('SPESOMETRO_VERSION', '2.1') == '2.0':
@@ -302,15 +307,16 @@ class WizardVatCommunication(orm.TransientModel):
                     IdFiscaleITType())
 
             partner.IdentificativiFiscali.IdFiscaleIVA.\
-                IdPaese = fields['xml_IdPaese']
+                IdPaese = fields['xml_IdPaese'].strip()
             partner.IdentificativiFiscali.IdFiscaleIVA.\
-                IdCodice = fields['xml_IdCodice']
+                IdCodice = fields['xml_IdCodice'].strip()
 
             if fields.get('xml_IdPaese') == 'IT' and fields.get(
                     'xml_CodiceFiscale'):
+                # Strip value as it might contain whitespaces
                 partner.IdentificativiFiscali.\
                     CodiceFiscale = CodiceFiscaleType(
-                        fields['xml_CodiceFiscale'])
+                        fields['xml_CodiceFiscale'].strip())
         else:
             partner.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(
                 fields['xml_CodiceFiscale'])
