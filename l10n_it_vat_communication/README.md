@@ -12,8 +12,8 @@
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
 
-Italian Localization - Spesometro2017
-=====================================
+Italian Localization - Spesometro2017/18
+========================================
 
 Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
 
@@ -21,13 +21,19 @@ Generate xml file for sending to Agenzia delle Entrate, kwnown as Spesometro.
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
-Localizzazione Italiana - Spesometro2017
-========================================
+Localizzazione Italiana - Spesometro2017/18
+===========================================
 
 Gestisce la Comunicazione periodica IVA con l'elenco delle fatture emesse e
 ricevute e genera il file da inviare all'Agenzia delle Entrate.
-Questo obbligo è conosciuto anche come Spesometro 2017 e sostistuisce il
-precedente obbbligo chiamato Spesometro.
+Questo obbligo è conosciuto anche come Spesometro light 2018 e sostistuisce i
+precedenti obbblighi chiamati Spesometro e Spesometro 2017.
+
+Il softwware permette di operare in modalità 2017 per rigenerare eventuali file
+in formato 2017. Per eseguire questa funzione, prima di avviare Odoo eseguire
+la seguente istruzione:
+
+     export SPESOMETRO_VERSION=2.0
 
 
 ### Funzionalità & Certificati
@@ -60,7 +66,8 @@ Dimensioni del file | :x: | Nessuna verifica anche futura
 
 Logo | Ente/Certificato | Data inizio | Da fine | Note
 --- | --- | --- | --- | ---
-[![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md) | [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-10-2017 | 31-12-2017 | Validazione contro schema xml
+[![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md) | [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-10-2017 | 31-12-2018 | Validazione contro schema xml
+[![DesktopTelematico](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/DesktopTelematico.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/DesktopTelematico.md) | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/nsilib/nsi/schede/comunicazioni/dati+fatture+%28c.d.+nuovo+spesometro%29/software+di+controllo+dati+fatture+%28c.d.+nuovo+spesometro%29) | 01-03-2018 | 31-12-2018 | Controllo tramite s/ Agenzia delle Entrate
 [![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md) | [Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 05-10-2017 | 31-12-2017 | File accettati da portale fatturaPA Agenzia delle Entrate
 
 

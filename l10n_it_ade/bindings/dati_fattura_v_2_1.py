@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ./dati_fattura_v_2_1.py
 # PyXB bindings for NM:c8403c44c9a54a32bd3b5aec75a6504db99822c4
-# Generated 2018-04-01 18:07:00.725210 by PyXB version 1.2.4 using Python 2.7.5.final.0
+# Generated 2018-04-03 07:37:57.780589 by PyXB version 1.2.4 using Python 2.7.5.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0
 from __future__ import unicode_literals
@@ -21,7 +21,7 @@ except ImportError as err:
     _logger.debug(err)
 
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:ac6a5508-35c6-11e8-9672-005056ba06a2')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:20bbd270-3701-11e8-9738-005056ba06a2')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
@@ -402,12 +402,13 @@ class RateType (pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RateType')
     _XSDLocation = pyxb.utils.utility.Location('../data/datifatture/DatiFatturav2.1.xsd', 459, 3)
     _Documentation = None
-RateType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 # RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
-RateType._InitializeFacetMap(RateType._CF_whiteSpace,
-   RateType._CF_maxInclusive,RateType._CF_pattern)
+RateType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+RateType._InitializeFacetMap(
+   RateType._CF_pattern,
+   RateType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}Amount2DecimalType
@@ -418,11 +419,11 @@ class Amount2DecimalType (pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Amount2DecimalType')
     _XSDLocation = pyxb.utils.utility.Location('../data/datifatture/DatiFatturav2.1.xsd', 468, 2)
     _Documentation = None
-Amount2DecimalType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 Amount2DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount2DecimalType._CF_pattern.addPattern(pattern='[\\-]?[0-9]{1,11}\\.[0-9]{2}')
-Amount2DecimalType._InitializeFacetMap(Amount2DecimalType._CF_whiteSpace,
-   Amount2DecimalType._CF_pattern)
+Amount2DecimalType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+Amount2DecimalType._InitializeFacetMap(Amount2DecimalType._CF_pattern,
+   Amount2DecimalType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'Amount2DecimalType', Amount2DecimalType)
 
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}DatiFatturaHeaderType with content type ELEMENT_ONLY
