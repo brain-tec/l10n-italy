@@ -15,7 +15,7 @@
                         <group colspan="4">
                             <field name="soggetto_codice_fiscale" colspan="1"
                                    on_change="onchange_fiscalcode(soggetto_codice_fiscale,
-                                                              'soggetto_codice_fiscale')" />
+                                                                  'soggetto_codice_fiscale')" />
                             <field name="codice_carica" colspan="1"/>
                         </group>
                         <group colspan="2">

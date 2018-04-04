@@ -225,8 +225,6 @@ class AccountVatCommunication(orm.Model):
         else:
             address = partner
         code = partner.vat and partner.vat[0:2]
-        # if not code:
-        #     code = 'IT'
         return address.country_id.code or code
 
     def load_invoices(self, cr, uid, commitment, commitment_line_model,
@@ -471,41 +469,45 @@ class AccountVatCommunication(orm.Model):
         return True
 
     def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
-                            context=None):
+                            country_id=None, context=None):
+        name = name or 'fiscalcode'
         if fiscalcode:
-            if len(fiscalcode) == 11:
-                chk = self.pool['res.partner'].simple_vat_check(
+            country_model = self.pool.get('res.country')
+            if country_id and country_model.browse(
+                    cr, uid, country_id).code != 'IT':
+                return {'value': {name: fiscalcode,
+                                  'individual': True}}
+            elif len(fiscalcode) == 11:
+                res_partner_model = self.pool.get('res.partner')
+                chk = res_partner_model.simple_vat_check(
                     cr, uid, 'it', fiscalcode)
                 if not chk:
-                    return {
-                        'value': {name: False},
-                        'warning': {
-                            'title': 'Invalid fiscalcode!',
-                            'message': 'Invalid vat number'
-                        }
+                    return {'value': {name: False},
+                            'warning': {
+                        'title': 'Invalid fiscalcode!',
+                        'message': 'Invalid vat number'}
                     }
+                individual = False
             elif len(fiscalcode) != 16:
-                return {
-                    'value': {name: False},
-                    'warning': {
-                        'title': 'Invalid len!',
-                        'message': 'Fiscal code len must be 11 or 16'
-                    }
+                return {'value': {name: False},
+                        'warning': {
+                    'title': 'Invalid len!',
+                    'message': 'Fiscal code len must be 11 or 16'}
                 }
             else:
                 fiscalcode = fiscalcode.upper()
                 chk = codicefiscale.control_code(fiscalcode[0:15])
                 if chk != fiscalcode[15]:
                     value = fiscalcode[0:15] + chk
-                    return {
-                        'value': {name: value},
-                        'warning': {
-                            'title': 'Invalid fiscalcode!',
-                            'message': 'Fiscal code could be %s' % value
-                        }
-                    }
-            return {'value': {name: fiscalcode}}
-        return {}
+                    return {'value': {name: value},
+                            'warning': {
+                                'title': 'Invalid fiscalcode!',
+                                'message': 'Fiscal code could be %s' % (value)}
+                            }
+                individual = True
+            return {'value': {name: fiscalcode,
+                              'individual': individual}}
+        return {'value': {'individual': False}}
 
     #
     # INTERNAL INTERFACE TO XML EXPORT CODE
@@ -514,12 +516,6 @@ class AccountVatCommunication(orm.Model):
                                context=None):
         """Return DatiFatturaHeader: may be empty"""
         res = {}
-        # if not commitment.progressivo_telematico:
-        #     res['xml_ProgressivoInvio']=str(self.set_progressivo_telematico(
-        #         cr, uid, commitment, context))
-        # else:
-        #     res['xml_ProgressivoInvio'] = str(
-        #         commitment.progressivo_telematico)
         if commitment.codice_carica and commitment.soggetto_codice_fiscale:
             res['xml_CodiceFiscale'] = commitment.soggetto_codice_fiscale
             res['xml_Carica'] = commitment.codice_carica
@@ -671,9 +667,19 @@ class commitment_line(orm.AbstractModel):
 
         if (partner.individual or
                 not partner.is_company) and partner.fiscalcode:
+            r = self.pool['account.vat.communication'].onchange_fiscalcode(
+                cr, uid, partner.id,
+                partner.fiscalcode, None,
+                country_id=partner.country_id,
+                context=context)
+            if 'warning' in r:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _('Invalid fiscalcode of %s') % partner.name)
             res['xml_CodiceFiscale'] = partner.fiscalcode
         elif res.get('xml_IdPaese', '') == 'IT':
-            res['xml_CodiceFiscale'] = res['xml_IdCodice']
+            # res['xml_CodiceFiscale'] = res['xml_IdCodice']
+            pass
         elif not partner.vat:
             res['xml_CodiceFiscale'] = '99999999999'
 
@@ -693,7 +699,9 @@ class commitment_line(orm.AbstractModel):
                     _('Invalid First or Last name %s') % (partner.name))
         else:
             res['xml_Denominazione'] = partner.name
-            if not partner.vat:
+            if not partner.vat and \
+                    (res['xml_Nazione'] == 'IT' or
+                     res['xml_Nazione'] in EU_COUNTRIES):
                 raise orm.except_orm(
                     _('Error!'),
                     _('Partner %s without VAT number') % (partner.name))
@@ -795,17 +803,10 @@ class commitment_DTE_line(orm.Model):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=context)
 
-            # if len(fields.get('xml_IdCodice', '')) < 2 and \
-            #         not fields.get('xml_CodiceFiscale', ''):
-            #     raise orm.except_orm(
-            #         _(u'Error!'),
-            #         _(u'Check VAT for partner %s!' % line.partner_id.name))
-
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
                 if fields.get(f, ''):
                     result[f] = fields[f]
-
             res[line.id] = result
         return res
 
@@ -883,7 +884,6 @@ class commitment_DTE_line(orm.Model):
             string="Document type",
             help="Values: TD01=invoice, TD04=refund",
             type="char",
-            multi=False,
             store=False,
             select=True,
             readonly=True),
@@ -939,6 +939,7 @@ class commitment_DTR_line(orm.Model):
         for line in self.browse(cr, uid, ids, context=context):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=context)
+
             result = {}
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
                 if fields.get(f, ''):
@@ -1020,7 +1021,6 @@ class commitment_DTR_line(orm.Model):
             string="Document type",
             help="Values: TD01=invoice, TD04=refund",
             type="char",
-            multi=False,
             store=False,
             select=True,
             readonly=True),

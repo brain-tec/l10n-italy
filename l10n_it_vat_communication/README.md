@@ -76,10 +76,12 @@ Installation
 
 These instruction are just an example to remember what you have to do:
 
-    pip install PyXB==1.2.4
-    pip install Unidecode
+    for pkg in unidecode codicefiscale pyxb==1.2.4; do 
+        pip install $pkg
+    done
     git clone https://github.com/zeroincombenze/l10n-italy
-    for module in l10n_it_base l10n_it_ade l10n_it_fiscalcode l10n_it_vat_communication account_invoice_entry_date; do
+    for module in l10n_it_ade l10n_it_fiscalcode account_invoice_entry_date \
+            l10n_it_vat_registries l10n_it_vat_communication ; do
         mv ODOO_DIR/l10n-italy/$module BACKUP_DIR/
         cp -R l10n-italy/$module ODOO_DIR/l10n-italy/
     sudo service odoo-server restart -i l10n_it_ade -d MYDB
