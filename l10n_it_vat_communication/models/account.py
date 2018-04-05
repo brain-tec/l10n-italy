@@ -985,10 +985,6 @@ class commitment_DTR_line(orm.Model):
                     result[f] = fields[f]
                 else:
                     _logger.warn(_('Field %s not found for partner %s' % (f, line.partner_id)))
-<<<<<<< HEAD
-=======
-
->>>>>>> 3e754888791df4e08910b254fc64e1621c7fbb9b
             res[line.id] = result
         return res
 
