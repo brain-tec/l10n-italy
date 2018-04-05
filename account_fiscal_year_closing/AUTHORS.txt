@@ -1,2 +1,6 @@
-Borja López Soilán (Pexego) - borja@kami.es
-Lorenzo Battistini - lorenzo.battistini@agilebg.com
+Borja López Soilán <borja@kami.es> - (Pexego)
+Pedro Tarrafeta <pedro@acysos.com> - ACYSOS S.L. (http://acysos.com)
+Jordi Esteve <jesteve@zikzakmedia.com> - Zikzakmedia S.L. (http://zikzakmedia.com)
+Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+

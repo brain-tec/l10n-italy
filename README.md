@@ -24,9 +24,9 @@ Available addons
 addon | version | OCA version | summary
 --- | --- | --- | ---
 [account_central_journal](account_central_journal/) | 3 | :repeat: | Account Central Journal
-[account_fiscal_year_closing](account_fiscal_year_closing/) | 1.0 | 7.0.1.1 | Fiscal Year Closing
+[account_fiscal_year_closing](account_fiscal_year_closing/) | 7.0.1.1 | 1.0 | Fiscal Year Closing
 [account_invoice_entry_date](account_invoice_entry_date/) | 0.1 | :repeat: | Account Invoice entry Date
-[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.4.0.4 | 7.0.4.0.2 | Period End VAT Statement
+[account_vat_period_end_statement](account_vat_period_end_statement/) | 7.0.4.0.2 | :repeat: | Period End VAT Statement
 [l10n_it_CEE_balance_generic](l10n_it_CEE_balance_generic/) | 0.1 | :repeat: | Italy - 4th EU Directive - Consolidation Chart of Accounts
 [l10n_it_DDT_webkit](l10n_it_DDT_webkit/) | 1.0 | :repeat: | DDT report using Webkit Library
 [l10n_it_abicab](l10n_it_abicab/) | 1.0 | :repeat: | Italian Localisation - Base Bank ABI/CAB codes
@@ -63,6 +63,9 @@ addon | version | OCA version | summary
 [account_invoice_sequential_dates](account_invoice_sequential_dates/) | 7.0.0.1.4 (unported) | :repeat: | Check invoice date consistency
 
 [//]: # (end addons)
+
+Translation Status
+[![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-italy-7-0)
 
 
 [![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)

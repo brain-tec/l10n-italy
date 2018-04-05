@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-#    Copyright (C) 2017-2018 SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#    Copyright (C) 2017-2018 Didotech srl <http://www.didotech.com>
+#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 # [2017: SHS-AV s.r.l.] First version
-# [2018: SHS-AV s.r.l.] Spesometro light
 #
 import logging
 from openerp.osv import fields, orm
@@ -971,6 +970,13 @@ class commitment_DTR_line(orm.Model):
         for line in self.browse(cr, uid, ids, context=context):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=context)
+
+            # if len(fields.get('xml_IdCodice', '')) < 2 and \
+            #         not fields.get('xml_CodiceFiscale', ''):
+            #     raise orm.except_orm(
+            #         _('Error!'),
+            #         _('Check VAT for partner %s!') % line.partner_id.name)
+
             result = {}
             # HACK by BT-mgerecke
             fields.update((self._dati_line(cr, uid, line, args, context=context)))
@@ -979,6 +985,10 @@ class commitment_DTR_line(orm.Model):
                     result[f] = fields[f]
                 else:
                     _logger.warn(_('Field %s not found for partner %s' % (f, line.partner_id)))
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3e754888791df4e08910b254fc64e1621c7fbb9b
             res[line.id] = result
         return res
 

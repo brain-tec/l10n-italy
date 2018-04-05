@@ -61,3 +61,5 @@ class account_report_prima_nota_cassa(osv.osv_memory):
 
 
 account_report_prima_nota_cassa()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
