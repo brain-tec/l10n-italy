@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-#    Copyright (C) 2017-2018 SHS-AV s.r.l. <https://www.zeroincombenze.it>
-#    Copyright (C) 2017-2018 Didotech srl <http://www.didotech.com>
+#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
 # [2017: SHS-AV s.r.l.] First version
-# [2018: SHS-AV s.r.l.] Spesometro light
 #
 import logging
 from openerp.osv import fields, orm
@@ -649,7 +648,23 @@ class AccountVatCommunication(orm.Model):
 class commitment_line(orm.AbstractModel):
     _name = 'account.vat.communication.line'
 
+    # HACK: New function by BT-mgerecke
+    def _get_main_partner(self, partner):
+        """
+        Always use parent instead of partner.
+        :param partner: any res_partner
+        :return: partner or parent if exists
+        """
+        if partner.parent_id:
+            return partner.parent_id
+        else:
+            return partner
+
     def _dati_partner(self, cr, uid, partner, args, context=None):
+        # HACK by BT-mgerecke
+        # Always use parent instead of partner.
+        partner = self._get_main_partner(partner)
+        # End HACK
         if release.major_version == '6.1':
             address_id = self.pool['res.partner'].address_get(
                 cr, uid, [partner.id])['default']
@@ -676,6 +691,11 @@ class commitment_line(orm.AbstractModel):
             res['xml_CodiceFiscale'] = res['xml_IdCodice']
         elif not partner.vat:
             res['xml_CodiceFiscale'] = '99999999999'
+        # HACK by BT-mgerecke, t9153
+        # Only set this attribute in vat_communication tree view! Otherwise export will fail.
+        elif 'active_model' not in context:
+            res['xml_CodiceFiscale'] = partner.fiscalcode
+        # End HACK
 
         if partner.individual or not partner.is_company:
             if release.major_version == '6.1':
@@ -754,18 +774,22 @@ class commitment_line(orm.AbstractModel):
 
     def _tipodocumento(self, cr, uid, invoice, context=None):
         doctype = invoice.type
+        # HACK by BT-mgerecke
+        # Always use parent insteat of partner.
+        partner = self._get_main_partner(invoice.partner_id)
+        # End HACK
         country_code = self.pool['account.vat.communication'].get_country_code(
-            cr, uid, invoice.partner_id)
+            cr, uid, partner)
         if doctype == 'out_invoice' and \
-                not invoice.partner_id.vat and \
-                not invoice.partner_id.fiscalcode:
+                not partner.vat and \
+                not partner.fiscalcode:
             if invoice.amount_total >= 0:
                 return 'TD07'
             else:
                 return 'TD08'
         elif doctype == 'out_refund' and \
-                not invoice.partner_id.vat and \
-                not invoice.partner_id.fiscalcode:
+                not partner.vat and \
+                not partner.fiscalcode:
             return 'TD08'
         elif country_code != 'IT' and country_code in EU_COUNTRIES and \
                 doctype == 'in_invoice':
@@ -802,9 +826,16 @@ class commitment_DTE_line(orm.Model):
             #         _(u'Check VAT for partner %s!' % line.partner_id.name))
 
             result = {}
-            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
-                if fields.get(f, ''):
+            # HACK by BT-mgerecke
+            # xml_Aliquota and xml_Detraibile were not returned, leading to a nasty javascript error.
+            fields.update(self._dati_line(cr, uid, line, args,
+                                        context=context))
+            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale', 'xml_Aliquota', 'xml_Detraibile'):
+                if f in fields:
                     result[f] = fields[f]
+                else:
+                    _logger.warn(_('Field %s not found for partner %s' % (f, line.partner_id)))
+
 
             res[line.id] = result
         return res
@@ -939,10 +970,22 @@ class commitment_DTR_line(orm.Model):
         for line in self.browse(cr, uid, ids, context=context):
             fields = self._dati_partner(cr, uid, line.partner_id, args,
                                         context=context)
+
+            # if len(fields.get('xml_IdCodice', '')) < 2 and \
+            #         not fields.get('xml_CodiceFiscale', ''):
+            #     raise orm.except_orm(
+            #         _('Error!'),
+            #         _('Check VAT for partner %s!') % line.partner_id.name)
+
             result = {}
-            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale'):
-                if fields.get(f, ''):
+            # HACK by BT-mgerecke
+            fields.update((self._dati_line(cr, uid, line, args, context=context)))
+            for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale', 'xml_Aliquota', 'xml_Detraibile'):
+                if f in fields:
                     result[f] = fields[f]
+                else:
+                    _logger.warn(_('Field %s not found for partner %s' % (f, line.partner_id)))
+
             res[line.id] = result
         return res
 

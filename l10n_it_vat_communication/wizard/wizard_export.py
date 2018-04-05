@@ -6,84 +6,52 @@
 #
 # [2017: SHS-AV s.r.l.] First version
 #
-import os
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
 # from openerp import release
 import logging
 _logger = logging.getLogger(__name__)
-_logger.setLevel(logging.DEBUG)
+# required for error
+import pyxb
 try:
     from unidecode import unidecode
-    if os.environ.get('SPESOMETRO_VERSION', '2.1') == '2.0':
-        SPESOMETRO_VERSION = '2.0'
-        from openerp.addons.l10n_it_ade.bindings.dati_fattura_v_2_0 import (
-            DatiFattura,
-            VersioneType,
-            DatiFatturaHeaderType,
-            DichiaranteType,
-            CodiceFiscaleType,
-            DTEType,
-            CedentePrestatoreDTEType,
-            IdentificativiFiscaliType,
-            IdentificativiFiscaliITType,
-            IdFiscaleITType,
-            IdFiscaleType,
-            CessionarioCommittenteDTEType,
-            AltriDatiIdentificativiNoSedeType,
-            AltriDatiIdentificativiNoCAPType,
-            IdentificativiFiscaliNoIVAType,
-            IndirizzoType,
-            IndirizzoNoCAPType,
-            # RettificaType,
-            DatiFatturaBodyDTEType,
-            DatiGeneraliType,
-            DatiRiepilogoType,
-            DatiIVAType,
-            DTRType,
-            CessionarioCommittenteDTRType,
-            CedentePrestatoreDTRType,
-            DatiFatturaBodyDTRType,
-            DatiGeneraliDTRType,
-            )
-    else:
-        SPESOMETRO_VERSION = '2.1'
-        from openerp.addons.l10n_it_ade.bindings.dati_fattura_v_2_1 import (
-            DatiFattura,
-            VersioneType,
-            DatiFatturaHeaderType,
-            DichiaranteType,
-            CodiceFiscaleType,
-            DTEType,
-            CedentePrestatoreDTEType,
-            IdentificativiFiscaliType,
-            IdentificativiFiscaliITType,
-            IdFiscaleITType,
-            IdFiscaleType,
-            CessionarioCommittenteDTEType,
-            AltriDatiIdentificativiITType,
-            AltriDatiIdentificativiType,
-            IdentificativiFiscaliNoIVAType,
-            IndirizzoType,
-            # IndirizzoNoCAPType,
-            # RettificaType,
-            DatiFatturaBodyDTEType,
-            DatiGeneraliDTEType,
-            DatiRiepilogoType,
-            DatiIVAType,
-            DTRType,
-            CessionarioCommittenteDTRType,
-            CedentePrestatoreDTRType,
-            DatiFatturaBodyDTRType,
-            DatiGeneraliDTRType,
-            )
+    from openerp.addons.l10n_it_ade.bindings.dati_fattura_v_2_0 import (
+        DatiFattura,
+        VersioneType,
+        DatiFatturaHeaderType,
+        DichiaranteType,
+        CodiceFiscaleType,
+        DTEType,
+        CedentePrestatoreDTEType,
+        IdentificativiFiscaliType,
+        IdentificativiFiscaliITType,
+        IdFiscaleITType,
+        IdFiscaleType,
+        CessionarioCommittenteDTEType,
+        AltriDatiIdentificativiNoSedeType,
+        AltriDatiIdentificativiNoCAPType,
+        IdentificativiFiscaliNoIVAType,
+        IndirizzoType,
+        IndirizzoNoCAPType,
+        # RettificaType,
+        DatiFatturaBodyDTEType,
+        DatiGeneraliType,
+        DatiRiepilogoType,
+        DatiIVAType,
+        DTRType,
+        CessionarioCommittenteDTRType,
+        CedentePrestatoreDTRType,
+        DatiFatturaBodyDTRType,
+        DatiGeneraliDTRType,
+    )
     #   ANNType)
 except ImportError as err:
     _logger.debug(err)
 
+_logger.setLevel(logging.DEBUG)
 
 VERSIONE = 'DAT20'
-
+ENCODING = 'UTF-8'
 
 class WizardVatCommunication(orm.TransientModel):
     _name = "wizard.vat.communication"
@@ -127,10 +95,7 @@ class WizardVatCommunication(orm.TransientModel):
             if selector == 'company':
                 sede = (IndirizzoType())
             elif selector == 'customer':
-                if SPESOMETRO_VERSION == '2.0':
-                    sede = (IndirizzoNoCAPType())
-                else:
-                    sede = (IndirizzoType())
+                sede = (IndirizzoNoCAPType())
             elif selector == 'supplier':
                 sede = (IndirizzoType())
             else:
@@ -141,15 +106,9 @@ class WizardVatCommunication(orm.TransientModel):
             if selector == 'company':
                 sede = (IndirizzoType())
             elif selector == 'customer':
-                if SPESOMETRO_VERSION == '2.0':
-                    sede = (IndirizzoNoCAPType())
-                else:
-                    sede = (IndirizzoType())
+                sede = (IndirizzoNoCAPType())
             elif selector == 'supplier':
-                if SPESOMETRO_VERSION == '2.0':
-                    sede = (IndirizzoNoCAPType())
-                else:
-                    sede = (IndirizzoType())
+                sede = (IndirizzoNoCAPType())
             else:
                 raise orm.except_orm(
                     _('Error!'),
@@ -196,36 +155,18 @@ class WizardVatCommunication(orm.TransientModel):
     def get_name(self, cr, uid, fields, dte_dtr_id, selector, context=None):
         if dte_dtr_id == 'DTE':
             if selector == 'company':
-                if SPESOMETRO_VERSION == '2.0':
-                    AltriDatiIdentificativi = \
-                        (AltriDatiIdentificativiNoSedeType())
-                else:
-                    AltriDatiIdentificativi = \
-                        (AltriDatiIdentificativiITType())
+                AltriDatiIdentificativi = (AltriDatiIdentificativiNoSedeType())
             elif selector == 'customer' or selector == 'supplier':
-                if SPESOMETRO_VERSION == '2.0':
-                    AltriDatiIdentificativi = \
-                        (AltriDatiIdentificativiNoCAPType())
-                else:
-                    AltriDatiIdentificativi = \
-                        (AltriDatiIdentificativiType())
+                AltriDatiIdentificativi = (AltriDatiIdentificativiNoCAPType())
             else:
                 raise orm.except_orm(
                     _('Error!'),
                     _('Internal error: invalid partner selector'))
         else:
             if selector == 'company':
-                if SPESOMETRO_VERSION == '2.0':
-                    AltriDatiIdentificativi = \
-                        (AltriDatiIdentificativiNoSedeType())
-                else:
-                    AltriDatiIdentificativi = (AltriDatiIdentificativiITType())
+                AltriDatiIdentificativi = (AltriDatiIdentificativiNoSedeType())
             elif selector == 'customer' or selector == 'supplier':
-                if SPESOMETRO_VERSION == '2.0':
-                    AltriDatiIdentificativi = \
-                        (AltriDatiIdentificativiNoCAPType())
-                else:
-                    AltriDatiIdentificativi = (AltriDatiIdentificativiType())
+                AltriDatiIdentificativi = (AltriDatiIdentificativiNoCAPType())
             else:
                 raise orm.except_orm(
                     _('Error!'),
@@ -302,15 +243,16 @@ class WizardVatCommunication(orm.TransientModel):
                     IdFiscaleITType())
 
             partner.IdentificativiFiscali.IdFiscaleIVA.\
-                IdPaese = fields['xml_IdPaese']
+                IdPaese = fields['xml_IdPaese'].strip()
             partner.IdentificativiFiscali.IdFiscaleIVA.\
-                IdCodice = fields['xml_IdCodice']
+                IdCodice = fields['xml_IdCodice'].strip()
 
             if fields.get('xml_IdPaese') == 'IT' and fields.get(
                     'xml_CodiceFiscale'):
+                # Strip value as it might contain whitespaces
                 partner.IdentificativiFiscali.\
                     CodiceFiscale = CodiceFiscaleType(
-                        fields['xml_CodiceFiscale'])
+                        fields['xml_CodiceFiscale'].strip())
         else:
             partner.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(
                 fields['xml_CodiceFiscale'])
@@ -356,10 +298,7 @@ class WizardVatCommunication(orm.TransientModel):
                     cr, uid, commitment, invoice_id, dte_dtr_id, context)
                 if dte_dtr_id == 'DTE':
                     invoice = (DatiFatturaBodyDTEType())
-                    if SPESOMETRO_VERSION == '2.0':
-                        invoice.DatiGenerali = (DatiGeneraliType())
-                    else:
-                        invoice.DatiGenerali = (DatiGeneraliDTEType())
+                    invoice.DatiGenerali = (DatiGeneraliType())
                 else:
                     invoice = (DatiFatturaBodyDTRType())
                     invoice.DatiGenerali = (DatiGeneraliDTRType())
@@ -465,14 +404,22 @@ class WizardVatCommunication(orm.TransientModel):
                     raise orm.except_orm(
                         _('Error!'),
                         _('Internal error: invalid partner selector'))
-                # file_name = 'Comunicazine_IVA-{}.xml'.format(
-                #     commitment.progressivo_telematico)
+
                 progr_invio = commitment_model.set_progressivo_telematico(
                     cr, uid, commitment, context)
-                file_name = 'IT%s_DF_%s.xml' % (
-                    commitment.soggetto_codice_fiscale, progr_invio)
+                # HACK by BT-mgerecke
+                # Use VAT number as filename instead fiscal code
+                file_name = '%s_DF_%s.xml' % (
+                    commitment.company_id.vat, progr_invio)
                 vat_communication_xml = communication.toDOM().toprettyxml(
-                    encoding="latin1")
+                    encoding=ENCODING)
+                # Remove namespace entries generated by XML lib.
+                # Import tool was not capable of interprete namespaces.
+                ns_open = '<ns1:DatiFattura versione="DAT20" xmlns:ns1="http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0">'
+                vat_communication_xml = vat_communication_xml.replace(ns_open,'<DatiFattura versione="DAT20">')
+                ns_close = '</ns1:DatiFattura>'
+                vat_communication_xml = vat_communication_xml.replace(ns_close,'</DatiFattura>')
+                # End HACK
 
                 out = vat_communication_xml.encode("base64")
 

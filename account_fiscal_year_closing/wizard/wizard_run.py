@@ -1,36 +1,31 @@
 # -*- coding: utf-8 -*-
 #
+# Copyright 2008, Borja López Soilán <borja@kami.es> - (Pexego)
+# Copyright 2008, ACYSOS S.L. (http://acysos.com)
+#                 Pedro Tarrafeta <pedro@acysos.com>
+# Copyright 2009, Zikzakmedia S.L. (http://zikzakmedia.com)
+#                 Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2011-2018, Associazione Odoo Italia <https://odoo-italia.org>
+# Copyright 2012, Domsense srl (<http://www.domsense.com>)
+# Copyright 2012, Agile Business Group sagl (<http://www.agilebg.com>)
+# Copyright 2014-2018, Odoo Community Association (OCA)
+# Copyright 2017-2018, Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 #
-#    OpenERP - Import operations model 347 engine
-#    Copyright (C) 2009 Asr Oss. All Rights Reserved
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-
 """
 Create FYC entries wizards
 """
 
-from tools.translate import _
-import netsvc
-from osv import osv
+import pdb
+
+from openerp.tools.translate import _
+
+from openerp import netsvc
+from openerp.osv import orm, osv
 
 
-class wizard_run(osv.osv_memory):
+class wizard_run(orm.TransientModel):
 
     """
     Wizard to create the FYC entries.
@@ -42,11 +37,13 @@ class wizard_run(osv.osv_memory):
         """
         Creates / removes FYC entries
         """
+        pdb.set_trace()
 
         pool = self.pool
         active_id = context and context.get('active_id', False) or False
         if not active_id:
-            raise osv.except_osv(_('Error'), _('No active ID found'))
+            raise osv.except_osv(_('Error'),                # pragma: no cover
+                                 _('No active ID'))
         # Read the object
         fyc = pool.get('account_fiscal_year_closing.fyc').browse(
             cr, uid, active_id, context=context)
@@ -198,7 +195,7 @@ class wizard_run(osv.osv_memory):
                     % (move.id, move.date, move.name, move.ref)
                     for move in invalid_period_moves
                 ])
-            raise osv.except_osv(
+            raise osv.except_osv(                            # pragma: no cover
                 _('Error'),
                 _('One or more moves with invalid period or date found on the '
                   'fiscal year: \n%s') % str_invalid_period_moves)
@@ -238,7 +235,7 @@ class wizard_run(osv.osv_memory):
                     % (move.id, move.date, move.name, move.ref)
                     for move in draft_moves
                 ])
-            raise osv.except_osv(
+            raise osv.except_osv(                            # pragma: no cover
                 _('Error'),
                 _('One or more draft moves found: \n%s') % str_draft_moves)
 
@@ -291,7 +288,7 @@ class wizard_run(osv.osv_memory):
                     % (move.id, move.date, move.name, move.ref)
                     for move in unbalanced_moves
                 ])
-            raise osv.except_osv(
+            raise osv.except_osv(                            # pragma: no cover
                 _('Error'),
                 _('One or more unbalanced moves found: \n%s')
                 % str_unbalanced_moves)
@@ -327,8 +324,8 @@ class wizard_run(osv.osv_memory):
             account_mapping_ids = fyc.lp_account_mapping_ids
             for account_map in account_mapping_ids:
                 if not account_map.dest_account_id:
-                    raise osv.except_osv(
-                        _('UserError'),
+                    raise osv.except_osv(                    # pragma: no cover
+                        _('osv.except_osv'),
                         _("The L&P account mappings are not properly "
                           "configured: %s") % account_map.name)
 
@@ -336,17 +333,18 @@ class wizard_run(osv.osv_memory):
             # Get the values for the lines
             #
             if not fyc.lp_description:
-                raise osv.except_osv(
-                    _('UserError'), _("The L&P description must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _(
+                        "The L&P description must be defined"))
             if not fyc.lp_date:
-                raise osv.except_osv(
-                    _('UserError'), _("The L&P date must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _("The L&P date must be defined"))
             if not (fyc.lp_period_id and fyc.lp_period_id.id):
-                raise osv.except_osv(
-                    _('UserError'), _("The L&P period must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _("The L&P period must be defined"))
             if not (fyc.lp_journal_id and fyc.lp_journal_id.id):
-                raise osv.except_osv(
-                    _('UserError'), _("The L&P journal must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _("The L&P journal must be defined"))
             description = fyc.lp_description
             date = fyc.lp_date
             period_id = fyc.lp_period_id.id
@@ -360,18 +358,20 @@ class wizard_run(osv.osv_memory):
             # Get the values for the lines
             #
             if not fyc.nlp_description:
-                raise osv.except_osv(
-                    _('UserError'),
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'),
                     _("The Net L&P description must be defined"))
             if not fyc.nlp_date:
-                raise osv.except_osv(
-                    _('UserError'), _("The Net L&P date must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _("The Net L&P date must be defined"))
             if not (fyc.nlp_period_id and fyc.nlp_period_id.id):
-                raise osv.except_osv(
-                    _('UserError'), _("The Net L&P period must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _(
+                        "The Net L&P period must be defined"))
             if not (fyc.nlp_journal_id and fyc.nlp_journal_id.id):
-                raise osv.except_osv(
-                    _('UserError'), _("The Net L&P journal must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _(
+                        "The Net L&P journal must be defined"))
             description = fyc.nlp_description
             date = fyc.nlp_date
             period_id = fyc.nlp_period_id.id
@@ -381,8 +381,8 @@ class wizard_run(osv.osv_memory):
             if not (
                 fyc.loss_and_profit_move_id and fyc.loss_and_profit_move_id.id
             ):
-                raise osv.except_osv(
-                    _('UserError'),
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'),
                     _("The L&P move must exist before creating the closing "
                       "one"))
             # Set the accounts to use
@@ -391,18 +391,20 @@ class wizard_run(osv.osv_memory):
             # Get the values for the lines
             #
             if not fyc.c_description:
-                raise osv.except_osv(
-                    _('UserError'),
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'),
                     _("The closing description must be defined"))
             if not fyc.c_date:
-                raise osv.except_osv(
-                    _('UserError'), _("The closing date must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _("The closing date must be defined"))
             if not (fyc.c_period_id and fyc.c_period_id.id):
-                raise osv.except_osv(
-                    _('UserError'), _("The closing period must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _(
+                        "The closing period must be defined"))
             if not (fyc.c_journal_id and fyc.c_journal_id.id):
-                raise osv.except_osv(
-                    _('UserError'), _("The closing journal must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _(
+                        "The closing journal must be defined"))
             description = fyc.c_description
             date = fyc.c_date
             period_id = fyc.c_period_id.id
@@ -544,28 +546,31 @@ class wizard_run(osv.osv_memory):
             closing_move = fyc.closing_move_id
             # Require the user to have performed the closing operation
             if not (closing_move and closing_move.id):
-                raise osv.except_osv(
-                    _('UserError'),
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'),
                     _("The closing move must exist to create the opening one"))
             if not closing_move.line_id:
-                raise osv.except_osv(
-                    _('UserError'), _("The closing move shouldn't be empty"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _(
+                        "The closing move shouldn't be empty"))
             #
             # Get the values for the lines
             #
             if not fyc.o_description:
-                raise osv.except_osv(
-                    _('UserError'),
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'),
                     _("The opening description must be defined"))
             if not fyc.o_date:
-                raise osv.except_osv(
-                    _('UserError'), _("The opening date must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _("The opening date must be defined"))
             if not (fyc.o_period_id and fyc.o_period_id.id):
-                raise osv.except_osv(
-                    _('UserError'), _("The opening period must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _(
+                        "The opening period must be defined"))
             if not (fyc.o_journal_id and fyc.o_journal_id.id):
-                raise osv.except_osv(
-                    _('UserError'), _("The opening journal must be defined"))
+                raise osv.except_osv(                        # pragma: no cover
+                    _('osv.except_osv'), _(
+                        "The opening journal must be defined"))
             description = fyc.o_description
             date = fyc.o_date
             period_id = fyc.o_period_id.id
