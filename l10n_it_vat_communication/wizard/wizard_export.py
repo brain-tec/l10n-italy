@@ -12,12 +12,7 @@ from openerp.tools.translate import _
 # from openerp import release
 import logging
 _logger = logging.getLogger(__name__)
-<<<<<<< HEAD
 _logger.setLevel(logging.DEBUG)
-=======
-# required for error
-import pyxb
->>>>>>> 91744e1... Remove whitespaces from fields
 try:
     from unidecode import unidecode
     if os.environ.get('SPESOMETRO_VERSION', '2.1') == '2.0':

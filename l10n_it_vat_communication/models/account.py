@@ -977,12 +977,8 @@ class commitment_DTR_line(orm.Model):
             for f in ('xml_IdPaese', 'xml_IdCodice', 'xml_CodiceFiscale', 'xml_Aliquota', 'xml_Detraibile'):
                 if f in fields:
                     result[f] = fields[f]
-<<<<<<< HEAD
-=======
                 else:
                     _logger.warn(_('Field %s not found for partner %s' % (f, line.partner_id)))
-
->>>>>>> 3958d53... [t9033] QWeb2 error on view. Some functional fields were not delivered to view.
             res[line.id] = result
         return res
 
