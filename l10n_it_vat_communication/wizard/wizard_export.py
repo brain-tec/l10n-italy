@@ -329,6 +329,11 @@ class WizardVatCommunication(orm.TransientModel):
         for partner_id in partner_ids:
             fields = commitment_model.get_xml_cessionario_cedente(
                 cr, uid, commitment, partner_id, dte_dtr_id, context)
+            _logger.debug('partner_id=%d %s VAT=%s%s CF=%s' % (
+                partner_id,
+                fields.get('xml_Denominazione'),
+                fields.get('xml_IdPaese'), fields.get('xml_IdCodice'),
+                fields.get('xml_CodiceFiscale')))
 
             if dte_dtr_id == 'DTE':
                 partner = self.get_cessionario_committente(
@@ -345,6 +350,7 @@ class WizardVatCommunication(orm.TransientModel):
             for invoice_id in invoice_ids:
                 fields = commitment_model.get_xml_invoice(
                     cr, uid, commitment, invoice_id, dte_dtr_id, context)
+
                 if dte_dtr_id == 'DTE':
                     invoice = (DatiFatturaBodyDTEType())
                     if SPESOMETRO_VERSION == '2.0':
@@ -362,6 +368,9 @@ class WizardVatCommunication(orm.TransientModel):
                 if dte_dtr_id == 'DTR':
                     invoice.DatiGenerali.DataRegistrazione = fields[
                         'xml_DataRegistrazione']
+                # _logger.debug('invoice_id=%d %s' % (
+                #     invoice_id,
+                #     fields.get('xml_Numero')))
 
                 dati_riepilogo = []
                 line_ids = commitment_model.get_riepilogo_list(
@@ -460,10 +469,10 @@ class WizardVatCommunication(orm.TransientModel):
                 #     commitment.progressivo_telematico)
                 progr_invio = commitment_model.set_progressivo_telematico(
                     cr, uid, commitment, context)
+                _logger.debug('Progressivo invio %s' % progr_invio)
                 file_name = 'IT%s_DF_%s.xml' % (
                     commitment.soggetto_codice_fiscale, progr_invio)
-                vat_communication_xml = communication.toDOM().toprettyxml(
-                    encoding="latin1")
+                vat_communication_xml = communication.toDOM().toprettyxml()
 
                 out = vat_communication_xml.encode("base64")
 

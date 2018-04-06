@@ -40,8 +40,8 @@ class AccountVatCommunication(orm.Model):
     _name = "account.vat.communication"
     _columns = {
         'company_id': fields.many2one('res.company', 'Azienda', required=True),
-        # 'progressivo_telematico':
-        #     fields.integer('Progressivo telematico', readonly=True),
+        'progressivo_telematico':
+            fields.integer('Progressivo telematico', readonly=True),
         'soggetto_codice_fiscale':
             fields.char('Codice fiscale dichiarante',
                         size=16, required=True,
@@ -603,7 +603,8 @@ class AccountVatCommunication(orm.Model):
             if not invoice.supplier_invoice_number:
                 raise orm.except_orm(
                     _('Error!'),
-                    _('Missed supplier invoice number %s') % (invoice.number))
+                    _('Missed supplier invoice number %s, id=%d') % (
+                        invoice.number, invoice.id))
             res['xml_Numero'] = invoice.supplier_invoice_number[-20:]
             res['xml_DataRegistrazione'] = invoice.registration_date
         else:
@@ -656,17 +657,39 @@ class commitment_line(orm.AbstractModel):
 
         res = {}
         if partner.vat:
-            vat = partner.vat
+            vat = partner.vat.replace(' ', '')
             res['xml_IdPaese'] = vat and vat[0:2] or ''
             res['xml_IdCodice'] = vat and vat[2:] or ''
+            res['xml_IdPaese'] = res['xml_IdPaese'].upper()
+            if len(res['xml_IdPaese']):
+                if len(res['xml_IdCodice']) < 1 or \
+                        len(res['xml_IdCodice']) > 28:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Invalid vat size of %s id %d') % (
+                            partner.name, partner.id))
+                if res['xml_IdPaese'][0] < 'A' or \
+                        res['xml_IdPaese'][0] > 'z' or \
+                        res['xml_IdPaese'][1] < 'A' or \
+                        res['xml_IdPaese'][1] > 'z':
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Invalid iso-country in vat of %s %d') % (
+                            partner.name, partner.id))
         res['xml_Nazione'] = address.country_id.code or res.get('xml_IdPaese')
         if not res.get('xml_Nazione'):
             raise orm.except_orm(
                 _('Error!'),
                 _('Unknow country of %s') % partner.name)
+        if res['xml_Nazione'] == 'IT' and \
+                not partner.vat and \
+                not partner.fiscalcode:
+            raise orm.except_orm(
+                _('Error!'),
+                _('Partner %s %d without fiscal identification') % (
+                    partner.name, partner.id))
 
-        if (partner.individual or
-                not partner.is_company) and partner.fiscalcode:
+        if partner.fiscalcode:
             r = self.pool['account.vat.communication'].onchange_fiscalcode(
                 cr, uid, partner.id,
                 partner.fiscalcode, None,
@@ -676,11 +699,13 @@ class commitment_line(orm.AbstractModel):
                 raise orm.except_orm(
                     _('Error!'),
                     _('Invalid fiscalcode of %s') % partner.name)
-            res['xml_CodiceFiscale'] = partner.fiscalcode
-        elif res.get('xml_IdPaese', '') == 'IT':
-            # res['xml_CodiceFiscale'] = res['xml_IdCodice']
-            pass
-        elif not partner.vat:
+            if res.get('xml_Nazione', '') == 'IT':
+                if partner.fiscalcode != res.get('xml_IdCodice'):
+                    res['xml_CodiceFiscale'] = partner.fiscalcode.replace(' ',
+                                                                          '')
+            elif not partner.vat:
+                res['xml_CodiceFiscale'] = '99999999999'
+        elif not partner.vat and res.get('xml_Nazione', '') != 'IT':
             res['xml_CodiceFiscale'] = '99999999999'
 
         if partner.individual or not partner.is_company:
@@ -696,15 +721,31 @@ class commitment_line(orm.AbstractModel):
             if not res.get('xml_Cognome') or not res.get('xml_Nome'):
                 raise orm.except_orm(
                     _('Error!'),
-                    _('Invalid First or Last name %s') % (partner.name))
+                    _('Invalid First or Last name %s %d') % (
+                        partner.name, partner.id))
         else:
             res['xml_Denominazione'] = partner.name
             if not partner.vat and \
-                    (res['xml_Nazione'] == 'IT' or
-                     res['xml_Nazione'] in EU_COUNTRIES):
+                    res['xml_Nazione'] == 'IT':
+                    # or
+                    # res['xml_Nazione'] in EU_COUNTRIES):
                 raise orm.except_orm(
                     _('Error!'),
-                    _('Partner %s without VAT number') % (partner.name))
+                    _('Partner %s %d without VAT number') % (
+                        partner.name, partner.id))
+        if not res.get('xml_CodiceFiscale') and \
+                not res.get('xml_IdPaese') and \
+                not res.get('xml_IdCodice'):
+            raise orm.except_orm(
+                _('Error!'),
+                _('Partner %s %d without fiscal data') % (
+                    partner.name, partner.id))
+        # if res.get('xml_IdPaese') and \
+        #         res.get('xml_IdPaese') !=res['xml_Nazione']:
+        #     raise orm.except_orm(
+        #         _('Error!'),
+        #         _('Partner %s %d vat country differs from country') % (
+        #             partner.name, partner.id))
 
         if address.street:
             res['xml_Indirizzo'] = address.street.replace(
