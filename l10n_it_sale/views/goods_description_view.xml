@@ -36,7 +36,7 @@
             <field name="view_mode">tree,form</field>
         </record>
         
-        <menuitem action="action_goods_description_tree" id="menu_action_good_description_tree" parent="stock.menu_stock_configuration"/>
+        <menuitem action="action_goods_description_tree" id="menu_action_good_description_tree" parent="menu_stock_ddt_data"/>
     
     </data>
 </openerp>

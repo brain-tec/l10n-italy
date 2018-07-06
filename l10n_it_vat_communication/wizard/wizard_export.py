@@ -476,12 +476,10 @@ class WizardVatCommunication(orm.TransientModel):
                     raise orm.except_orm(
                         _('Error!'),
                         _('Internal error: invalid partner selector'))
-                # file_name = 'Comunicazine_IVA-{}.xml'.format(
-                #     commitment.progressivo_telematico)
                 progr_invio = commitment_model.set_progressivo_telematico(
                     cr, uid, commitment, context)
-                _logger.debug('Progressivo invio %s' % progr_invio)
-                file_name = 'IT%s_DF_%s.xml' % (
+                _logger.debug('Progressivo invio %d' % progr_invio)
+                file_name = 'IT%s_DF_%05d.xml' % (
                     commitment.soggetto_codice_fiscale, progr_invio)
                 vat_communication_xml = communication.toDOM().toprettyxml()
 

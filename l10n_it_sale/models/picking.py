@@ -64,6 +64,7 @@ class stock_picking_reason(orm.Model):
             'Reason For Transportation', size=64, required=True,
             readonly=False),
         'note': fields.text('Note'),
+        'to_be_invoiced': fields.boolean('To be Invoiced'),
     }
 
 

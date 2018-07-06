@@ -2,18 +2,18 @@
 #    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
 #    Copyright (C) 2012-15 Agile Business Group sagl <http://www.agilebg.com>
 #    Copyright (C) 2013-15 LinkIt Spa <http://http://www.linkgroup.it>
-#    Copyright (C) 2013-17 Associazione Odoo Italia
+#    Copyright (C) 2013-18 Associazione Odoo Italia
 #                          <http://www.odoo-italia.org>
 #    Copyright (C) 2017    Didotech srl <http://www.didotech.com>
-#    Copyright (C) 2017    SHS-AV s.r.l. <https://www.zeroincombenze.it>
+#    Copyright (C) 2017-18 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-from openerp.osv import orm, fields
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 
 
-class remove_period(orm.TransientModel):
+class RemovePeriod(orm.TransientModel):
 
     def _get_period_ids(self, cr, uid, context=None):
         res = []
@@ -71,8 +71,6 @@ class remove_period(orm.TransientModel):
         return field, field2
 
     def remove_period(self, cr, uid, ids, context=None):
-        # wizard = self.browse(cr, uid, ids, context)[0]
-        # statement_model = self.pool.get('account.vat.period.end.statement')
         field, field2 = self.linkable_period(cr, uid, ids, context)
         vals = {field: False}
         if field2:

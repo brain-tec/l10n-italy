@@ -77,7 +77,7 @@ Descrizione | Odoo Italia | OCA
 Coverage |  [![codecov](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg)](https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0) | [![Coverage Status](https://coveralls.io/repos/OCA/l10n-italy/badge.svg?branch=7.0)](https://coveralls.io/r/OCA/l10n-italy?branch=7.0)
 Test compatibilità OCA e Odoo | :x: | [Errore import decimal precision](https://github.com/OCA/OCB/issues/629)
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [ricerca CAP, città e provincia](https://www.zeroincombenze.it/nuova-anagrafica-per-il-software-gestionale/) | Ricerca città
-[l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | Ricerca provincia italia e estero (compatibile con OCA-Italy) | Ricerca provincia Italia (non compatibile con OCA)
+[l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | Ricerca provincia Italia e estero (compatibile con OCA) | Ricerca provincia Italia (non compatibile con OCA)
 [l10n_it_base](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_base) | [Dati comuni italiani 2014](http://www.shs-av.com/variazione-denominazione-comuni-italiani-2014/) | Dati comuni 2013
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_fiscal) | [piano dei conti evoluto](https://www.zeroincombenze.it/il-piano-dei-conti-2/) | :x:
 [l10n_it_fiscal](https://github.com/OCA/l10n-italy/tree/7.0/l10n_it_fiscal) | [codici IVA completi](http://wiki.zeroincombenze.org/it/Odoo/7.0/man/codici_IVA) | :x:

@@ -311,7 +311,7 @@ class res_config_settings(orm.TransientModel):
                     where.append((tbl_f, '=ilike', tofind))
                     fix[f] = True
                     # tndb.wlog('fix[', f, '] = True')
-                else:
+                elif isinstance(f, basestring):
                     where_valid = True
                     tofind = getattr(self, f).replace('.', '%')
                     if tofind.find('%') < 0:
