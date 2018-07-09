@@ -48,6 +48,6 @@
         'test/account_tax.xml',
         'test/tax_computation.yml',
     ],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
