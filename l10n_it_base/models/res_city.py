@@ -28,6 +28,9 @@ class res_city(osv.osv):
     _name = 'res.city'
     _description = 'City'
     _columns = {
+        'country_id': fields.many2one('res.country',
+                                      'Country',
+                                      help='Country encoded by ISO-3166.'),
         'name': fields.char('City',
                             size=64,
                             help='Use "." (dot) to search with abbreviation',
@@ -43,4 +46,10 @@ class res_city(osv.osv):
         'region': fields.related(
             'province_id', 'region', type='many2one', relation='res.region',
             string='Region', readonly=True),
+        'state_id': fields.many2one(
+            'res.country.state',
+            'District',
+            help='Upper administration (Province, District or Federal State).',
+            domain="[('country_id', '=', country_id)]"),
+        'nuts': fields.integer('NUTS', size=1),
     }

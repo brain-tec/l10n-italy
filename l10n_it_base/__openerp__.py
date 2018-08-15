@@ -8,7 +8,7 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '7.0.0.2.11',
+    'version': '7.0.0.2.12',
     'category': 'Localisation/Italy',
     'description': """(en)
 Italian Localization module - Base version
@@ -46,9 +46,9 @@ Funzionalità
              'security/ir.model.access.csv',
              'data/res.region.csv',
              'data/res.province.csv',
+             'data/res.country.state.csv',
              'data/res.city.csv',
              'data/res.partner.title.csv',
-             'data/res.country.state.csv',
              ],
     "test": ['test/res_partner.yml',
              ],

@@ -44,10 +44,10 @@
     ],
     'demo_xml': [
     ],
-    'test': [
-        'test/account_tax.xml',
-        'test/tax_computation.yml',
-    ],
-    'installable': False,
+    # 'test': [
+    #     'test/account_tax.xml',
+    #     'test/tax_computation.yml',
+    # ],
+    'installable': True,
     'active': False,
 }
