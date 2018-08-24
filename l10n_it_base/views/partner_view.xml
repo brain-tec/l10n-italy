@@ -3,9 +3,10 @@
 <data>
 
     <record model="ir.ui.view" id="view_partner_form_inherit_country">
-        <field name="name">partner.form.country</field>
+        <field name="name">partner.form.10.country</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="10"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="country_id" position="replace" />
@@ -18,9 +19,10 @@
     </record>
 
     <record model="ir.ui.view" id="view_partner_form_inherit_zip">
-        <field name="name">partner.form.zip</field>
+        <field name="name">partner.form.20.zip</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="10"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="zip" position="replace" />
@@ -33,9 +35,10 @@
     </record>
 
     <record model="ir.ui.view" id="view_partner_form_inherit_city">
-        <field name="name">partner.form.city</field>
+        <field name="name">partner.form.30.city</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="10"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="city" position="replace">
@@ -60,7 +63,7 @@
     </record>
 
     <record model="ir.ui.view" id="view_partner_form_inherit_addr">
-        <field name="name">partner.form.addr</field>
+        <field name="name">partner.form.90.addr</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="type">form</field>

@@ -8,7 +8,7 @@
 #
 {
     'name': 'Italian Localisation - Base',
-    'version': '7.0.0.2.12',
+    'version': '7.0.0.2.13',
     'category': 'Localisation/Italy',
     'description': """(en)
 Italian Localization module - Base version
