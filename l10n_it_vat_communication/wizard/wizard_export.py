@@ -85,7 +85,7 @@ class WizardVatCommunication(orm.TransientModel):
             header.Dichiarante = (DichiaranteType())
             header.Dichiarante.Carica = fields['xml_Carica']
             header.Dichiarante.CodiceFiscale = CodiceFiscaleType(
-                fields['xml_CodiceFiscale'])
+                fields['xml_CodiceFiscale'].strip())
         return header
 
     def get_sede(self, cr, uid, fields, dte_dtr_id, selector, context=None):
@@ -214,7 +214,7 @@ class WizardVatCommunication(orm.TransientModel):
                 IdCodice = fields['xml_IdCodice']
         if fields.get('xml_CodiceFiscale'):
             CedentePrestatore.IdentificativiFiscali.CodiceFiscale = \
-                CodiceFiscaleType(fields['xml_CodiceFiscale'])
+                CodiceFiscaleType(fields['xml_CodiceFiscale'].strip())
         CedentePrestatore.AltriDatiIdentificativi = \
             self.get_name(cr, uid, fields, dte_dtr_id, partner_type, context)
         return CedentePrestatore
@@ -253,7 +253,7 @@ class WizardVatCommunication(orm.TransientModel):
                         fields['xml_CodiceFiscale'].strip())
         else:
             partner.IdentificativiFiscali.CodiceFiscale = CodiceFiscaleType(
-                fields['xml_CodiceFiscale'])
+                fields['xml_CodiceFiscale'].strip())
         # row 44: 2.2.2   <AltriDatiIdentificativi>
         partner.AltriDatiIdentificativi = \
             self.get_name(cr, uid, fields, dte_dtr_id, partner_type, context)

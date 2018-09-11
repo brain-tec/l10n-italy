@@ -520,7 +520,7 @@ class AccountVatCommunication(orm.Model):
         #     res['xml_ProgressivoInvio'] = str(
         #         commitment.progressivo_telematico)
         if commitment.codice_carica and commitment.soggetto_codice_fiscale:
-            res['xml_CodiceFiscale'] = commitment.soggetto_codice_fiscale
+            res['xml_CodiceFiscale'] = commitment.soggetto_codice_fiscale.strip()
             res['xml_Carica'] = commitment.codice_carica
         return res
 
@@ -686,15 +686,15 @@ class commitment_line(orm.AbstractModel):
 
         if (partner.individual or
                 not partner.is_company) and partner.fiscalcode:
-            res['xml_CodiceFiscale'] = partner.fiscalcode
+            res['xml_CodiceFiscale'] = partner.fiscalcode.strip()
         elif res.get('xml_IdPaese', '') == 'IT':
-            res['xml_CodiceFiscale'] = res['xml_IdCodice']
+            res['xml_CodiceFiscale'] = res['xml_IdCodice'].strip()
         elif not partner.vat:
             res['xml_CodiceFiscale'] = '99999999999'
         # HACK by BT-mgerecke, t9153
         # Only set this attribute in vat_communication tree view! Otherwise export will fail.
-        elif 'active_model' not in context:
-            res['xml_CodiceFiscale'] = partner.fiscalcode
+        elif 'active_model' not in context and partner.fiscalcode:
+            res['xml_CodiceFiscale'] = partner.fiscalcode.strip()
         # End HACK
 
         if partner.individual or not partner.is_company:
