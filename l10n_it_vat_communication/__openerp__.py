@@ -51,5 +51,5 @@ Questa comunicazione è anche conosciuta come Spesometro light 2018.
         'python': ['pyxb', 'unidecode'],
     },
     'demo': [],
-    'installable': True,
+    'installable': False,
 }
