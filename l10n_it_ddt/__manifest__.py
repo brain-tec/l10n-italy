@@ -11,12 +11,12 @@
 
 {
     'name': 'DDT',
-    'version': '10.0.1.2.3',
+    'version': '10.0.1.5.1',
     'category': 'Localization/Italy',
     'summary': 'Documento di Trasporto',
-    'author': 'Davide Corio, Odoo Community Association (OCA),'
-              'Agile Business Group, Francesco Apruzzese, '
-              'Openforce di Camilli Alessandro',
+    'author': 'Odoo Community Association (OCA),'
+              'Odoo Italia Associazione,'
+              '*Dettaglio autori in documentazione*',
     'website': 'https://odoo-community.org/',
     'license': 'AGPL-3',
     'depends': [
@@ -32,6 +32,7 @@
         'views/partner.xml',
         'views/account.xml',
         'views/sale.xml',
+        'views/stock_location.xml',
         'wizard/add_picking_to_ddt.xml',
         'wizard/ddt_from_picking.xml',
         'wizard/ddt_create_invoice.xml',

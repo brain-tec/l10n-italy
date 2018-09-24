@@ -9,7 +9,7 @@
 
 {
     'name': "Ricevute Bancarie",
-    'version': "10.0.0.1.4",
+    'version': "10.0.1.1.0",
     'author': "Odoo Community Association (OCA)",
     'category': "Accounting & Finance",
     'website': "https://odoo-community.org/",
@@ -37,5 +37,5 @@
         "security/ir.model.access.csv",
     ],
     'demo': ["demo/riba_demo.xml"],
-    'installable': False,
+    'installable': True,
 }
