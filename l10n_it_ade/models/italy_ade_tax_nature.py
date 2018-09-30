@@ -10,7 +10,7 @@ from openerp.osv import fields, orm
 
 class ItalyAdeTaxNature(orm.Model):
     _name = 'italy.ade.tax.nature'
-    _description = 'Tax Italian NAture'
+    _description = 'Tax Italian Nature'
 
     _sql_constraints = [('code', 
                          'unique(code)',

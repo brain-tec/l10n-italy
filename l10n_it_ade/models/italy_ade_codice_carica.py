@@ -10,9 +10,13 @@
 from openerp.osv import fields, orm
 
 
-class AdECodiceCarica(orm.Model):
+class ItalyAdeCodiceCarica(orm.Model):
     _name = 'italy.ade.codice.carica'
     _description = 'Codice Carica'
+
+    _sql_constraints = [('code',
+                         'unique(code)',
+                         'Code already exists!')]
 
     _columns = {
         'code': fields.char(string='Code', size=2,
