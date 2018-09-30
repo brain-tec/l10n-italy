@@ -274,6 +274,8 @@ class AccountVatCommunication(orm.Model):
                 for tax_id in account_tax_model.search(
                         cr, uid, where):
                     tax = account_tax_model.browse(cr, uid, tax_id)
+                    if tax.type_tax_use:
+                        tax_type = tax.type_tax_use
                     if tax and not tax.parent_id:
                         if tax.amount > tax_rate:
                             tax_rate = tax.amount
@@ -281,8 +283,6 @@ class AccountVatCommunication(orm.Model):
                             tax_nature = tax.non_taxable_nature
                         if tax.payability:
                             tax_payability = tax.payability
-                        if tax.type_tax_use:
-                            tax_type = tax.type_tax_use
                     else:
                         if release.major_version == '6.1':
                             tax_rate = 0
@@ -489,12 +489,12 @@ class AccountVatCommunication(orm.Model):
         return True
 
     def onchange_fiscalcode(self, cr, uid, ids, fiscalcode, name,
-                            country_id=None, context=None):
+                            country=None, context=None):
         name = name or 'fiscalcode'
         if fiscalcode:
             country_model = self.pool.get('res.country')
-            if country_id and country_model.browse(
-                    cr, uid, country_id).code != 'IT':
+            if country and country_model.browse(
+                    cr, uid, country.id).code != 'IT':
                 return {'value': {name: fiscalcode,
                                   'individual': True}}
             elif len(fiscalcode) == 11:
