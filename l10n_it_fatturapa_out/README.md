@@ -58,8 +58,6 @@ Ente/Certificato | Data inizio | Da fine | Note
 Installation
 ------------
 
-
-
 :warning: Since version [7-8].0.4.0.0 of this module, definition schemas are
 moved into module l10n_it_ade. Please, read l10n_it_ade documentation for furthermore
 informations.
@@ -74,8 +72,6 @@ This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
 Configuration
 -------------
 
-
-
 * Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the electronic invoices. IPA code is mandatory, EORI code is not.
 * Configure payment terms filling the fatturaPA fields related to payment terms and payment methods.
 * Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
@@ -84,11 +80,6 @@ Configuration
 
 Usage
 -----
-
-
-
-
-
 
 
 
