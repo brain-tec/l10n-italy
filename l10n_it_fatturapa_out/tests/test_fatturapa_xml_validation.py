@@ -198,7 +198,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_0_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-01-07')
+        self.checkCreateFiscalYear('2018-01-07')
         # self.context['fiscalyear_id'] = self.fiscalyear_id
         self.set_sequences(1, 13)
         invoice_id = self.confirm_invoice('fatturapa_invoice_0')
@@ -214,7 +214,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_1_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(2, 14)
         invoice_id = self.confirm_invoice('fatturapa_invoice_1')
         res = self.run_wizard(invoice_id)
@@ -225,7 +225,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_2_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(3, 15)
         invoice_id = self.confirm_invoice('fatturapa_invoice_2', attach=True)
         res = self.run_wizard(invoice_id)
@@ -236,7 +236,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_3_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(4, 16)
         invoice_id = self.confirm_invoice('fatturapa_invoice_3')
         res = self.run_wizard(invoice_id)
@@ -246,7 +246,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
 
     def test_4_xml_export(self):
         cr, uid = self.cr, self.uid
-        self.checkCreateFiscalYear('2017-06-15')
+        self.checkCreateFiscalYear('2018-06-15')
         self.set_sequences(5, 17)
         invoice_id = self.confirm_invoice('fatturapa_invoice_4')
         res = self.run_wizard(invoice_id)

@@ -5,20 +5,19 @@
 [![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg)](https://github.com/OCA/l10n-italy/tree/7.0)
 [![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/dev)
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](https://erp7.zeroincombenze.it)
 
+
+[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
 
-[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 FatturaPA
 =========
 
 This module allows you to generate the fatturaPA XML file version 1.2
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
 to be sent to the Exchange System
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
 :no_entry: This module replaces l10n_it_fatturapa version [7-11].0.2.0.0 by OCA.
 
@@ -29,25 +28,22 @@ FatturaPA
 =========
 
 Questo modulo permette di generare il file xml della fatturaPA versione 1.2
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-per essere spdicta al sistema di interscambio SDI
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
+per essere spedita al sistema di interscambio SdI.
 
 :warning: Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
-come urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml di gestione fiscale; come conseguenza nasce un conflitto tra moduli diversi
-ma con lo stesso schema di riferimento dell'Agenzia delle Entrate con l'errore:
+con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
+xml; come conseguenza nasce un conflitto tra moduli diversi con lo stesso
+schema di riferimento dell'Agenzia delle Entrate con l'errore:
 
 :heavy_exclamation_mark: *name CryptoBinary used for multiple values in typeBinding*
 
-Tutti i moduli che generano file xml per l'Agenzia delle Entrate di OCA *devono*
-essere sostituiti con i moduli di Odoo Italia Associazione per funzionare
-correttamente.
+Tutti i moduli che generano file xml per l'Agenzia delle Entrate *devono*
+dipendere da questo modulo.
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
 l'autore.
 
+
 Certificati
------------
 
 Ente/Certificato | Data inizio | Da fine | Note
 --- | --- | --- | ---
@@ -68,21 +64,52 @@ informazioni, leggete i documenti relativi al modulo l10n_it_ade.
 
 This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
 
+These instruction are just an example to remember what you have to do:
+
+    pip install PyXB==1.2.4
+    git clone https://github.com/zeroincombenze/l10n-italy
+    cp -R l10n-italy/l10n_it_ade ODOO_DIR/l10n-italy/
+    sudo service odoo-server restart -i l10n_it_fatturapa -d MYDB
+
+From UI: go to Setup > Module > Install
+
+
 
 Configuration
 -------------
 
-* Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the electronic invoices. IPA code is mandatory, EORI code is not.
-* Configure payment terms filling the fatturaPA fields related to payment terms and payment methods.
-* Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
-* Configure FatturaPA data in Accounting Configuration. Note that a sequence 'fatturaPA' is already loaded by the module and selectable.
+:it:
 
+* Configurazione > Configurazione > Contabilità > Fattura PA :point_right: Impostare i vari parametri
+* Contabilità > Configurazione > Sezionali > Sezionali :point_right: Impostare sezionale fattura elettronica
+* Contabilità > Configurazione > Imposte > Imposte :point_right: Impostare natura codici IVA
+* Contabilità > Clienti > Clienti :point_right: Impostare IPA, EORI (se necessario), nazione, partita IVA, codice fiscale
+
+
+Usage
+-----
+
+For furthermore information, please visit http://wiki.zeroincombenze.org/it/Odoo/7.0/man/FI
 
 Known issues / Roadmap
 ----------------------
 
-:no_entry: Questo modulo sostituisce i moduli l10n_it_fatturapa di OCA versioni [7-11].0.2.0.0.
+:ticket: This module replaces l10n_it_fatturapa OCA module; PR have to be issued.
 
+In order to use this module you have to use:
+
+:warning: Use [l10n_it_base](l10n_it_base/) replacing OCA module
+
+:warning: Use [l10n_it_ade](l10n_it_ade/) module does not exist in OCA repository
+
+:warning: Use [l10n_it_fiscalcode](l10n_it_fiscalcode/) replacing OCA module
+
+
+
+Bug Tracker
+-----------
+
+Have a bug? Please visit https://odoo-italia.org/index.php/kunena/home
 
 Credits
 -------
@@ -100,6 +127,7 @@ Credits
 
 Questo modulo è stato sviluppato con il contributo di
 
+* Agile BG <https://www.agilebg.com/>
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 
 
@@ -124,15 +152,16 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
 **zeroincombenze®** is a trademark of [SHS-AV s.r.l.](http://www.shs-av.com/)
-which distributes and promotes **Odoo** ready-to-use on its own cloud infrastructure.
-[Zeroincombenze® distribution](http://wiki.zeroincombenze.org/en/Odoo)
+which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+[Zeroincombenze® distribution of Odoo](http://wiki.zeroincombenze.org/en/Odoo)
 is mainly designed for Italian law and markeplace.
-Everytime, every Odoo DB and customized code can be deployed on local server too.
+Users can download from [Zeroincombenze® distribution](https://github.com/zeroincombenze/OCB) and deploy on local server.
 
 [//]: # (end copyright)
 
 [//]: # (addons)
 
 [//]: # (end addons)
+
 
 [![chat with us](https://www.shs-av.com/wp-content/chat_with_us.gif)](https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b)
