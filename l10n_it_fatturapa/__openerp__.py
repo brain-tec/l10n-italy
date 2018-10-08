@@ -20,7 +20,7 @@
         'l10n_it_ipa',
         'l10n_it_rea',
         'base_iban',
-        ],
+    ],
     "data": [
         'data/fatturapa_data.xml',
         'data/welfare.fund.type.csv',

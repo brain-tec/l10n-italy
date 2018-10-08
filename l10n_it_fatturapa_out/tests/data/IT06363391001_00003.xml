@@ -99,6 +99,7 @@
                 <AliquotaIVA>22.00</AliquotaIVA>
                 <ImponibileImporto>14.00</ImponibileImporto>
                 <Imposta>3.08</Imposta>
+                <EsigibilitaIVA>I</EsigibilitaIVA>
             </DatiRiepilogo>
         </DatiBeniServizi>
         <DatiPagamento>

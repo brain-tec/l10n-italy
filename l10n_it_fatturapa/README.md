@@ -9,15 +9,13 @@
 
 [![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
 
-[![en](http://www.shs-av.com/wp-content/en_US.png)](http://wiki.zeroincombenze.org/it/Odoo/7.0/man)
+[![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 FatturaPA
 =========
 
 This module allows you to generate the fatturaPA XML file version 1.2
 which will be sent to the SdI (Exchange System by Italian Tax Authority)
-
-:no_entry: This module replaces l10n_it_fatturapa version [7-11].0.2 by OCA.
 
 
 
@@ -27,7 +25,7 @@ FatturaPA
 =========
 
 Questo modulo permette di generare il file xml della fatturaPA versione 1.2
-da tramsettere al sistema di interscambio SdI.
+da trasmettere al sistema di interscambio SdI.
 
 :warning: Lo schema di definizione dei file xml, pubblicato
 con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
@@ -37,11 +35,12 @@ segnalato dall'errore:
 
 :heavy_exclamation_mark: *name CryptoBinary used for multiple values in typeBinding*
 
-Tutti i moduli della localizzazione italiana che generano file xml che dipendono
-dallo schema dell'Agenzia delle Entrate *devono* dichiare il modulo l10n_it_ade come dipendenza.
+Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+dallo schema dell'Agenzia delle Entrate *devono* dichiare il modulo
+[l10n_it_ade](../l10n_it_ade) come dipendenza.
 
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
-l'ultimo autore Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
+l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 
 
 ### Funzionalità & Certificati
@@ -52,10 +51,13 @@ Emissione FatturaPa 1.2 | :white_check_mark: | Fatture elettronica per PA
 Azienda da fattura | :white_check_mark: | Versione OCA utilizza azienda da utente
 
 
+
 Logo | Ente/Certificato | Data inizio | Da fine | Note
 --- | --- | --- | --- | ---
 [![xml_schema](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/icons/xml-schema.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/iso/scope/xml-schema.md) | [ISO + Agenzia delle Entrate](http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/) | 01-10-2017 | 31-12-2018 | Validazione contro schema xml
-[FatturaPA](http://www.fatturapa.gov.it/export/fatturazione/it/fattura_PA.htm) | 22-09-2017 | 31-12-2017 | [![fatturapa](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md)
+[![fatturapa](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md) | [FatturaPA](https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni) | 22-09-2017 | 31-12-2017 | File accettati da portale fatturaPA Agenzia delle Entrate
+
+
 
 
 
@@ -64,16 +66,19 @@ Logo | Ente/Certificato | Data inizio | Da fine | Note
 Installation
 ------------
 
-:warning: Since version [7-8].0.2 of this module, definition schemas are
+:warning: This module replaces l10n_it_fatturapa by OCA.
+Since version [7-11].0.2 of this module, definition schemas are
 moved into module l10n_it_ade. Please, read above about conflict and
-read l10n_it_ade documentation for furthermore informations.
+read [l10n_it_ade](../l10n_it_ade) documentation for furthermore informations.
 
-:warning: A partire dalla versione [7-8].0.2 di questo modulo, gli schemi
+:warning: Questo modulo sostituisce l10n_it_fatturapa di OCA.
+A partire dalla versione [7-11].0.2 di questo modulo, gli schemi
 di definizione sono stati spostati nel modulo l10n_it_ade. Leggi sopra
-per evitare conflitti e per ulteriori informazioni, leggi i documenti relativi
-al modulo l10n_it_ade.
+come evitare conflitti e per ulteriori informazioni, leggi i documenti relativi
+al modulo [l10n_it_ade](../l10n_it_ade).
 
-This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
+:no_entry: This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
+
 
 These instruction are just an example to remember what you have to do:
 

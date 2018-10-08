@@ -20,7 +20,7 @@ from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 try:
-    from openerp.addons.l10n_it_ade import ade
+    # from openerp.addons.l10n_it_ade import ade
     import codicefiscale
 except ImportError as err:
     _logger.debug(err)

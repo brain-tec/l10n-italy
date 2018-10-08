@@ -21,6 +21,7 @@
 
 import base64
 import tempfile
+from openerp.release import release
 import netsvc
 import openerp.tests.common as test_common
 from openerp import addons
@@ -31,6 +32,58 @@ import os
 
 
 class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
+    def env612(self, model):
+        """Return model pool"""
+        if release.major_version in ('6.1', '7.0'):
+            # Return model pool [6.1 / 7.0]
+            return self.registry(model)
+        # Return model pool [+8.0]
+        return self.env[model]
+
+    def ref612(self, model):
+        """Return reference id"""
+        if release.major_version in ('6.1', '7.0'):
+            # Return reference id [6.1 / 7.0]
+            return self.ref(model)
+        # Return reference id [+8.0]
+        return self.env.ref(model).id
+
+    def search612(self,  *args, **kwargs):
+        """Search record ids - Syntax search(model, *args, **kwargs)"""
+        if release.major_version in ('6.1', '7.0'):
+            # Search record ids [6.1 / 7.0]
+            model_pool = self.registry(args[0])
+            return model_pool.search(self.cr, self.uid, args[1], kwargs)
+        # Search record ids [+8.0]
+        model_pool = self.env[args[0]]
+        return model_pool.search(args[1], kwargs)._ids
+
+    def write612(self, model, id, values):
+        """Write existent record [7.0]"""
+        if release.major_version in ('6.1', '7.0'):
+            # Write existent record [6.1 / 7.0]
+            model_pool = self.registry(model)
+            return model_pool.write(self.cr, self.uid, [id], values)
+        # Write existent record [+8.0]
+        model_pool = self.env[model]
+        obj = model_pool.search([('id', '=', id)])
+        return obj.write(values)
+
+    def write_ref(self, xid, values):
+        """Browse and write existent record"""
+        obj = self.browse_ref(xid)
+        return obj.write(values)
+
+    def create612(self, model, values):
+        """Create a new record for test"""
+        if release.major_version in ('6.1', '7.0'):
+            # Create a new record for test [6.1 / 7.0]
+            return self.env612(model).create(self.cr,
+                                             self.uid,
+                                             values)
+        # Create a new record for test [+8.0]
+        model_pool = self.env[model]
+        return model_pool.create(values).id
 
     def getFilePath(self, filepath):
         with open(filepath) as test_data:
@@ -71,6 +124,7 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
             cr, uid, 'account', 'ova')[1]
         self.company = self.company_model.browse(cr, uid, company_id)
         self.company.write({'sp_account_id': account_ova_id})
+        # self.company.write({'email': 'info@yourcompany.com'})
 
     def attachFileToInvoice(self, InvoiceId, filename):
         self.fatturapa_attach.create(
@@ -219,7 +273,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         invoice_id = self.confirm_invoice('fatturapa_invoice_1')
         res = self.run_wizard(invoice_id)
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
-
         xml_content = attachment.datas.decode('base64')
         self.check_content(xml_content, 'IT06363391001_00002.xml')
 
@@ -231,7 +284,6 @@ class TestFatturaPAXMLValidation(test_common.SingleTransactionCase):
         res = self.run_wizard(invoice_id)
         attachment = self.attach_model.browse(cr, uid, res['res_id'])
         xml_content = attachment.datas.decode('base64')
-
         self.check_content(xml_content, 'IT06363391001_00003.xml')
 
     def test_3_xml_export(self):

@@ -7,6 +7,8 @@
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
 [![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
 
+[![icon](static/src/img/icon.png)](https://travis-ci.org/zeroincombenze)
+
 [![en](https://github.com/zeroincombenze/grymb/blob/master/flags/en_US.png)](https://www.facebook.com/groups/openerp.italia/)
 
 Base xml Agenzia delle Entrate
@@ -26,16 +28,20 @@ Questo modulo non ha funzioni specifice per l'utente finale. Serve come base
 per i moduli che generano file xml in formato stabilito dall'Agenzia delle
 Entrate, come FatturaPA o Liquidazione IVA elettronica.
 
-Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
+:warning: Lo schema di definizione dei file xml, pubblicato
 con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml; come conseguenza nasce un conflitto tra moduli diversi con lo stesso
-schema di riferimento dell'Agenzia delle Entrate con l'errore:
-*name CryptoBinary used for multiple values in typeBinding*
+xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
+moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
+segnalato dall'errore:
 
-Tutti i moduli che generano file xml per l'Agenzia delle Entrate *devono*
-dipendere da questo modulo.
+:heavy_exclamation_mark: *name CryptoBinary used for multiple values in typeBinding*
+
+Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+dallo schema dell'Agenzia delle Entrate *devono* dichiare questo modulo
+come dipendenza.
+
 Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
-l'autore.
+l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 
 ### Schemi
 
@@ -60,6 +66,7 @@ Funzione | Status | Note
 Definizione sezionale autofatture | :white_check_mark: |
 Definizione sezionale corrispettivi | :white_check_mark: | Funzionalità modulo OCA duplicata
 Definizione sezionale avvisi di parcella | :white_check_mark: | Necessario per modulo RA
+Definizione sezionale fattura elettronica | :white_check_mark: | Necessario per fattura elettronica
 
 
 Logo | Ente/Certificato | Data inizio | Da fine | Note
