@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-07 18:44+0000\n"
-"PO-Revision-Date: 2018-10-07 18:44+0000\n"
+"POT-Creation-Date: 2018-10-09 05:12+0000\n"
+"PO-Revision-Date: 2018-10-09 05:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,11 @@ msgid "Check if reverse charge EU invoices journal"
 msgstr "Check if reverse charge EU invoices journal"
 
 #. module: l10n_it_ade
+#: help:account.journal,einvoice:0
+msgid "Check if this is a E-Invoice Journal"
+msgstr "Check if this is a E-Invoice Journal"
+
+#. module: l10n_it_ade
 #: help:account.journal,proforma:0
 msgid "Check if this is a Proforma Journal"
 msgstr "Dichiara il registro degli avvisi di parcella"
@@ -48,6 +53,7 @@ msgid "Code"
 msgstr "Codice"
 
 #. module: l10n_it_ade
+#: sql_constraint:italy.ade.codice.carica:0
 #: sql_constraint:italy.ade.tax.nature:0
 msgid "Code already exists!"
 msgstr "Il codice esiste già!"
@@ -55,7 +61,7 @@ msgstr "Il codice esiste già!"
 #. module: l10n_it_ade
 #: help:italy.ade.codice.carica,code:0
 msgid "Code assigned by Tax Authority"
-msgstr "Codice assegnato da Agenzia delle Entrate"
+msgstr "Codice assegnato dall'Agenzia delle Entrate"
 
 #. module: l10n_it_ade
 #: code:_description:0
@@ -83,6 +89,11 @@ msgstr "Codici carica"
 #: selection:account.tax,payability:0
 msgid "Deferred payability"
 msgstr "Esigibilità differita"
+
+#. module: l10n_it_ade
+#: field:account.journal,einvoice:0
+msgid "E-Invoice journal"
+msgstr "E-Invoice journal"
 
 #. module: l10n_it_ade
 #: code:addons/l10n_it_ade/models/account_tax.py:52

@@ -22,7 +22,7 @@ class ItalyAdeCodiceCarica(orm.Model):
         'code': fields.char(string='Code', size=2,
                             help='Code assigned by Tax Authority'),
         'name': fields.char(string='Name'),
-        'help': fields.char(string='Help'),
+        'help': fields.text(string='Help'),
         'scope': fields.char(string='Scope',
                              help='Reserved to specific scope'),
         'active': fields.boolean(string='Active')

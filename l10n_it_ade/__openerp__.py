@@ -8,8 +8,8 @@
 # Code partially inherited by l10n_it_account of OCA
 #
 {
-    "name": "Base xml Agenzia delle Entrate",
-    "version": "7.0.0.1.9",
+    "name": "Definizioni di Base Agenzia delle Entrate",
+    "version": "7.0.0.1.10",
     "category": "Localization/Italy",
     "summary": "Codice con le definizioni dei file xml Agenzia delle Entrate",
     "author": "SHS-AV s.r.l.,"
@@ -69,8 +69,8 @@ Il modulo rende disponibili i seguenti schemi:
     ],
     "data": [
         'security/ir.model.access.csv',
-        'data/italy.ade.tax.nature.csv',
-        'data/italy.ade.codice.carica.xml',
+        'data/italy_ade_codice_carica.xml',
+        'data/italy_ade_tax_nature.xml',
         'views/ir_ui_menu.xml',
         'views/account_tax_view.xml',
         'views/account_journal.xml',

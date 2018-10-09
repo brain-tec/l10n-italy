@@ -20,7 +20,7 @@ class ItalyAdeTaxNature(orm.Model):
         'code': fields.char(string='Code',
                             size=2),
         'name': fields.char(string='Name'),
-        'help': fields.char(string='Help'),
+        'help': fields.text(string='Help'),
         'active': fields.boolean(string='Active')
     }
     _default = {
