@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-09 05:12+0000\n"
-"PO-Revision-Date: 2018-10-09 05:12+0000\n"
+"POT-Creation-Date: 2018-10-10 03:59+0000\n"
+"PO-Revision-Date: 2018-10-10 03:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 
 #. module: l10n_it_ade
 #: field:italy.ade.codice.carica,active:0
+#: field:italy.ade.invoice.type,active:0
 #: field:italy.ade.tax.nature,active:0
 msgid "Active"
 msgstr "Attivo"
@@ -48,18 +49,21 @@ msgstr "Dichiara il registro dei corrispettivi"
 
 #. module: l10n_it_ade
 #: field:italy.ade.codice.carica,code:0
+#: field:italy.ade.invoice.type,code:0
 #: field:italy.ade.tax.nature,code:0
 msgid "Code"
 msgstr "Codice"
 
 #. module: l10n_it_ade
 #: sql_constraint:italy.ade.codice.carica:0
+#: sql_constraint:italy.ade.invoice.type:0
 #: sql_constraint:italy.ade.tax.nature:0
 msgid "Code already exists!"
 msgstr "Il codice esiste già!"
 
 #. module: l10n_it_ade
 #: help:italy.ade.codice.carica,code:0
+#: help:italy.ade.invoice.type,code:0
 msgid "Code assigned by Tax Authority"
 msgstr "Codice assegnato dall'Agenzia delle Entrate"
 
@@ -116,6 +120,7 @@ msgstr "Comunicazioni Fiscali"
 
 #. module: l10n_it_ade
 #: field:italy.ade.codice.carica,help:0
+#: field:italy.ade.invoice.type,help:0
 #: field:italy.ade.tax.nature,help:0
 msgid "Help"
 msgstr "Aiuto"
@@ -129,6 +134,13 @@ msgstr "IVA assolta in altro stato UE"
 #: selection:account.tax,payability:0
 msgid "Immediate payability"
 msgstr "Esigibilità immediata"
+
+#. module: l10n_it_ade
+#: model:ir.actions.act_window,name:l10n_it_ade.action_invoice_type
+#: model:ir.ui.menu,name:l10n_it_ade.menu_invoice_type
+#: view:italy.ade.invoice.type:0
+msgid "Invoice Type"
+msgstr "Invoice Type"
 
 #. module: l10n_it_ade
 #: view:account.tax:0
@@ -149,6 +161,7 @@ msgstr "Riferimento legislativo"
 
 #. module: l10n_it_ade
 #: field:italy.ade.codice.carica,name:0
+#: field:italy.ade.invoice.type,name:0
 #: field:italy.ade.tax.nature,name:0
 msgid "Name"
 msgstr "Nome"
@@ -188,6 +201,7 @@ msgstr "Registro avvisi di parcella"
 
 #. module: l10n_it_ade
 #: help:italy.ade.codice.carica,scope:0
+#: help:italy.ade.invoice.type,scope:0
 msgid "Reserved to specific scope"
 msgstr "Riservato per uno specifico scopo"
 
@@ -198,6 +212,7 @@ msgstr "Reverse Charge Journal"
 
 #. module: l10n_it_ade
 #: field:italy.ade.codice.carica,scope:0
+#: field:italy.ade.invoice.type,scope:0
 msgid "Scope"
 msgstr "Scopo"
 
@@ -233,6 +248,13 @@ msgstr "Natura IVA Italia"
 #: model:ir.ui.menu,name:l10n_it_ade.menu_tax_nature
 msgid "Tax Nature"
 msgstr "Natura dell'IVA"
+
+#. module: l10n_it_ade
+#: code:_description:0
+#: model:ir.model,name:l10n_it_ade.model_italy_ade_invoice_type
+#, python-format
+msgid "Tipo Fattura Fiscale"
+msgstr "Tipo Fattura Fiscale"
 
 #. module: l10n_it_ade
 #: code:addons/l10n_it_ade/models/account_tax.py:56

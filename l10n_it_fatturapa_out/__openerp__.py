@@ -43,7 +43,7 @@ l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
         'views/account_view.xml',
         'security/ir.model.access.csv',
     ],
-    "installable": True,
+    "installable": False,
     'external_dependencies': {
         'python': ['unidecode'],
     }

@@ -15,7 +15,11 @@
     "author": "SHS-AV s.r.l.,"
               " Odoo Italia Associazione",
     "maintainer": "Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>",
-    "description": """(en)
+    "description": """
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+:alt: License
+
+(en)
 Tax Authority Definitions
 =========================
 
@@ -62,6 +66,13 @@ Il modulo rende disponibili i seguenti schemi:
 * Liquidazione IVA elettronica versione 1.0
 * Comunicazione clienti e fornitori (spesometro 2018) versione 2.1
 * FatturaPA versione 1.2
+
+
+Copyright
+
+.. image:: https://avatars0.githubusercontent.com/u/6972555?s=460&v=4
+   :alt: Zeroincombenze®
+   :target: https://www.zeroincombenze.it
 """,
     "license": "AGPL-3",
     "depends": [
@@ -70,12 +81,14 @@ Il modulo rende disponibili i seguenti schemi:
     "data": [
         'security/ir.model.access.csv',
         'data/italy_ade_codice_carica.xml',
+        'data/italy_ade_invoice_type.xml',
         'data/italy_ade_tax_nature.xml',
         'views/ir_ui_menu.xml',
+        'views/codice_carica_view.xml',
+        'views/invoice_type_view.xml',
+        'views/tax_nature_view.xml',
         'views/account_tax_view.xml',
         'views/account_journal.xml',
-        'views/codice_carica_view.xml',
-        'views/tax_nature_view.xml',
     ],
     'installable': True,
     "external_dependencies": {

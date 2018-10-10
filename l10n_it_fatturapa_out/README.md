@@ -31,28 +31,11 @@ FatturaPA
 
 Questo modulo permette di generare il file xml della fatturaPA versione 1.2
 http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-per essere spdicta al sistema di interscambio SDI
+per essere spedicta al sistema di interscambio SDI
 http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
 
-:warning: Lo schema di definizione dei file xml dell'Agenzia delle Entrate, pubblicato
-come urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml di gestione fiscale; come conseguenza nasce un conflitto tra moduli diversi
-ma con lo stesso schema di riferimento dell'Agenzia delle Entrate con l'errore:
-
-*name CryptoBinary used for multiple values in typeBinding* :heavy_exclamation_mark:
-
-Tutti i moduli che generano file xml per l'Agenzia delle Entrate di OCA *devono*
-essere sostituiti con i moduli di Odoo Italia Associazione per funzionare
-correttamente.
-Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
-l'autore.
-
-Certificati
-
-Ente/Certificato | Data inizio | Da fine | Note
---- | --- | --- | ---
-[FatturaPA](http://www.fatturapa.gov.it/export/fatturazione/it/fattura_PA.htm) | 22-09-2017 | 31-12-2017 | [![fatturapa](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/icons/fatturapa.png)](https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md)
-
+:warning: Leggere attentamente le informazioni di compatibilità e installazione
+tecnica disponibili nel modulo l10n_it_fatturapa.
 
 
 Installation
@@ -72,27 +55,17 @@ This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
 Configuration
 -------------
 
-* Edit the FatturaPA fields of the partners (in partner form) who will receive (send) the electronic invoices. IPA code is mandatory, EORI code is not.
-* Configure payment terms filling the fatturaPA fields related to payment terms and payment methods.
-* Configure taxes about 'Non taxable nature', 'Law reference' and 'VAT payability'
-* Configure FatturaPA data in Accounting Configuration. Note that a sequence 'fatturaPA' is already loaded by the module and selectable.
+[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
+
+* Configurazione > Configurazione > Contabilità > Fattura PA :point_right: Impostare i vari parametri
+* Contabilità > Configurazione > Sezionali > Sezionali :point_right: Impostare sezionale fattura elettronica
+* Contabilità > Configurazione > Imposte > Imposte :point_right: Impostare natura codici IVA
+* Contabilità > Configurazione > Management > Termini di pagamento :point_right: Collegare i terminii di pagamento con i relativi termini fiscali
+* Contabilità > Clienti > Clienti :point_right: Impostare IPA, EORI (se necessario), nazione, partita IVA, codice fiscale
 
 
 Usage
 -----
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -112,15 +85,7 @@ Bug Tracker
 Credits
 -------
 
-
-
-
-
-
-
 ### Contributors
-
-
 
 * Davide Corio
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
@@ -130,17 +95,17 @@ Credits
 
 
 ### Funders
-### Maintainer
-
-
-
-
 
 Questo modulo è stato sviluppato con il contributo di
 
+* Agile BG <https://www.agilebg.com/>
+* Innoviu <https://www.innoviu.com/>
 * SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+* Odoo Community Association (OCA) <https://odoo-community.org/>
+* Odoo Italia Associazione <https://odoo-italia.org/>
 
 
+### Maintainer
 
 [![Odoo Italia Associazione](https://www.odoo-italia.org/images/Immagini/Odoo%20Italia%20-%20126x56.png)](https://odoo-italia.org)
 
