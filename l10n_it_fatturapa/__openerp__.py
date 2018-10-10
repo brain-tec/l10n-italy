@@ -45,7 +45,7 @@ Base module to handle FatturaPA data.
 http://fatturapa.gov.it
 """,
 
-    "installable": False,
+    "installable": True,
     'external_dependencies': {
         'python': ['pyxb'],
     }
