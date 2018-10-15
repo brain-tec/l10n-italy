@@ -5,7 +5,7 @@
 [![OCA_project](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-oca-7.svg)](https://github.com/OCA/l10n-italy/tree/7.0)
 [![Tech Doc](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/dev)
 [![Help](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-help-7.svg)](http://wiki.zeroincombenze.org/en/Odoo/7.0/man/FI)
-[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](http://erp7.zeroincombenze.it)
+[![try it](http://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg)](https://erp7.zeroincombenze.it)
 
 
 
@@ -55,7 +55,6 @@ This module requires PyXB 1.2.4 http://pyxb.sourceforge.net/
 Configuration
 -------------
 
-[![it](https://github.com/zeroincombenze/grymb/blob/master/flags/it_IT.png)](https://www.facebook.com/groups/openerp.italia/)
 
 * Configurazione > Configurazione > Contabilità > Fattura PA :point_right: Impostare i vari parametri
 * Contabilità > Configurazione > Sezionali > Sezionali :point_right: Impostare sezionale fattura elettronica
@@ -126,15 +125,16 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
 **zeroincombenze®** is a trademark of [SHS-AV s.r.l.](http://www.shs-av.com/)
-which distributes and promotes **Odoo** ready-to-use on its own cloud infrastructure.
-[Zeroincombenze® distribution](http://wiki.zeroincombenze.org/en/Odoo)
+which distributes and promotes **Odoo** ready-to-use on own cloud infrastructure.
+[Zeroincombenze® distribution of Odoo](http://wiki.zeroincombenze.org/en/Odoo)
 is mainly designed for Italian law and markeplace.
-Everytime, every Odoo DB and customized code can be deployed on local server too.
+Users can download from [Zeroincombenze® distribution](https://github.com/zeroincombenze/OCB) and deploy on local server.
 
 [//]: # (end copyright)
 
 [//]: # (addons)
 
 [//]: # (end addons)
+
 
 [![chat with us](https://www.shs-av.com/wp-content/chat_with_us.gif)](https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b)
