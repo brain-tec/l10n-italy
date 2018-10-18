@@ -19,7 +19,7 @@
         'account',
         'l10n_it_fiscalcode',
         'document',
-        'l10n_it_ipa',
+        'l10n_it_fiscal_ipa',
         'l10n_it_rea',
         'base_iban',
         'l10n_it_ade',
@@ -41,7 +41,7 @@
         'demo/account_tax.xml',
         'demo/res_partner.xml',
     ],
-    'installable': True,
+    'installable': False,
     'external_dependencies': {
         'python': [
             'pyxb',  # pyxb 1.2.4
