@@ -13,7 +13,7 @@
     'website': 'http://www.agilebg.com',
     'license': 'LGPL-3',
     "depends": [
-        'l10n_it_fatturapa',
+        'l10n_it_einvoice_base',
         'l10n_it_split_payment',
         ],
     "data": [
@@ -22,7 +22,7 @@
         'views/account_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
     'external_dependencies': {
         'python': ['unidecode'],
     }
