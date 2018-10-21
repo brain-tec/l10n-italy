@@ -8,10 +8,10 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 #
 {
-    'name': 'Italian Localization - FatturaPA',
+    'name': 'EInvoice + FatturaPA',
+    'summary': 'Infrastructure for Italian Electronic Invoice + FatturaPA',
     'version': '10.0.2.0.1',
     'category': 'Localization/Italy',
-    'summary': 'Electronic invoices',
     'author': 'Odoo Italia Associazione,'
               'Odoo Community Association (OCA)',
     'website': 'http://www.odoo-italia.org',
@@ -24,6 +24,7 @@
         'l10n_it_rea',
         'base_iban',
         'l10n_it_ade',
+        'l10n_it_pec',
         # 'l10n_it_esigibilita_iva',
         # 'l10n_it_fiscal_payment_term',
         # 'l10n_it_split_payment',
@@ -35,14 +36,15 @@
         'data/welfare.fund.type.csv',
         'views/account_view.xml',
         'views/company_view.xml',
-        'views/partner_view.xml',
+        'views/regime_fiscale_view.xml',
+        'views/fiscal_postion_view.xml',
         'security/ir.model.access.csv',
     ],
     "demo": [
         'demo/account_tax.xml',
         'demo/res_partner.xml',
     ],
-    'installable': False,
+    'installable': True,
     'external_dependencies': {
         'python': [
             'pyxb',  # pyxb 1.2.4
