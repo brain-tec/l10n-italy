@@ -26,7 +26,7 @@
         'l10n_it_ade',
         'l10n_it_pec',
         # 'l10n_it_esigibilita_iva',
-        # 'l10n_it_fiscal_payment_term',
+        'l10n_it_fiscal_payment_term',
         # 'l10n_it_split_payment',
         # 'l10n_it_fiscal_document_type',
         # 'partner_firstname',
@@ -37,13 +37,14 @@
         'views/account_view.xml',
         'views/company_view.xml',
         'views/regime_fiscale_view.xml',
-        'views/fiscal_postion_view.xml',
+        'views/fiscal_position_view.xml',
         'security/ir.model.access.csv',
     ],
-    "demo": [
-        'demo/account_tax.xml',
-        'demo/res_partner.xml',
-    ],
+    # "demo": [
+    #     'demo/account_tax.xml',
+    #     'demo/res_partner.xml',
+    #     'demo/account_invoice_fatturapa.xml',
+    # ],
     'installable': True,
     'external_dependencies': {
         'python': [

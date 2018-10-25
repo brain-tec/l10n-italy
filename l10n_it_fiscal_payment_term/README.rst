@@ -1,9 +1,9 @@
 |Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
 
-.. |icon| image:: https://raw.githubusercontent.com/Odoo-Italia-Associazione/l10n-italy/10.0/l10n_it_fiscal_ipa/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/Odoo-Italia-Associazione/l10n-italy/10.0/l10n_it_fiscal_payment_term/static/description/icon.png
 
 ==========================
-|icon| IPA Code (IndicePA)
+|icon| Fiscal payment term
 ==========================
 
 .. contents::
@@ -11,66 +11,21 @@
 
 |en|
 
-IPA Code
-=========
+Italian Fiscal Payment Terms
+=============================
 
-This module adds IPA (IndicePA) code and Recipient Code fields to partner,
-used by Italian Electronic Invoice.
-
-http://www.indicepa.gov.it
-
+E-Invoice and FatturaPA Payment Terms as per
+`Italian Government Website <http://fatturapa.gov.it>`__
 
 
 |it|
 
-Codice IPA (IndicePA)
-======================
+Termini di Pagamento Fiscali 
+==============================
 
-Questo modulo permette l'inserimento del codice IPA (IndicePA) e del Codice Destinatario
-nell'anagrafica cliente.
+Termini di pagamento fiscali per Fattura Elettronica e FatturaPA come da 
+`Disposizioni governative FatturaPA <http://fatturapa.gov.it>`__
 
-Questi dati sono indispensabili per la gestione della Fattura Elettronica B2B e
-per la FatturaPA.
-
-http://www.indicepa.gov.it
-
-
-Features / Funzioni
---------------------
-
-+-------------------------------------------------+----------+----------------------------------------------+
-| Feature / Funzione                              |  Status  | Notes / Note                                 |
-+-------------------------------------------------+----------+----------------------------------------------+
-| Parter: IPA Code / Codice IPA                   | |check|  | Per FatturaPA                                |
-+-------------------------------------------------+----------+----------------------------------------------+
-| Partner: Recipient Code / Codice Destinatario   | |check|  | EInvoice / Per Fattura Elettronica B2B       |
-+-------------------------------------------------+----------+----------------------------------------------+
-
-
-OCA Differences / Differenze da OCA
-------------------------------------
-
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Description / Descrizione            | Odoo Italia                   | OCA               | Notes / Note                   |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Validation checks / Validazioni      | |check|                       | |no_check|        |                                |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Partner view / Vista cliente         | This Module                   | This Module       | Different layout               |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| IPA Code                             | This Module                   | This Module       |                                |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Recipient Code / Codice Destinatario | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Is PA / Pubbblica Amministrazione?   | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| EInvoice / Soggetto Fattura E.       | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| EORI Code / Codice EORI              | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| License Code / Codice Licenza        | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| PEC                                  | PEC destinatario o PEC legale | PEC destinatario  | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
 
 
 
@@ -121,12 +76,12 @@ From UI: go to:
 
 |menu| Apps > Update Apps List
 
-|menu| Setting > Apps |right_do| Select **l10n_it_fiscal_ipa** > Install
+|menu| Setting > Apps |right_do| Select **l10n_it_fiscal_payment_term** > Install
 
 |warning| If your Odoo instance crashes, you can do following instruction
 to recover installation status:
 
-``run_odoo_debug 10.0 -um l10n_it_fiscal_ipa -s -d MYDB``
+``run_odoo_debug 10.0 -um l10n_it_fiscal_payment_term -s -d MYDB``
 
 Upgrade / Aggiornamento
 ------------------------
@@ -190,18 +145,17 @@ Authors / Autori
 -----------------
 
 
-* `KTec S.r.l. <https://www.ktec.it/>`__
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
+* `Agile BG <https://www.agilebg.com/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Contributi
 --------------------------
 
 
-* Luigi Di Naro <luigi.dinaro@ktec.it>
-* Alex Comba <alex.comba@agilebg.com>
+* Davide Corio
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* Alessio Gerace <alessio.gerace@agilebg.com>
+* Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 Maintainers / Manutezione
 --------------------------

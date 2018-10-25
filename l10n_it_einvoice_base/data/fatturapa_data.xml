@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data noupdate="0">
 
     <!-- FatturaPA Document Type -->
     <record id="fatturapa_TD01" model="fatturapa.document_type">
@@ -215,5 +216,6 @@
         <field name="code">MP22</field>
         <field name="name">Trattenuta su somme già riscosse</field>
     </record>
+</data>
 </odoo>
 

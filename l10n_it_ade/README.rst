@@ -1,77 +1,99 @@
 |Maturity| |Build Status| |license gpl| |Coverage Status| |Codecov Status| |OCA project| |Tech Doc| |Help| |Try Me|
 
-.. |icon| image:: https://raw.githubusercontent.com/Odoo-Italia-Associazione/l10n-italy/10.0/l10n_it_fiscal_ipa/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/Odoo-Italia-Associazione/l10n-italy/10.0/l10n_it_ade/static/description/icon.png
 
-==========================
-|icon| IPA Code (IndicePA)
-==========================
+============================
+|icon| Agenzia delle Entrate
+============================
 
 .. contents::
 
 
 |en|
 
-IPA Code
-=========
+Tax Authority Definitions
+==========================
 
-This module adds IPA (IndicePA) code and Recipient Code fields to partner,
-used by Italian Electronic Invoice.
+This module has no specific function for End-user.
 
-http://www.indicepa.gov.it
+It defines the structures by Italian Tax Authority to manage
+all fiscal communications.
+Inside there are xml schema files used by FatturaPA, EInvoice and VAT settlement.
 
+This module requires `PyXB 1.2.4 <http://pyxb.sourceforge.net/>`__
 
 
 |it|
 
-Codice IPA (IndicePA)
-======================
+Definizioni Agenzia delle Entrate
+==================================
 
-Questo modulo permette l'inserimento del codice IPA (IndicePA) e del Codice Destinatario
-nell'anagrafica cliente.
+Questo modulo non ha funzioni specifiche per l'utente finale.
+Contiene dati e definizioni stabilite dall'Agenzia delle Entrate
+All'interno sono presenti gli schemi xml usati da FatturaPA,
+Fattura Elettronica B2B, Liquidazione IVA elettronica e Comunicazione IVA.
 
-Questi dati sono indispensabili per la gestione della Fattura Elettronica B2B e
-per la FatturaPA.
+|info| Questo modulo è incompatibile con alcuni moduli OCA.
 
-http://www.indicepa.gov.it
+|warning| Lo schema di definizione dei file xml, pubblicato
+con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
+xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
+moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
+segnalato dall'errore:
 
+|exclamation| name CryptoBinary used for multiple values in typeBinding
+
+Tutti i moduli della localizzazione italiana che generano file xml dipendenti
+dallo schema dell'Agenzia delle Entrate devono dichiare il modulo
+`l10n_it_ade <https://github.com/Odoo-Italia-Associazione/l10n-italy/tree/10.0/l10n_it_ade>`__ come dipendenza.
+
+Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
+l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
 
 Features / Funzioni
 --------------------
 
-+-------------------------------------------------+----------+----------------------------------------------+
-| Feature / Funzione                              |  Status  | Notes / Note                                 |
-+-------------------------------------------------+----------+----------------------------------------------+
-| Parter: IPA Code / Codice IPA                   | |check|  | Per FatturaPA                                |
-+-------------------------------------------------+----------+----------------------------------------------+
-| Partner: Recipient Code / Codice Destinatario   | |check|  | EInvoice / Per Fattura Elettronica B2B       |
-+-------------------------------------------------+----------+----------------------------------------------+
++------------------------------------------------------+----------+----------------------------------------------+
+| Feature / Funzione                                   |  Status  | Notes / Note                                 |
++------------------------------------------------------+----------+----------------------------------------------+
+| Generate / Emissione FatturaPA                       | |check|  | Genera file .xml versione 1.2                |
++------------------------------------------------------+----------+----------------------------------------------+
+| Generate / Emissione Fattura B2B                     | |check|  | Genera file .xml versione 1.2                |
++------------------------------------------------------+----------+----------------------------------------------+
+| Company info form invoice / Dati azienda da fattura  | |check|  | Versione OCA utilizza dati azienda da utente |
++------------------------------------------------------+----------+----------------------------------------------+
+| Validation suring editing / Controlli in tempo reale | |check|  |                                              |
++------------------------------------------------------+----------+----------------------------------------------+
 
 
 OCA Differences / Differenze da OCA
 ------------------------------------
 
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Description / Descrizione            | Odoo Italia                   | OCA               | Notes / Note                   |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Validation checks / Validazioni      | |check|                       | |no_check|        |                                |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Partner view / Vista cliente         | This Module                   | This Module       | Different layout               |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| IPA Code                             | This Module                   | This Module       |                                |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Recipient Code / Codice Destinatario | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| Is PA / Pubbblica Amministrazione?   | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| EInvoice / Soggetto Fattura E.       | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| EORI Code / Codice EORI              | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| License Code / Codice Licenza        | This Module                   | l10n_it_fatturapa | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
-| PEC                                  | PEC destinatario o PEC legale | PEC destinatario  | |warning| Different deployment |
-+--------------------------------------+-------------------------------+-------------------+--------------------------------+
++--------------------------------------+-------------------------+-------------------------+--------------------------------+
+| Description / Descrizione            | Odoo Italia             | OCA                     | Notes / Note                   |
++--------------------------------------+-------------------------+-------------------------+--------------------------------+
+| Company / Azienda                    | By User / Da Utente     | By Invoice / Da Fattura | Different layout               |
++--------------------------------------+-------------------------+-------------------------+--------------------------------+
+| PEC                                  | PEC fattura o aziendale | Solo PEC fattura        |                                |
++--------------------------------------+-------------------------+-------------------------+--------------------------------+
+| Phone + Fax / Telefono + Fax         | Formato libero          | Solo numeri senza segni |                                |
++--------------------------------------+-------------------------+-------------------------+--------------------------------+
+| Controllo dati durante inserimento   | |check|                 | |no_check|              |                                |
++--------------------------------------+-------------------------+-------------------------+--------------------------------+
+| Strutturazione dati                  |                         |                         | Mix moduli con compatibile     |
++--------------------------------------+-------------------------+-------------------------+--------------------------------+
 
+
+Certifications / Certificazioni
+--------------------------------
+
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
+| Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
+| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2018   | Validazione contro schema xml                |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
+| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2018   | Controllo tramite sito Agenzia delle Entrate |
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
 
 
 
@@ -121,12 +143,12 @@ From UI: go to:
 
 |menu| Apps > Update Apps List
 
-|menu| Setting > Apps |right_do| Select **l10n_it_fiscal_ipa** > Install
+|menu| Setting > Apps |right_do| Select **l10n_it_ade** > Install
 
 |warning| If your Odoo instance crashes, you can do following instruction
 to recover installation status:
 
-``run_odoo_debug 10.0 -um l10n_it_fiscal_ipa -s -d MYDB``
+``run_odoo_debug 10.0 -um l10n_it_ade -s -d MYDB``
 
 Upgrade / Aggiornamento
 ------------------------
@@ -149,6 +171,15 @@ Upgrade / Aggiornamento
 
 
 
+
+Usage / Uso
+============
+
+|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Natura dell'IVA
+
+|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Tipi Fattura
+
+|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Codice Carica
 
 
 
@@ -190,17 +221,12 @@ Authors / Autori
 -----------------
 
 
-* `KTec S.r.l. <https://www.ktec.it/>`__
-* `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Contributi
 --------------------------
 
 
-* Luigi Di Naro <luigi.dinaro@ktec.it>
-* Alex Comba <alex.comba@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
 Maintainers / Manutezione
