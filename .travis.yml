@@ -29,15 +29,16 @@ addons:
       - libxml2-dev
       - libxslt1-dev
       - zlib1g-dev
+      - python-simplejson
       - python-ldap
       - python-psycopg2
-      - python-simplejson
       - expect-dev
+      - libffi-dev
+      - libssl-dev
       - python-setuptools
 
 before_install:
   - export TRAVIS_DEBUG_MODE="1"
-  - pip install urllib3[secure] --upgrade; true
 # Use Zeroincombenze(R) tools
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --single-branch --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
