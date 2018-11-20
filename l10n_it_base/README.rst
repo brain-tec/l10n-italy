@@ -1,12 +1,10 @@
 
-==================================================
-|icon| Italian Localization - FatturaPA - Emission
-==================================================
+==================================
+|icon| Italian Localisation - Base
+==================================
 
 
-**Electronic invoices emission**
-
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/l10n_it_einvoice_out/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/8.0/l10n_it_base/static/description/icon.png
 
 |Maturity| |Build Status| |Coverage Status| |Codecov Status| |license gpl| |Tech Doc| |Help| |Try Me|
 
@@ -16,127 +14,80 @@
 Overview / Panoramica
 =====================
 
-|en| EInvoice + FatturaPA
-====================
+|en| Italy Base localization
+-----------------------
 
-This module allows you to generate the fatturaPA XML file version 1.2
-which will be sent to the SdI (Exchange System by Italian Tax Authority)
+This module add following data:
 
-http://www.fatturapa.gov.it/export/fatturazione/it/normativa/norme.htm
-
-|warning| Read carefully note of module l10n_it_einvoice_base before install this module
-
-|halt| Do not use this module on production environment: it is an aplha release
-subjected to update.
+* Italian cities
+* Titles
+* Provinces (districts) and Regions
 
 |
 
-|it| Fattura Elettronica + FatturaPA
-===============================
+|it| Localizzazione italiana di base
+-------------------------------
 
-Questo modulo permette di generare il file xml della fatturaPA versione 1.2
-da trasmettere al sistema di interscambio SdI.
+Questo modulo fornisce i dati precompilati di:
 
-|warning| Lo schema di definizione dei file xml, pubblicato
-con urn:www.agenziaentrate.gov.it:specificheTecniche è base per tutti i file
-xml dell'Agenzia delle Entrate; come conseguenza nasce un conflitto tra
-moduli diversi che riferiscono allo schema dell'Agenzia delle Entrate,
-segnalato dall'errore:
+* Comuni italiani (aggiornati al 2014)
+* Titoli
+* Province e regioni aggiornati
 
-|exclamation| **name CryptoBinary used for multiple values in typeBinding**
+Inoltre gestisce alcuni automatistmi durante la compilazione del campi anagrafici.
 
-Tutti i moduli della localizzazione italiana che generano file xml dipendenti
-dallo schema dell'Agenzia delle Entrate **devono** dichiare il modulo
-`l10n_it_ade <../l10n_it_ade>`__ come dipendenza.
+La videata dell'anagrafica è modificata come da consuetudine italiana:
 
-Per maggiori informazioni visitare il sito www.odoo-italia.org o contattare
-l'ultimo autore: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>.
+CAP - Località - Provincia
 
-|halt| Non utilizzare ancora questo modulo in produzione: alpha release soggetta
-ad ulteriori modifiche
+mentre nella versione origiale di Odoo il CAP è posto dopo la provincia (formato anglosassone).
+
 
 |
 
 Features / Caratteristiche
 --------------------------
 
-Features / Funzioni
--------------------
-
-+--------------------------------------+----------+----------------------------------------------+
-| Feature / Funzione                   |  Status  | Notes / Note                                 |
-+--------------------------------------+----------+----------------------------------------------+
-| Emissione FatturaPA                  | |check|  | Genera file .xml versione 1.2                |
-+--------------------------------------+----------+----------------------------------------------+
-| Emissione Fattura B2B                | |check|  | Genera file .xml versione 1.2                |
-+--------------------------------------+----------+----------------------------------------------+
-| Dati azienda da fattura              | |check|  | Versione OCA utilizza dati azienda da utente |
-+--------------------------------------+----------+----------------------------------------------+
-| Controllo dati durante inserimento   | |check|  |                                              |
-+--------------------------------------+----------+----------------------------------------------+
-
-
-|
-|
-
-Certifications / Certificazioni
--------------------------------
-
-Certifications / Certificazioni
--------------------------------
-
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| Logo                 | Ente/Certificato                                                                                                                                                                                                  | Data inizio   | Da fine      | Note                                         |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |xml\_schema|        | `ISO + Agenzia delle Entrate <http://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Strumenti/Specifiche+tecniche/Specifiche+tecniche+comunicazioni/Fatture+e+corrispettivi+ST/>`__                             | 01-06-2017    | 31-12-2018   | Validazione contro schema xml                |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-| |FatturaPA|          | `FatturaPA <https://www.agenziaentrate.gov.it/wps/content/Nsilib/Nsi/Schede/Comunicazioni/Fatture+e+corrispettivi/Fatture+e+corrispettivi+ST/ST+invio+di+fatturazione+elettronica/?page=schedecomunicazioni/>`__  | 01-06-2017    | 31-12-2018   | Controllo tramite sito Agenzia delle Entrate |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+----------------------------------------------+
-
++----------------------------------------------------------------+----------+----------------------------------------------+
+| Feature / Funzione                                             |  Status  | Notes / Note                                 |
++----------------------------------------------------------------+----------+----------------------------------------------+
+| City from ZIP / Città da CAP                                   | |check|  | Propone città da CAP; città modificabile     |
++----------------------------------------------------------------+----------+----------------------------------------------+
+| Multizone ZIP  / CAP Multizona                                 | |check|  | Riconoscimento CAP multizona                 |
++----------------------------------------------------------------+----------+----------------------------------------------+
+| District from ZIP / Provincia da CAP                           | |check|  | Compila la provincia dal CAP                 |
++----------------------------------------------------------------+----------+----------------------------------------------+
+| Check for ZIP & district / Controllo coerenza CAP e provincia  | |check|  | Verifica coerenza di CAP e provincia         |
++----------------------------------------------------------------+----------+----------------------------------------------+
 
 |
 
 Usage / Utilizzo
 ----------------
 
-Usage / Uso
-===========
+|it| Durante l'inserimento dell'anagrafica rispettare le seguenti regole:
 
-|menu| Configurazione > Configurazione > Contabilità > Fattura PA |do_right| Impostare i vari parametri
-|menu| Contabilità > Configurazione > Sezionali > Sezionali |do_right| Impostare sezionale fattura elettronica
-|menu| Contabilità > Configurazione > Imposte > Imposte |do_right| Impostare natura codici IVA
-|menu| Contabilità > Configurazione > Management > Termini di pagamento |do_right| Collegare i termini di pagamento con i relativi termini fiscali
-|menu| Contabilità > Clienti > Clienti |do_right| Impostare Codice Destinatario o PEC o IPA, nazione, partita IVA, codice fiscale
-|menu| Contabilità > Configurazione > Contabilità > Posizioni fiscali |do_right| Collegare posizioni fiscali con regimi fiscali
-
-Per consultazione (non modificare):
-
-|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Natura dell'IVA
-|menu| Contabilità > Configurazione > Contabilità > Definizioni Agenzia delle Entrate > Tipi Fattura
-
+* Inserire sempre la nazione: serve per attivare i successivi controlli sul CAP e provincia
+* Dopo l'inserimento del CAP appare un comune e la provincia; poichè esistono più comuni con lo stesso CAP potete correggere il dato
+* Inserire la partita IVA con il prefisso ISO della nazione: ad esempio per una p.IVA italiana digitate IT12345670017
+* Se non si conosce il CAP inserire il comune ed il sistema completerà il CAP. Attenzione! Il CAP non è compilato se si utilizza una località al posto di un comune valido.
 
 |
 
 OCA comparation / Confronto con OCA
 -----------------------------------
 
-OCA Differences / Differenze da OCA
------------------------------------
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Description / Descrizione                                       | Odoo Italia  | OCA               | Notes / Note                   |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| City from ZIP / Città da CAP                                    | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| District from ZIP / Provincia da CAP                            | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
+| Check for ZIP and district / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
++-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
 
-+--------------------------------------+-------------------------+-------------------------+--------------------------------+
-| Description / Descrizione            | Odoo Italia             | OCA                     | Notes / Note                   |
-+--------------------------------------+-------------------------+-------------------------+--------------------------------+
-| Company / Azienda                    | By User / Da Utente     | By Invoice / Da Fattura | Different layout               |
-+--------------------------------------+-------------------------+-------------------------+--------------------------------+
-| PEC                                  | PEC fattura o aziendale | Solo PEC fattura        |                                |
-+--------------------------------------+-------------------------+-------------------------+--------------------------------+
-| Phone + Fax / Telefono + Fax         | Formato libero          | Solo numeri senza segni |                                |
-+--------------------------------------+-------------------------+-------------------------+--------------------------------+
-| Controllo dati durante inserimento   | |check|                 | |no_check|              |                                |
-+--------------------------------------+-------------------------+-------------------------+--------------------------------+
-| Strutturazione dati                  |                         |                         | Mix moduli con compatibile     |
-+--------------------------------------+-------------------------+-------------------------+--------------------------------+
-
+|OCA project|
 
 |
 |
@@ -191,7 +142,7 @@ Installation / Installazione
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
-* |menu| Setting > Local Modules |right_do| Select **l10n_it_einvoice_out** > Install
+* |menu| Setting > Local Modules |right_do| Select **l10n_it_base** > Install
 
 |
 
@@ -215,7 +166,7 @@ Upgrade / Aggiornamento
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
-* |menu| Setting > Local Modules |right_do| Select **l10n_it_einvoice_out** > Update
+* |menu| Setting > Local Modules |right_do| Select **l10n_it_base** > Update
 
 |
 
@@ -265,19 +216,41 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
+
 * `Agile Business Group sagl <https://www.agilebg.com/>`__
 * `Innoviu srl <http://www.innoviu.com>`__
+* `Abstract <https://www.abstract.it>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 Contributors / Collaboratori
 ----------------------------
 
+
 * Davide Corio <davide.corio@abstract.it>
-* Roberto Onnis <roberto.onnis@innoviu.com>
+* Mauro Soligo <mauro.soligo@katodo.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Alessio Gerace <alessio.gerace@agilebg.com>
-* Alex Comba <alex.comba@agilebg.com>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* Roberto Onnis <roberto.onnis@innoviu.com>
+* Antonio M. Vigliotti <info@shs-av.com>
+
+
+Acknowledges / Riconoscimenti
+-----------------------------
+
++-----------------------------------+-------------------------------------------+
+| |en|                              | |it|                                      |
++-----------------------------------+-------------------------------------------+
+| This software inherits from past  | Questo software eredita da versioni       |
+| versions some parts of code. Even | passate alcune parti di codice. Anche     |
+| if people did not actively        | se non hanno partecipato attivamente allo |
+| participate to development, we    | allo sviluppo, noi siamo grati a tutte le |
+| acknowledge them for their prior  | persone che precedentemente vi hanno      |
+| contributions.                    | contribuito.                              |
++-----------------------------------+-------------------------------------------+
+
+* Luca Subiaco <subluca@gmail.com>
+* Simone Orsi <simone.orsi@domsense.com>
+* Mario Riva <mario.riva@domsense.com>
+* Giovanni Barzan <giovanni.barzan@gmail.com>
 
 |
 
