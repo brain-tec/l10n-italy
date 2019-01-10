@@ -51,6 +51,8 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
+STYLESHEET = 'fatturapa_v1.2.xsl'
+
 
 class WizardExportFatturapa(models.TransientModel):
     _name = "wizard.export.fatturapa"
@@ -71,10 +73,17 @@ class WizardExportFatturapa(models.TransientModel):
             raise orm.except_orm(
                 _('Error!'), _('Company TIN not set.'))
         attach_model = self.pool['fatturapa.attachment.out']
+
+        invoice_xml = fatturapa.toDOM().toprettyxml(encoding="latin1").replace(
+            '<?xml version="1.0" encoding="latin1"?>',
+            """<?xml version="1.0" encoding="latin1"?>
+<?xml-stylesheet type="text/xsl" href="{xsl}"?>""".format(xsl=STYLESHEET))
+
         attach_vals = {
             'name': '%s_%s.xml' % (company.vat, str(number)),
             'datas_fname': '%s_%s.xml' % (company.vat, str(number)),
-            'datas': base64.encodestring(fatturapa.toxml("UTF-8")),
+            # 'datas': base64.encodestring(fatturapa.toxml("UTF-8")),
+            'datas': base64.encodestring(invoice_xml),
         }
         return attach_model.create(cr, uid, attach_vals, context=context)
 
@@ -155,33 +164,59 @@ class WizardExportFatturapa(models.TransientModel):
 
         return True
 
-    def _setCodiceDestinatario(self, cr, uid, partner, fatturapa,
-                               context=None):
-        pec_destinatario = None
+    def _setCodiceDestinatario(self, cr, uid, partner, fatturapa, context=None):
+        """
+        Nota sito agenzia entrate:
+        Il Codice Destinatario a 7 caratteri, che può essere utilizzato solo per fatture elettroniche destinate ai
+        soggetti privati, potrà essere reperito attraverso un nuovo servizio reso disponibile entro il
+        9 di Gennaio 2017 sul sito www.fatturapa.gov.it, pagina Strumenti – Gestire il canale.
+        Il codice potrà essere richiesto solo dai quei soggetti titolari di un canale di trasmissione già accreditato
+        presso il Sistema di Interscambio per ricevere le fatture elettroniche. É possibile richiedere più codici fino
+        a un massimo di 100. Per i soggetti che invece intendano ricevere le fatture elettroniche attraverso il canale
+         PEC, è previsto l’uso del codice destinatario standard ‘0000000’ purché venga indicata la casella PEC di
+        ricezione in fattura nel campo PecDestinatario. Vale la pena ricordare che per le fatture elettroniche
+        destinate ad Amministrazioni pubbliche si continua a prevedere l’uso del codice univoco ufficio a 6 caratteri,
+        purché sia censito su indice delle Pubbliche Amministrazioni (www.indicepa.gov.it )
+        """
+
         if partner.is_pa:
-            if not partner.ipa_code:
-                raise orm.except_orm(_('Error!'),
-                    _("Partner %s is PA but has not IPA code"
-                ) % partner.name)
-            code = partner.ipa_code
+            if partner.ipa_code:
+                code = partner.ipa_code
+            else:
+                raise orm.except_orm(
+                    _('Error!'),
+                    _("Partner %s is PA but has not IPA code") % partner.name
+                )
         else:
-            if not partner.codice_destinatario:
-                raise orm.except_orm(_('Error!'),
-                    _("Partner %s without Recipient Code"
-                ) % partner.name)
             code = partner.codice_destinatario
-            if code == '0000000':
-                if not partner.pec_destinatario and \
-                        not partner.pec_mail:
-                    raise orm.except_orm(_('Error!'),
-                        _("Partner %s without PEC"
-                    ) % partner.name)
-                pec_destinatario = partner.pec_destinatario or partner.pec_mail
-        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
-            CodiceDestinatario = code.upper()
-        if pec_destinatario:
-            fatturapa.FatturaElettronicaHeader.DatiTrasmissione. \
-                PECDestinatario = pec_destinatario
+            if not code or code == '0000000':
+                if partner.vat or partner.fiscalcode:
+                    code = '0000000'
+
+                    if partner.pec_destinatario:
+                        # TODO: check if PEC is valid email
+                        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.PECDestinatario = partner.pec_destinatario
+                    elif partner.vat:
+                        raise orm.except_orm(
+                            _('Error!'),
+                            _('No Recipient Code and no PEC find for Partner: {partner}').format(partner=partner.name))
+                else:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Please set Fiscal Code or VAT for partner {}').format(partner.name))
+            elif len(code) != 7:
+                if ' ' in code:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Space char in Recipient Code \'{code}\'').format(code=code)
+                    )
+                else:
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _('Recipient Code {code} length is {dimension}, it should be 7').format(code=code, dimension=len(code)))
+
+        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.CodiceDestinatario = code.upper()
+
         return True
 
     def _setContattiTrasmittente(self, cr, uid, company, fatturapa,
