@@ -188,12 +188,10 @@ class WizardExportFatturapa(models.TransientModel):
                     _("Partner %s is PA but has not IPA code") % partner.name
                 )
         else:
-            partner_address = partner.address and partner.address[0] or False
-
             code = partner.codice_destinatario
             if not code or code == '0000000':
                 if partner.vat or partner.fiscalcode:
-                    if partner_address and partner_address.country_id.code == 'IT':
+                    if partner.country_id and partner.country_id.code == 'IT':
                         code = '0000000'
 
                         if partner.pec_destinatario:
@@ -206,7 +204,7 @@ class WizardExportFatturapa(models.TransientModel):
                             raise orm.except_orm(
                                 _('Error!'),
                                 _('No PEC find for Partner: {partner}').format(partner=partner.name))
-                    elif partner_address and not partner_address.country_id.code == 'IT':
+                    elif partner.country_id and not partner.country_id.code == 'IT':
                         code = 'XXXXXXX'
                     else:
                         raise orm.except_orm(
@@ -328,7 +326,7 @@ class WizardExportFatturapa(models.TransientModel):
         CedentePrestatore.Sede = IndirizzoType(
             Indirizzo=company.street,
             CAP=company.zip,
-            Comune=company.city,
+            Comune=company.city[:60],
             Provincia=company.partner_id.state_id.code,
             Nazione=company.country_id.code)
         return True
@@ -453,7 +451,7 @@ class WizardExportFatturapa(models.TransientModel):
             IndirizzoType(
                 Indirizzo=partner.street,
                 CAP=partner.zip,
-                Comune=partner.city,
+                Comune=partner.city[:60],
                 Provincia=partner.state_id.code,
                 Nazione=partner.country_id.code))
         return True
