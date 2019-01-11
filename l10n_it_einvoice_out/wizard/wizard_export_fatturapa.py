@@ -188,18 +188,30 @@ class WizardExportFatturapa(models.TransientModel):
                     _("Partner %s is PA but has not IPA code") % partner.name
                 )
         else:
+            partner_address = partner.address and partner.address[0] or False
+
             code = partner.codice_destinatario
             if not code or code == '0000000':
                 if partner.vat or partner.fiscalcode:
-                    code = '0000000'
+                    if partner_address and partner_address.country_id.code == 'IT':
+                        code = '0000000'
 
-                    if partner.pec_destinatario:
-                        # TODO: check if PEC is valid email
-                        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.PECDestinatario = partner.pec_destinatario
-                    elif partner.vat:
+                        if partner.pec_destinatario:
+                            # if validate_email(pec_destinatario):
+                            fatturapa.FatturaElettronicaHeader.DatiTrasmissione.PECDestinatario = partner.pec_destinatario
+                            # else:
+                            #     raise orm.except_orm(_('Error!'),
+                            #                          _('{pec_email} is not correct').format(pec_email=pec_destinatario))
+                        elif partner.vat:
+                            raise orm.except_orm(
+                                _('Error!'),
+                                _('No PEC find for Partner: {partner}').format(partner=partner.name))
+                    elif partner_address and not partner_address.country_id.code == 'IT':
+                        code = 'XXXXXXX'
+                    else:
                         raise orm.except_orm(
                             _('Error!'),
-                            _('No Recipient Code and no PEC find for Partner: {partner}').format(partner=partner.name))
+                            _('No Address find for Partner: {partner}').format(partner=partner.name))
                 else:
                     raise orm.except_orm(
                         _('Error!'),
@@ -221,7 +233,7 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setContattiTrasmittente(self, cr, uid, company, fatturapa,
                                  context=None):
-        context = context or {}
+        # context = context or {}
         if not company.phone:
             raise orm.except_orm(
                 _('Error!'), _('Company Telephone number not set.'))
@@ -229,7 +241,7 @@ class WizardExportFatturapa(models.TransientModel):
         if not company.email:
             raise orm.except_orm(
                 _('Error!'), _('Company Email not set.'))
-        Email = company.email
+        Email = company.einvoice_email or company.email
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             ContattiTrasmittente = ContattiTrasmittenteType(
                 Telefono=Telefono, Email=Email)
@@ -251,7 +263,7 @@ class WizardExportFatturapa(models.TransientModel):
 
     def _setDatiAnagraficiCedente(self, cr, uid, CedentePrestatore,
                                   company, context=None):
-        context = context or {}
+        # context = context or {}
         if not company.vat:
             raise orm.except_orm(
                 _('Error!'), _('Company TIN not set.'))
