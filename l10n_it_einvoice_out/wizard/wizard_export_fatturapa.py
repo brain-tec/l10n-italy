@@ -624,7 +624,7 @@ class WizardExportFatturapa(models.TransientModel):
             quantity_precision = dp.get_precision('Product Unit of Measure')(cr)[1]
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
-                Descrizione=line.name,
+                Descrizione=line.name.replace('\n', ' '),
                 PrezzoUnitario='%.2f' % line.price_unit,
                 Quantita="{quantity:.{precision}f}".format(quantity=line.quantity, precision=quantity_precision),
                 UnitaMisura=line.uos_id and (
