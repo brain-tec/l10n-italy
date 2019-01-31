@@ -42,6 +42,7 @@ from openerp.addons.l10n_it_einvoice_base.models.account import (
 )
 from openerp.osv import orm
 from openerp.tools.translate import _
+import openerp.addons.decimal_precision as dp
 
 _logger = logging.getLogger(__name__)
 
@@ -620,11 +621,12 @@ class WizardExportFatturapa(models.TransientModel):
                     _("Too many taxes for invoice line %s") % line.name)
             aliquota = line.invoice_line_tax_id[0].amount * 100
             AliquotaIVA = '%.2f' % (aliquota)
+            quantity_precision = dp.get_precision('Product Unit of Measure')(cr)[1]
             DettaglioLinea = DettaglioLineeType(
                 NumeroLinea=str(line_no),
                 Descrizione=line.name,
                 PrezzoUnitario='%.2f' % line.price_unit,
-                Quantita='%.2f' % line.quantity,
+                Quantita="{quantity:.{precision}f}".format(quantity=line.quantity, precision=quantity_precision),
                 UnitaMisura=line.uos_id and (
                     unidecode(line.uos_id.name)) or None,
                 PrezzoTotale='%.2f' % line.price_subtotal,
@@ -831,7 +833,7 @@ class WizardExportFatturapa(models.TransientModel):
                 if inv.fatturapa_attachment_out_id:
                     raise orm.except_orm(
                         _("Error"),
-                        _("Invoice %s has FatturaPA Export File yet") % (
+                        _("Invoice %s has E-Fattura Export File already") % (
                             inv.number))
                 invoice_body = FatturaElettronicaBodyType()
                 self.setFatturaElettronicaBody(
