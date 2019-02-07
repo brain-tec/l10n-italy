@@ -44,6 +44,7 @@ from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     IndirizzoType,
     IscrizioneREAType,
     RappresentanteFiscaleType,
+    RappresentanteFiscaleCessionarioType,
     ScontoMaggiorazioneType,
     TerzoIntermediarioSoggettoEmittenteType,)
 from odoo.addons.l10n_it_einvoice_base.models.account_invoice import (
@@ -57,16 +58,17 @@ try:
 except ImportError as err:
     _logger.debug(err)
 
-
+CODE_NONE_IT = '0000000'
+CODE_NONE_EU = 'XXXXXXX'
 PAYTYPE_BNK_CUSTOMER = ('MP11', 'MP12', 'MP16', 'MP17', 'MP19', 'MP20', 'MP21')
 PAYTYPE_BNK_COMPANY = ('MP05', 'MP07', 'MP08', 'MP13', 'MP18')
 XML_ESCAPE = {
-    # u'\n': u'&#10;',
+    u'\'': u' ',
     u'\n': u' ',
     u'\r': u' ',
-    u'€': u'&euro;',
-    u'©': u'&copy',
-    u'®': u'&reg',
+    u'€': u'EUR',
+    u'©': u'(C)',
+    u'®': u'(R)',
     # u'à': u'&agrave;',
     # u'á': u'&aacute;',
     # u'è': u'&egrave;',
@@ -166,13 +168,13 @@ class WizardExportFatturapa(models.TransientModel):
             for i in range(len(phone)):
                 if phone[i].isdigit():
                     wep_phone += phone[i]
-        return wep_phone
+        return wep_phone.strip()
 
     def _wep_text(self, text):
         """"Do xml escape to avoid error StringLatinType"""
         # text.encode('latin', 'ignore').decode('latin')
         if text:
-            return escape(unidecode(text), XML_ESCAPE)
+            return escape(unidecode(text), XML_ESCAPE).strip()
         return text
 
     def __wep_vat(self, vat):
@@ -280,7 +282,7 @@ class WizardExportFatturapa(models.TransientModel):
             vat = self._get_partner_field(partner, parent, 'vat')
             fiscalcode = self.__wep_vat(
                 self._get_partner_field(partner, parent, 'fiscalcode'))
-            if code not in ('000000', 'XXXXXXX') and \
+            if code not in (CODE_NONE_IT, CODE_NONE_EU) and \
                     not vat and not fiscalcode:
                 raise UserError(_(
                     "Partner %s is not PA "
@@ -288,7 +290,7 @@ class WizardExportFatturapa(models.TransientModel):
                 ) % partner.name)
         fatturapa.FatturaElettronicaHeader.DatiTrasmissione.\
             CodiceDestinatario = code.upper()
-        if code == '000000':
+        if code == CODE_NONE_IT:
             pec_destinatario = self._get_partner_field(
                     partner, parent, 'pec_destinatario')
         if pec_destinatario:
@@ -457,11 +459,15 @@ class WizardExportFatturapa(models.TransientModel):
             company)
 
     def _setDatiAnagraficiCessionario(self, partner, parent, fatturapa):
+        mode = partner.type_inv_addr
+        mode = mode if mode not in ('SO','FR') else 'parent'
         fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
-        vat = self._get_partner_field(partner, parent, 'vat')
+        vat = self._get_partner_field(
+            partner, parent, 'vat', mode=mode)
         fiscalcode = self.__wep_vat(
-            self._get_partner_field(partner, parent, 'fiscalcode'))
+            self._get_partner_field(
+                partner, parent, 'fiscalcode', mode=mode))
         if vat:
             country_code, vat_number = self._split_vat_n_country(vat)
             if country_code and vat_number:
@@ -478,12 +484,13 @@ class WizardExportFatturapa(models.TransientModel):
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.CodiceFiscale = vat[2:]
 
-        company_type = self._get_partner_field(partner, parent, 'company_type')
+        company_type = self._get_partner_field(
+            partner, parent, 'company_type', mode=mode)
         if company_type == 'company':
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica = AnagraficaType(
                     Denominazione=self._get_partner_field(
-                        partner, parent, 'name'))
+                        partner, parent, 'name', mode=mode))
         elif company_type == 'person':
             if not partner.lastname or not partner.firstname:
                 raise UserError(
@@ -494,7 +501,8 @@ class WizardExportFatturapa(models.TransientModel):
                     Cognome=partner.lastname,
                     Nome=partner.firstname
                 )
-        eori_code = self._get_partner_field(partner, parent, 'eori_code')
+        eori_code = self._get_partner_field(
+            partner, parent, 'eori_code', mode=mode)
         if eori_code:
             fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.Anagrafica.CodEORI = eori_code
@@ -560,7 +568,7 @@ class WizardExportFatturapa(models.TransientModel):
     def _setSedeCessionario(self, partner, parent, fatturapa):
 
         mode = partner.type_inv_addr
-        mode = mode if mode != 'SO' else 'parent'
+        mode = mode if mode not in ('SO','FR') else 'parent'
         country_id = self._get_partner_field(partner, parent,
                                              'country_id', mode=mode)
         if not country_id:
@@ -577,23 +585,26 @@ class WizardExportFatturapa(models.TransientModel):
         if not street:
             raise UserError(
                 _('Customer street is not set.'))
-        codice_destinatario = self._get_partner_field(
-            partner, parent, 'codice_destinatario', mode=mode)
-        if codice_destinatario != 'XXXXXXX' and not zip:
+        if mode == 'parent':
+            codice_destinatario = CODE_NONE_EU
+        else:
+            codice_destinatario = self._get_partner_field(
+                partner, parent, 'codice_destinatario', mode=mode)
+        if codice_destinatario != CODE_NONE_EU and not zip:
             raise UserError(
                 _('Customer ZIP is not set.'))
         if not city:
             raise UserError(
                 _('Customer city is not set.'))
-        if codice_destinatario != 'XXXXXXX' and not state_id:
+        if codice_destinatario != CODE_NONE_EU and not state_id:
             raise UserError(
                 _('Customer province is not set.'))
 
-        if codice_destinatario != 'XXXXXXX':
+        if codice_destinatario != CODE_NONE_EU:
             zip = zip
         else:
             zip = '00000'
-        if codice_destinatario != 'XXXXXXX':
+        if codice_destinatario != CODE_NONE_EU:
             province = state_id.code
         else:
             province = 'EE'
@@ -680,36 +691,20 @@ class WizardExportFatturapa(models.TransientModel):
             raise UserError(
                 _('Customer Stabile Organization vat country'
                   ' is different from from address country.'))
-        # fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #     RappresentanteFiscale = RappresentanteFiscaleType()
-        # fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #     RappresentanteFiscale.\
-        #         DatiAnagrafici = DatiAnagraficiRappresentanteType()
-        # if company_type == 'company': 
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.Anagrafica(Denominazione=nome)
-        # else:
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.Anagrafica(Nome=firstname,
-        #                                          Cognome=lastname,)
-        # if partner.vat:
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.DatiAnagrafici.IdFiscaleIVA = \
-        #             IdFiscaleType(country_code, IdCodice=vat_number)
-        # fatturapa.FatturaElettronicaHeader.RappresentanteFiscale.\
-        #     DatiAnagrafici.Anagrafica = AnagraficaType(
-        #         Denominazione=partner.name)
-        # fiscalcode = self.__wep_vat(
-        #     self._get_partner_field(partner, parent, 'fiscalcode', mode=mode))
-        # if fiscalcode:
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.DatiAnagrafici.CodiceFiscale = fiscalcode
-        # eori_code = self._get_partner_field(
-        #     partner, parent, 'eori_code', mode=mode)
-        # if eori_code:
-        #     fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-        #         RappresentanteFiscale.DatiAnagrafici.CodEORI = eori_code
-
+        fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+            RappresentanteFiscale = RappresentanteFiscaleCessionarioType()
+        if company_type == 'company': 
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                RappresentanteFiscale.Denominazione=name
+        else:
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                RappresentanteFiscale(Nome=firstname,
+                                      Cognome=lastname,)
+        if partner.vat:
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
+                RappresentanteFiscale.IdFiscaleIVA = IdFiscaleType(
+                    IdPaese=country_code,
+                    IdCodice=vat_number)
         return True
 
     def setRappresentanteFiscale(self, company, fatturapa):
@@ -996,11 +991,16 @@ class WizardExportFatturapa(models.TransientModel):
                     ImportoPagamento = '%.2f' % (move_line.debit -
                                                  credit_amount)
                 credit_amount = 0.0
+                if invoice.payment_term_id.note:
+                    payment_term_des = invoice.payment_term_id.note
+                else:
+                    payment_term_des = invoice.payment_term_id.name
                 DettaglioPagamento = DettaglioPagamentoType(
                     ModalitaPagamento=(
                         invoice.payment_term_id.fatturapa_pm_id.code),
                     DataScadenzaPagamento=move_line.date_maturity,
-                    ImportoPagamento=ImportoPagamento
+                    ImportoPagamento=ImportoPagamento,
+                    CodicePagamento=payment_term_des,
                     )
                 if invoice.partner_bank_id:
                     DettaglioPagamento = self.setDatiBanca(
