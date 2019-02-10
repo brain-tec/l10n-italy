@@ -44,7 +44,7 @@
         <field name="inherit_id" ref="account.view_invoice_line_form"></field>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <separator string="FatturaPA"></separator>
+                <separator string="E-Invoice"></separator>
                 <div id="admin_ref">
                     <group>
                         <field name="admin_ref"/>
