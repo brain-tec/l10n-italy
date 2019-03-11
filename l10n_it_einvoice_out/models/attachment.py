@@ -7,10 +7,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import fields, models, api
-<<<<<<< HEAD
-=======
 from openerp.tools.translate import _
->>>>>>> 74fc179105842cea7c89f7cce63bed79ab4dba83
 
 
 class FatturaPAAttachment(models.Model):
