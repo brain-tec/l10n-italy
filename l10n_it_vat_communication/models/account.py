@@ -26,6 +26,57 @@ EU_COUNTRIES = ['AT', 'BE', 'BG', 'CY', 'HR', 'DK', 'EE',
                 'CZ', 'RO', 'SK', 'SI', 'ES', 'SE', 'HU']
 
 
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+
+    communication_type = fields.Selection([
+        ('XX19', 'Esterometro 2019'),
+        ('2018', 'Spesometro 2018'),
+        ('2019', 'Spesometro 2019'),
+        ('NO', 'Escluso'),],
+        'Tipo comunicazione',
+            help="Tipo di comunicazione a cui è assoggettata la fattura\n")
+
+    @api.onchange('partner_id', 'date')
+    def onchange_set_einvoice_commtype(self):
+        if not self.partner_id or not self.date:
+            return True
+        year = max(int(self.date[0:4]), 2017)
+        iso = self.partner_id.vat[0:2] if self.partner_id.vat else False
+        if ((hasattr(self, 'fatturapa_attachment_out_id') and
+             self.fatturapa_attachment_out_id) or
+                (hasattr(self, 'fatturapa_attachment_in_id') and
+                 self.fatturapa_attachment_in_id)):
+            exclude_invoice = True
+        elif self.journal_id:
+            exclude_invoice = (self.journal_id.einvoice or
+                               self.journal_id.rev_charge or
+                               self.journal_id.proforma or
+                               self.journal_id.anom_sale_receipts)
+        else:
+            exclude_invoice = False
+        if not iso and self.partner_id.country_id:
+            iso = self.partner_id.country_id.code
+        if exclude_invoice:
+            communication_type = 'NO'
+        elif iso == 'IT':
+            communication_type = '%d' % year
+        elif iso in EU_COUNTRIES and year < 2019:
+            communication_type = '%d' % year
+        elif iso and year >= 2019:
+            communication_type = 'XX19'
+        else:
+            communication_type = 'NO'
+        self.communication_type = communication_type
+
+    @api.multi
+    @api.depends('partner_id', 'date')
+    def set_einvoice_commtype(self):
+        for invoice in self:
+            invoice.onchange_set_einvoice_commtype()
+        return True
+
+
 class AccountVatCommunication(models.Model):
 
     def _get_eu_res_country_group(self):
@@ -44,6 +95,16 @@ class AccountVatCommunication(models.Model):
         return False
 
     _name = "account.vat.communication"
+
+    name = fields.Char('Descrizione')
+    type = fields.Selection([
+            ('XX19', 'Esterometro'),
+            ('2019', 'Spesometro 2019'),
+            ('2018', 'Spesometro 2018'),
+            ('2017', 'Spesometro 2017'),],
+            'Tipo',
+            required=True,
+            help="Tipo di comunicazione\n")
     company_id = fields.Many2one('res.company', string='Company',
                                  default=lambda self: self.env.user.company_id)
     soggetto_codice_fiscale = fields.Char(
@@ -127,14 +188,17 @@ class AccountVatCommunication(models.Model):
 
     @api.model
     def search_sequence(self, company_id):
-        return self.env['ir.sequence'].search([('name', '=', 'VAT communication'), ('company_id', '=', company_id)])
+        return self.env['ir.sequence'].search(
+            [('name', '=', 'VAT communication'),
+             ('company_id', '=', company_id)])
 
     @api.model
     def create_sequence(self, company_id):
         """ Create new no_gap entry sequence for progressivo_telematico """
 
         # Company sent own communication, so set next number as the nth quarter
-        next_number = int((date.today().toordinal() - date(2017, 7, 1).toordinal()) / 90) + 1
+        next_number = int((date.today().toordinal() - 
+                           date(2017, 7, 1).toordinal()) / 90) + 1
         sequence_model = self.env['ir.sequence']
         vals = {
             'name': 'VAT communication',
@@ -229,7 +293,6 @@ class AccountVatCommunication(models.Model):
         invoice_model = self.env['account.invoice']
         account_tax_model = self.env['account.invoice.tax']
         sum_amounts = {}
-        print(where)
         for f in ('total', 'taxable', 'tax', 'discarded'):
             sum_amounts[f] = 0.0
         invoices = invoice_model.search(where)
@@ -281,22 +344,22 @@ class AccountVatCommunication(models.Model):
                                 tax_rate = tax.amount
                 if tax_type in ('sale', 'purchase'):
                     if tax_rate == 0.0 and not tax_nature:
-                        raise UserError(
+                        res['xml_Error'] += self._get_error(
                             _('00400 - '
                               'Invalid tax %s nature for invoice %s') % (
                                   invoice_tax.name,
                                   invoice.number))
                     elif tax_rate and tax_nature and tax_nature != 'N6':
-                        raise UserError(
+                        res['xml_Error'] += self._get_error(
                             _('00401 - '
                               'Invalid tax %s nature for invoice %s') % (
                                   invoice_tax.name,
                                   invoice.number))
                     if tax_payability == 'S' and tax_nature:
                         if tax.nature == 'N6':
-                            raise UserError(
+                            res['xml_Error'] += self._get_error(
                                 _('00420 - '
-                                'Wrong tax %s nature/payment for invoice %s') % (
+                                'Wrong payability/nature tax %s (%s)') % (
                                     invoice_tax.name,
                                     invoice.number))
                 if tax_nature:
@@ -355,14 +418,6 @@ class AccountVatCommunication(models.Model):
         return comm_lines, sum_amounts
 
     def load_DTE_DTR(self, commitment, commitment_line_model, dte_dtr_id):
-        journal_model = self.env['account.journal']
-        exclude_journal_ids = journal_model.search(
-            [ '|', '|',
-             ('rev_charge', '=', True),
-             ('proforma', '=', True),
-             ('anom_sale_receipts', '=', True),
-             ])
-
         company_id = commitment.company_id.id
         # return 0        #debug
         p_start = 0
@@ -378,7 +433,7 @@ class AccountVatCommunication(models.Model):
         where = [('company_id', '=', company_id),
                  ('date', '>=', p_start),
                  ('date', '<=', p_stop),
-                 ('journal_id', 'not in', exclude_journal_ids.ids),
+                 ('communication_type', '=', commitment.type),
                  ('state', 'in', ('open', 'paid'))]
         if dte_dtr_id == 'DTE':
             where.append(('type', 'in', ['out_invoice', 'out_refund']))
@@ -660,25 +715,29 @@ class CommitmentLine(models.AbstractModel):
 
         res = {'xml_Error': ''}
         if partner.vat:
-            # partner.vat = partner.company_id.vat
-            vat = partner.vat.replace(' ', '')
-            res['xml_IdPaese'] = vat and vat[0:2].upper() or ''
-            res['xml_IdCodice'] = vat and vat[2:] or ''
+            # vat = partner.vat.replace(' ', '')
+            # res['xml_IdPaese'] = vat and vat[0:2].upper() or ''
+            # res['xml_IdCodice'] = vat and vat[2:] or ''
+            res['xml_IdPaese'], res['xml_IdCodice'] = \
+                partner.split_vat_n_country(partner.vat)
         res['xml_Nazione'] = address.country_id.code or res.get('xml_IdPaese')
         if not res.get('xml_Nazione'):
             self._get_error(_('Unknow country of %s') % partner.name, context)
 
         if (partner.individual or not partner.is_company) and partner.fiscalcode:
-            r = self.env['account.vat.communication'].onchange_fiscalcode(cr, uid, partner.id,
+            r = self.env['account.vat.communication'].onchange_fiscalcode(
+                cr, uid, partner.id,
                 partner.fiscalcode, None,
                 country=partner.country_id,
                 context=context)
             if 'warning' in r:
                 res['xml_Error'] += self._get_error(
-                    _('Invalid fiscalcode of %s') % partner.name, context)
+                    _('00302 - '
+                      'Invalid fiscalcode of %s') % partner.name, context)
             if res.get('xml_Nazione', '') == 'IT' and \
                     partner.fiscalcode != res.get('xml_IdCodice'):
-                res['xml_CodiceFiscale'] = partner.fiscalcode.replace(' ', '')
+                res['xml_CodiceFiscale'] = partner.wep_fiscalcode(
+                    partner.fiscalcode)
         elif res.get('xml_IdPaese', '') == 'IT':
             pass
         elif not partner.vat:
@@ -698,45 +757,51 @@ class CommitmentLine(models.AbstractModel):
                 res['xml_Error'] += self._get_error(
                     _('Invalid First or Last name %s') % (partner.name),
                     context)
-        else:
-            res['xml_Denominazione'] = partner.name
-            if not partner.vat and \
-                    res['xml_Nazione'] == 'IT':
-                    # or
-                    # res['xml_Nazione'] in EU_COUNTRIES):
-                raise UserError(
-                    ('Partner %s %d without VAT number') % (
-                        partner.name, partner.id))
+        # else:
+        #     res['xml_Denominazione'] = partner.name
+        #     if not partner.vat and res['xml_Nazione'] == 'IT':
+        #         self._get_error(_('Partner %s %d without VAT number') % (
+        #                 partner.name, partner.id), context)
         if not res.get('xml_CodiceFiscale') and \
                 not res.get('xml_IdPaese') and \
                 not res.get('xml_IdCodice'):
-            raise UserError(
-                _('Partner %s %d without fiscal data') % (
+            res['xml_Error'] += self._get_error(
+                _('00464 - '
+                  'Partner %s %d without fiscal data') % (
                     partner.name, partner.id))
         if res.get('xml_IdPaese') and \
                 res.get('xml_IdPaese') != res['xml_Nazione']:
-            raise UserError(
-                _('Partner %s %d vat country differs from country') % (
+            res['xml_Error'] += self._get_error(
+                _('003XC - '
+                  'Partner %s %d vat country differs from country') % (
                     partner.name, partner.id))
 
         if address.street:
             res['xml_Indirizzo'] = address.street.replace(
                 u"'", '').replace(u"’", '')
         else:
-            raise UserError(
-                _('Partner %s without street on address') % (partner.name))
+            res['xml_Error'] += self._get_error(
+                _('003XA - '
+                'Partner %s without street on address') % (
+                    partner.name))
 
         if res.get('xml_IdPaese', '') == 'IT':
             if address.zip:
                 res['xml_CAP'] = address.zip.replace('x', '0').replace('%',
                                                                        '0')
             if len(res['xml_CAP']) != 5 or not res['xml_CAP'].isdigit():
-                raise UserError(
-                    _('Partner %s has wrong zip code') % (partner.name))
+                res['xml_Error'] += self._get_error(
+                    _('003XZ - '
+                    'Partner %s has wrong zip code') % (
+                        partner.name))
+
         res['xml_Comune'] = address.city or ' '
         if not address.city:
-            raise UserError(
-                _('Partner %s without city on address') % (partner.name))
+            res['xml_Error'] += self._get_error(
+                _('003XY - '
+                'Partner %s without city on address') % (
+                    partner.name))
+
         if res['xml_Nazione'] == 'IT':
             if release.major_version == '6.1':
                 res['xml_Provincia'] = address.province.code
@@ -744,8 +809,9 @@ class CommitmentLine(models.AbstractModel):
                 res['xml_Provincia'] = partner.state_id.code
             if not res['xml_Provincia']:
                 del res['xml_Provincia']
-                raise UserError(
-                    _('Partner %s without province on address') % (
+                res['xml_Error'] += self._get_error(
+                    _('003XP - '
+                    'Partner %s without province on address') % (
                         partner.name))
         return res
 
