@@ -255,7 +255,7 @@ class WizardVatCommunication(models.TransientModel):
                                  dte_dtr_id=dte_dtr_id,
                                  selector=selector,
                                  context=self.env.context)
-    
+
     def old_get_cedente_prestatore(self, cr, uid, fields, dte_dtr_id, context=None):
 
         if dte_dtr_id == 'DTE':
@@ -393,9 +393,6 @@ class WizardVatCommunication(models.TransientModel):
                 if dte_dtr_id == 'DTR':
                     invoice.DatiGenerali.DataRegistrazione = fields[
                         'xml_DataRegistrazione']
-                # _logger.debug('invoice_id=%d %s' % (
-                #     invoice_id,
-                #     fields.get('xml_Numero')))
 
                 if dte_dtr_id == 'DTR' and \
                         fields['xml_TipoDocumento'] != 'TD12' and \
