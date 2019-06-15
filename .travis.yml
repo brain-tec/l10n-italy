@@ -38,7 +38,7 @@ addons:
       - python-setuptools
 
 before_install:
-  - export TRAVIS_DEBUG_MODE="1"
+  - export TRAVIS_DEBUG_MODE="2"
 # Use Zeroincombenze(R) tools
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --single-branch --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
@@ -72,7 +72,7 @@ env:
 #  - TESTS="1.0" ODOO_REPO="OCA/OCB" UNIT_TEST="1"
 
 script:
-  - travis_run_tests
+  - . /home/travis/dev/activate_tools; travis_run_tests
 
 after_success:
   - travis_after_tests_success
