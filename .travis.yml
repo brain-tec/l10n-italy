@@ -45,6 +45,8 @@ before_install:
   - git clone https://github.com/zeroincombenze/tools.git ${HOME}/tools --single-branch --depth=1
   - mv ${HOME}/tools/maintainer-quality-tools ${HOME}
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  - export PYTHONPATH=${HOME}/tools
+
 
 install:
   - travis_install_env
