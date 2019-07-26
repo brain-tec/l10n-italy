@@ -146,6 +146,8 @@ class WizardExportFatturapa(orm.TransientModel):
         if context is None:
             context = {}
         code = partner.ipa_code
+        if partner.parent_id:
+            code = partner.parent_id.ipa_code
         if not code:
             raise orm.except_orm(
                 _('Error!'), _('IPA Code not set on partner form.'))
@@ -161,7 +163,9 @@ class WizardExportFatturapa(orm.TransientModel):
         if not company.phone:
             raise orm.except_orm(
                 _('Error!'), _('Company Telephone number not set.'))
-        Telefono = company.phone
+
+        phone = ''.join(e for e in company.phone if e.isnumeric())
+        Telefono = phone
 
         if not company.email:
             raise orm.except_orm(
@@ -286,9 +290,15 @@ class WizardExportFatturapa(orm.TransientModel):
                      company, context=None):
         if context is None:
             context = {}
+        phone = None
+        if company.partner_id.phone:
+            phone = ''.join(e for e in company.partner_id.phone if e.isnumeric())
+        fax = None
+        if company.partner_id.fax:
+            fax = ''.join(e for e in company.partner_id.fax if e.isnumeric())
         CedentePrestatore.Contatti = ContattiType(
-            Telefono=company.partner_id.phone or None,
-            Fax=company.partner_id.fax or None,
+            Telefono=phone,
+            Fax=fax,
             Email=company.partner_id.email or None
             )
 
@@ -332,16 +342,22 @@ class WizardExportFatturapa(orm.TransientModel):
             context = {}
         self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici = DatiAnagraficiCessionarioType()
-        if not partner.vat and not partner.fiscalcode:
+        vat = partner.vat
+        if partner.parent_id:
+            vat = partner.parent_id.vat
+        fiscalcode = partner.fiscalcode
+        if partner.parent_id:
+            fiscalcode = partner.parent_id.fiscalcode
+        if not vat and not fiscalcode:
             raise orm.except_orm(
                 _('Error!'), _('Partner VAT and Fiscalcode not set.'))
-        if partner.fiscalcode:
+        if fiscalcode:
             self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
-                DatiAnagrafici.CodiceFiscale = partner.fiscalcode
-        if partner.vat:
+                DatiAnagrafici.CodiceFiscale = fiscalcode
+        if vat:
             self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
                 DatiAnagrafici.IdFiscaleIVA = IdFiscaleType(
-                    IdPaese=partner.vat[0:2], IdCodice=partner.vat[2:])
+                    IdPaese=vat[0:2], IdCodice=vat[2:])
         self.fatturapa.FatturaElettronicaHeader.CessionarioCommittente.\
             DatiAnagrafici.Anagrafica = AnagraficaType(
                 Denominazione=partner.name)
@@ -493,7 +509,8 @@ class WizardExportFatturapa(orm.TransientModel):
                 # as expected by String200LatinType
                 causale = causale.encode(
                     'latin', 'ignore').decode('latin')
-                body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
+                if causale != '':
+                    body.DatiGenerali.DatiGeneraliDocumento.Causale.append(causale)
 
         if invoice.company_id.fatturapa_art73:
             body.DatiGenerali.DatiGeneraliDocumento.Art73 = 'SI'
@@ -765,7 +782,7 @@ class WizardExportFatturapa(orm.TransientModel):
         model_data_obj = self.pool['ir.model.data']
         invoice_obj = self.pool['account.invoice']
 
-        self.fatturapa = FatturaElettronica(versione='FPA12')
+        self.fatturapa = FatturaElettronica(versione='FPR12')
         invoice_ids = context.get('active_ids', False)
         partner = self.getPartnerId(cr, uid, invoice_ids, context=context)
 
