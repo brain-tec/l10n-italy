@@ -16,13 +16,25 @@ class MultireportTemplate(models.Model):
         help="Give a unique name for this report template")
     header_mode = fields.Selection(
         [('', 'From style'),
-         ('standard', 'Full Standard'),
-         ('logo', 'Only logo'),
-         ('only_logo', 'Only logo w/o sep. line'),
+         ('standard', 'Full Odoo Standard'),
+         ('logo', 'Only wide logo'),
+         ('only_logo', 'Only wide logo / no sep. line'),
+         ('line-up', 'Line-up logo / slogan'),
+         ('line-up2', 'Line-up logo / slogan / no sep. line'),
+         ('line-up3', 'Line-up: logo / company data'),
+         ('lin3-up4', 'Line-up: logo / company data / no sep. line'),
          ('no_header', 'No print Header'),
          ],
         'Header Print Mode',
         help="Which content is printed in document header",
+    )
+    address_mode = fields.Selection(
+        [('', 'From style'),
+         ('standard', 'Standard Invoice + Shipping'),
+         ('only_one', 'Only specific address'),
+         ],
+        'Address Print Mode',
+        help="Which addresses are printed in document header",
     )
     logo_style = fields.Char(
         'Html logo style',
