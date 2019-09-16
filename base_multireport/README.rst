@@ -1,6 +1,6 @@
 
 ========================================
-|icon| base_rule_multireport 10.0.0.2.12
+|icon| base_rule_multireport 10.0.0.2.13
 ========================================
 
 
@@ -232,12 +232,15 @@ May be on of 'standard', 'only_one'.
 `Payment Term Position`
  
 This parameter, named `payment_term_position` set where the payment datas (payment term, due date and payment term notes) are printed.
-May be one of 'odoo', 'auto', 'header', 'footer', 'none'
+May be one of 'odoo', 'auto', 'header', 'header_no_iban', 'footer', 'footer_no_iban', 'footer_notes', 'none'
 
 * odoo: standard Odoo behavior; payment term on header, payment term notes on footer
 * auto: when due payment is whole in one date, all datas are printed on header otherwise on footer
 * header: all the payment datas are printed on header
+* header_no_iban: like "header" but without IBAN
 * footer: all the payment data are printed on footer
+* footer_no_iban: like "footer" but without IBAN
+* footer_notes: just payment term notes in footer
 * none: no any payment data is printed
 
 
@@ -413,6 +416,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.0.2.13 (2019-09-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Due payments + IBAN / Scadenze + IBAN
+
+
 10.0.0.2.12 (2019-09-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -507,7 +516,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2019-09-03
+Last Update / Ultimo aggiornamento: 2019-09-04
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
