@@ -43,7 +43,7 @@
                     <field name="province" placeholder="Province" style="width: 19%%"
                            readonly="1"
                            on_change="on_change_province(country_id, zip, city, state_id, province, region)"
-                           select="2"/>
+                           select="2"  options="{'send_to_server': True}"/>
                     <field name="region" placeholder="Region" style="width: 41%%"
                            domain="[('country_id', '=', country_id)]"
                            on_change="on_change_region(country_id, zip, city, state_id, province, region)"/>

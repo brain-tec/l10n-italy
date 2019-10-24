@@ -43,6 +43,7 @@ Funzionalità
              'views/company_view.xml',
              'views/city_view.xml',
              'views/province_view.xml',
+             'views/region_view.xml',
              'security/ir.model.access.csv',
              'data/res.region.csv',
              'data/res.province.csv',
