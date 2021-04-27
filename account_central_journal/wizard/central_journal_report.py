@@ -1,23 +1,4 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 ISA s.r.l. (<http://www.isa.it>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
 
 from datetime import datetime, date, timedelta
 from osv import osv, fields
@@ -80,6 +61,16 @@ class central_journal_report(osv.osv_memory):
                 ('print', 'Ready for printing'),
                 ('printed', 'Printed')
             ], 'State', readonly=True),
+        'periods': fields.selection(
+            [('ordinary', 'Ordinary'),
+             ('special', 'Special'),
+             ('both', 'Both')
+            ], 'Period selection'),
+        'year_name': fields.char('Anno stampa piede'),
+    }
+
+    _default = {
+        'periods': 'both',
     }
 
     def onchange_fiscalyear(
@@ -88,11 +79,13 @@ class central_journal_report(osv.osv_memory):
         print_state = 'draft'
         date_move_line_from = date_move_line_from_view = False
         date_move_line_to = False
+        year_name = False
         if fiscalyear_id:
             print_state = 'print'
             fiscalyear_data = self._get_account_fiscalyear_data(
                 cr, uid, ids, fiscalyear_id)
             # set values
+            year_name = fiscalyear_data.name
             today_date = date.today()
             date_start = datetime.strptime(
                 fiscalyear_data.date_start, "%Y-%m-%d").date()
@@ -105,10 +98,13 @@ class central_journal_report(osv.osv_memory):
                 date_move_line_from = date_move_line_from_view = (
                     date_last_print + timedelta(days=1)).__str__()
                 if date_last_print == date_stop:
+                    # date_move_line_from = (
+                    #     date_move_line_from_view
+                    # ) = date_start.__str__()
                     date_move_line_from = (
                         date_move_line_from_view
-                    ) = date_start.__str__()
-                    print_state = 'printed'
+                    ) = date_stop.__str__()
+                #     print_state = 'printed'
             else:
                 date_move_line_from = (
                     date_move_line_from_view
@@ -119,17 +115,18 @@ class central_journal_report(osv.osv_memory):
             else:
                 date_move_line_to = (today_date - timedelta(days=1)).__str__()
 
-        return {'value': {
-            'date_move_line_from': date_move_line_from,
-            'date_move_line_from_view': date_move_line_from_view,
-            'date_move_line_to': date_move_line_to,
-            'print_state': print_state,
-        }
+        return {
+            'value': {
+                'date_move_line_from': date_move_line_from,
+                'date_move_line_from_view': date_move_line_from_view,
+                'date_move_line_to': date_move_line_to,
+                'print_state': print_state,
+                'year_name': year_name,
+            }
         }
 
     def print_report(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+        context = context or {}
         datas = self._get_report_datas(cr, uid, ids, context)
         if (
             self._dates_control(
@@ -145,8 +142,7 @@ class central_journal_report(osv.osv_memory):
         }
 
     def print_report_final(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+        context = context or {}
         datas = self._get_report_datas(cr, uid, ids, context)
         if (
             self._dates_control(
