@@ -960,12 +960,12 @@ class WizardImportFatturapa(models.TransientModel):
         self.set_welfares_fund(
             FatturaBody, credit_account_id, invoice, wt_founds)
 
+        self.set_vendor_bill_data(FatturaBody, invoice)
+
         invoice._onchange_invoice_line_wt_ids()
         invoice._onchange_payment_term_date_invoice()
         invoice.write(invoice._convert_to_write(invoice._cache))
         invoice_id = invoice.id
-
-        self.set_vendor_bill_data(FatturaBody, invoice)
 
         rel_docs_dict = {
             # 2.1.2
@@ -1130,7 +1130,8 @@ class WizardImportFatturapa(models.TransientModel):
                     _('Round up and down tax is not set')
                 )
 
-            line_sequence = max(invoice.invoice_line_ids.mapped('sequence'))
+            # invoice may have no lines at all if imported with minimum detail level
+            line_sequence = max(invoice.invoice_line_ids.mapped('sequence') or [0])
             line_vals = []
             for summary in FatturaBody.DatiBeniServizi.DatiRiepilogo:
                 to_round = float(summary.Arrotondamento or 0.0)

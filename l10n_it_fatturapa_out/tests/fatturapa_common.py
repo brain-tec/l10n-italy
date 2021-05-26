@@ -1,9 +1,6 @@
-
 import base64
 import tempfile
 from lxml import etree
-import shutil
-import os
 from odoo.modules.module import get_module_resource
 from odoo.addons.account.tests.account_test_users import AccountTestUsers
 
@@ -48,11 +45,15 @@ class FatturaPACommon(AccountTestUsers):
         self.tax_22 = self.env.ref('l10n_it_fatturapa.tax_22')
         self.tax_10 = self.env.ref('l10n_it_fatturapa.tax_10')
         self.tax_22_SP = self.env.ref('l10n_it_fatturapa.tax_22_SP')
+        self.tax_00_ns = self.env.ref('l10n_it_fatturapa.tax_00_ns')
         self.res_partner_fatturapa_0 = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_0')
         # B2B Customer
         self.res_partner_fatturapa_2 = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_2')
+        # INTRA Customer
+        self.res_partner_fatturapa_5 = self.env.ref(
+            'l10n_it_fatturapa.res_partner_fatturapa_5')
         self.intermediario = self.env.ref(
             'l10n_it_fatturapa.res_partner_fatturapa_1')
         self.stabile_organizzazione = self.env.ref(
@@ -134,16 +135,36 @@ class FatturaPACommon(AccountTestUsers):
     def getAttachment(self, name, module_name=None):
         if module_name is None:
             module_name = 'l10n_it_fatturapa_out'
-        path = get_module_resource(
+        return self.getFilePath(get_module_resource(
             module_name, 'tests', 'data', 'attah_base.pdf'
-        )
-        currDir = os.path.dirname(path)
-        new_file = '%s/%s' % (currDir, name)
-        shutil.copyfile(path, new_file)
-        return self.getFilePath(new_file)
+        ))
 
     def getFile(self, filename, module_name=None):
         if module_name is None:
             module_name = 'l10n_it_fatturapa_out'
         path = get_module_resource(module_name, 'tests', 'data', filename)
         return self.getFilePath(path)
+
+    def _create_invoice(self):
+        invoice_line_data = {
+            'product_id': self.product_product_10.id,
+            'quantity': 1,
+            'price_unit': 1,
+            'account_id': self.a_recv.id,
+            'name': self.product_product_10.name,
+            'invoice_line_tax_ids': [(6, 0, [self.ref('l10n_it_fatturapa.tax_22')])]
+        }
+        return self.invoice_model.create(
+            dict(
+                name='Test Invoice',
+                account_id=self.a_recv.id,
+                invoice_line_ids=[(0, 0, invoice_line_data)],
+                partner_id=self.res_partner_fatturapa_0.id
+            )
+        )
+
+    def _create_e_invoice(self):
+        invoice = self._create_invoice()
+        invoice.action_invoice_open()
+        action = self.run_wizard(invoice.id)
+        return self.env[action['res_model']].browse(action['res_id'])

@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 05:17+0000\n"
-"PO-Revision-Date: 2020-09-03 11:00+0000\n"
-"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"PO-Revision-Date: 2021-01-25 17:44+0000\n"
+"Last-Translator: Angeli Cecilia <cecilia@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_it_ddt
 #: model:mail.template,body_html:l10n_it_ddt.email_template_edi_ddt
@@ -310,7 +310,7 @@ msgstr "Descrizioni dei beni"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__dimension
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__dimension
 msgid "Dimension"
-msgstr ""
+msgstr "Dimensioni"
 
 #. module: l10n_it_ddt
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation_line__discount
@@ -337,7 +337,7 @@ msgid "Do not invoice services from DDT"
 msgstr "Non fatturare servizi da DDT"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:548
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:550
 #, python-format
 msgid "Document {d} has invoice linked"
 msgstr "Il documento {d} ha una fattura collegata"
@@ -576,7 +576,7 @@ msgid "Net Weight UoM"
 msgstr "UdM peso netto"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:221
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:222
 #, python-format
 msgid "Not every picking is in done status"
 msgstr "Non tutti i prelievi si trovano nello stato «Completato»"
@@ -662,13 +662,13 @@ msgid "Pickings"
 msgstr "Prelievi"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:340
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:342
 #, python-format
 msgid "Please define an accounting sale journal for this company."
 msgstr "Definire un registro contabile di vendita per questa azienda."
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:681
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:683
 #, python-format
 msgid ""
 "Please define income account for this product: \"%s\" (id:%d) - or for its "
@@ -717,7 +717,7 @@ msgid "Related TDs"
 msgstr "DDT collegati"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:305
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:307
 #, python-format
 msgid "Relevant period:"
 msgstr "Periodo di competenza:"
@@ -1028,7 +1028,7 @@ msgid "Taxes"
 msgstr "Imposte"
 
 #. module: l10n_it_ddt
-#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:418
+#: code:addons/l10n_it_ddt/models/stock_picking_package_preparation.py:420
 #, python-format
 msgid "There is no invoiceable line."
 msgstr "Non ci sono righe fatturabili."
@@ -1057,7 +1057,7 @@ msgstr "Da fatturare"
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_account_invoice__carrier_tracking_ref
 #: model:ir.model.fields,field_description:l10n_it_ddt.field_stock_picking_package_preparation__carrier_tracking_ref
 msgid "Tracking Reference"
-msgstr ""
+msgstr "Riferimento Spedizione"
 
 #. module: l10n_it_ddt
 #: model:ir.model,name:l10n_it_ddt.model_stock_picking
