@@ -66,7 +66,10 @@ class central_journal_report(osv.osv_memory):
              ('special', 'Special'),
              ('both', 'Both')
             ], 'Period selection'),
+<<<<<<< HEAD
         'year_name': fields.char('Anno stampa piede'),
+=======
+>>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     }
 
     _default = {

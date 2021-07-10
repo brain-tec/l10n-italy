@@ -55,3 +55,9 @@ docs/_build/
 *~
 *.swp
 
+# unit test generated files
+stdout.log
+*.oca
+*.z0i
+*.oia
+.gitrepname

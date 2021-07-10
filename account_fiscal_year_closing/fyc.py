@@ -1,26 +1,14 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010 Pexego Sistemas Informáticos. All Rights Reserved
-#    Copyright (C) 2011 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-
+# Copyright 2016 Odoo Italian Community
+#                Odoo Community Association (OCA)
+# Copyright 2012 Agile Business Group sagl (<http://www.agilebg.com>)
+# Copyright 2012 Domsense srl (<http://www.domsense.com>)
+# Copyright 2011 Associazione OpenERP Italia
+# Copyright 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
+#                Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2008 ACYSOS S.L. (http://acysos.com)
+#                Pedro Tarrafeta <pedro@acysos.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 """
 Fiscal Year Closing
 """
@@ -32,7 +20,7 @@ import netsvc
 
 __author__ = "Borja López Soilán (Pexego)"
 
-# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Predeclaration of the FYC object
 # -------------------------------------------------------------------------
 
@@ -50,15 +38,15 @@ class fiscal_year_closing_init(osv.osv):
         'name': fields.char('Description', size=60, required=True),
     }
 
+
 fiscal_year_closing_init()
 
 
-# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Account mapping objects (to be used on the fyc configuration)
 # -------------------------------------------------------------------------
 
 class fiscal_year_closing_lp_account_mapping(osv.osv):
-
     """
     Loss & Profit Account Mapping
     """
@@ -82,11 +70,12 @@ class fiscal_year_closing_lp_account_mapping(osv.osv):
             'account.account', 'Dest account', required=False,
             ondelete='cascade'),
     }
+
+
 fiscal_year_closing_lp_account_mapping()
 
 
 class fiscal_year_closing_nlp_account_mapping(osv.osv):
-
     """
     Net Loss & Profit Account Mapping
     """
@@ -110,11 +99,12 @@ class fiscal_year_closing_nlp_account_mapping(osv.osv):
             'account.account', 'Dest account', required=False,
             ondelete='cascade'),
     }
+
+
 fiscal_year_closing_nlp_account_mapping()
 
 
 class fiscal_year_closing_c_account_mapping(osv.osv):
-
     """
     Closing Account Mapping
     """
@@ -136,6 +126,8 @@ class fiscal_year_closing_c_account_mapping(osv.osv):
         'dest_account_id': fields.many2one(
             'account.account', 'Dest account', ondelete='cascade'),
     }
+
+
 fiscal_year_closing_c_account_mapping()
 
 # -----------------------------------------------------------------------------
@@ -144,7 +136,6 @@ fiscal_year_closing_c_account_mapping()
 
 
 class fiscal_year_closing(osv.osv):
-
     """
     Fiscal Year Closing Wizard
     """
