@@ -2,19 +2,11 @@
 #
 {
     'name': 'Account Central Journal',
-<<<<<<< HEAD
-    'version': '7.0.3.0.5',
-    'category': 'Generic Modules/Accounting',
-    'summary': 'Print Italian Account Central Journal',
-    'author': 'Odoo Community Association (OCA), ISA s.r.l., SHS-AV s.r.l.',
-    'website': 'http://www.isa.it',
-=======
     'summary': 'Print Italian Account Central Journal',
     'version': '7.0.3.0.4',
     'category': 'Generic Modules/Accounting',
     'author': 'Odoo Community Association (OCA), ISA s.r.l., SHS-AV s.r.l.',
     'website': 'https://odoo-community.org/',
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     'depends': [
         'base',
         'account',
@@ -27,10 +19,6 @@
         'views/account_view.xml',
     ],
     'installable': True,
-<<<<<<< HEAD
-    'development_status': 'production/stable',
-=======
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     'description': r'''
 Overview / Panoramica
 =====================
@@ -54,8 +42,6 @@ Questo modulo in alcune versioni è chiamato account_central_journal.
 |
 |
 
-<<<<<<< HEAD
-=======
 Support / Supporto
 ------------------
 
@@ -66,7 +52,6 @@ Support / Supporto
 |
 |
 
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 Credits / Didascalie
 ====================
 
@@ -111,15 +96,6 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-<<<<<<< HEAD
-Last Update / Ultimo aggiornamento: 2021-04-27
-
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Mature-green.png
-    :target: https://odoo-community.org/page/development-status
-    :alt: production/stable
-.. |Build Status| image:: https://travis-ci.org/OCA/l10n-italy.svg?branch=7.0
-    :target: https://travis-ci.org/OCA/l10n-italy
-=======
 Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
@@ -127,7 +103,6 @@ Last Update / Ultimo aggiornamento: 2019-12-08
     :alt: Alfa
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=7.0
     :target: https://travis-ci.org/zeroincombenze/l10n-italy
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
@@ -135,19 +110,11 @@ Last Update / Ultimo aggiornamento: 2019-12-08
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
     :alt: License: OPL
-<<<<<<< HEAD
-.. |Coverage Status| image:: https://coveralls.io/repos/github/OCA/l10n-italy/badge.svg?branch=7.0
-    :target: https://coveralls.io/github/OCA/l10n-italy?branch=7.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
-=======
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     :alt: Codecov
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
@@ -156,11 +123,7 @@ Last Update / Ultimo aggiornamento: 2019-12-08
     :target: https://wiki.zeroincombenze.org/it/Odoo/7.0/man
     :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
-<<<<<<< HEAD
-    :target: http://runbot.odoo.com/runbot
-=======
     :target: https://erp7.zeroincombenze.it
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     :alt: Try Me
 .. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
@@ -192,11 +155,6 @@ Last Update / Ultimo aggiornamento: 2019-12-08
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-<<<<<<< HEAD
-   :target: https://t.me/axitec_helpdesk
-
-=======
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 ''',
 }

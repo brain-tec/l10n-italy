@@ -29,15 +29,15 @@ class account_fiscalyear(orm.Model):
     _columns = {
         'date_last_print': fields.date('Last printed date', readonly=True),
         'progressive_page_number': fields.integer(
-            'Progressive of the page', required=True),
+            'Progressive of the page', required=True, readonly=True),
         'progressive_line_number': fields.integer(
-            'Progressive line', required=True),
+            'Progressive line', required=True, readonly=True),
         'progressive_credit': fields.float(
             'Progressive Credit', digits_compute=dp.get_precision('Account'),
-            required=True),
+            required=True, readonly=True),
         'progressive_debit': fields.float(
             'Progressive Debit', digits_compute=dp.get_precision('Account'),
-            required=True),
+            required=True, readonly=True),
     }
 
     _defaults = {

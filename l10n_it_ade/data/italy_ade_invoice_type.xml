@@ -63,6 +63,14 @@ Usata ad esempio nella ristorazione.</field>
 è sufficiente inserire la partita IVA senza i dettagli anagrafici del cliente.</field>
         <field name="active">1</field>
     </record>
+    <record id="fatturapa_TD09" model="italy.ade.invoice.type">
+        <field name="code">TD09</field>
+        <field name="name">Nota di debito semplificata</field>
+        <field name="scope">IT,out_invoice,Out_refund,in_invoice,In_refund</field>
+        <field name="help">Documento emesso al fine di integrare gli importi esposti in una fattura semplificata emessa in precedenza;
+è sufficiente inserire la partita IVA senza i dettagli anagrafici del cliente.</field>
+        <field name="active">1</field>
+    </record>
     <record id="fatturapa_TD10" model="italy.ade.invoice.type">
         <field name="code">TD10</field>
         <field name="name">Fattura di acquisto intracomunitario beni</field>

@@ -1,4 +1,23 @@
 # -*- coding: utf-8 -*-
+#
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2012 ISA s.r.l. (<http://www.isa.it>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
 
 from datetime import datetime, date, timedelta
 from osv import osv, fields
@@ -66,10 +85,6 @@ class central_journal_report(osv.osv_memory):
              ('special', 'Special'),
              ('both', 'Both')
             ], 'Period selection'),
-<<<<<<< HEAD
-        'year_name': fields.char('Anno stampa piede'),
-=======
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     }
 
     _default = {
@@ -82,13 +97,11 @@ class central_journal_report(osv.osv_memory):
         print_state = 'draft'
         date_move_line_from = date_move_line_from_view = False
         date_move_line_to = False
-        year_name = False
         if fiscalyear_id:
             print_state = 'print'
             fiscalyear_data = self._get_account_fiscalyear_data(
                 cr, uid, ids, fiscalyear_id)
             # set values
-            year_name = fiscalyear_data.name
             today_date = date.today()
             date_start = datetime.strptime(
                 fiscalyear_data.date_start, "%Y-%m-%d").date()
@@ -118,14 +131,12 @@ class central_journal_report(osv.osv_memory):
             else:
                 date_move_line_to = (today_date - timedelta(days=1)).__str__()
 
-        return {
-            'value': {
-                'date_move_line_from': date_move_line_from,
-                'date_move_line_from_view': date_move_line_from_view,
-                'date_move_line_to': date_move_line_to,
-                'print_state': print_state,
-                'year_name': year_name,
-            }
+        return {'value': {
+            'date_move_line_from': date_move_line_from,
+            'date_move_line_from_view': date_move_line_from_view,
+            'date_move_line_to': date_move_line_to,
+            'print_state': print_state,
+        }
         }
 
     def print_report(self, cr, uid, ids, context=None):

@@ -1,20 +1,12 @@
 
 ========================================
-<<<<<<< HEAD
-|icon| Account Central Journal 7.0.3.0.5
-=======
 |icon| Account Central Journal 7.0.3.0.2
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 ========================================
 
 
 **Print Italian Account Central Journal**
 
-<<<<<<< HEAD
-.. |icon| image:: https://raw.githubusercontent.com/OCA/l10n-italy/7.0/account_central_journal/static/src/img/icon.png
-=======
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/7.0/account_central_journal/static/src/img/icon.png
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -42,22 +34,6 @@ Permette la stampa  del libro giornale fiscale.
 Questo modulo in alcune versioni è chiamato account_central_journal.
 
 |
-<<<<<<< HEAD
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-
-|
-=======
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 |
 
 Getting started / Come iniziare
@@ -71,23 +47,6 @@ Getting started / Come iniziare
 Installation / Installazione
 ----------------------------
 
-<<<<<<< HEAD
-
-+---------------------------------+------------------------------------------+
-| |en|                            | |it|                                     |
-+---------------------------------+------------------------------------------+
-| These instructions are just an  | Istruzioni di esempio valide solo per    |
-| example; use on Linux CentOS 7+ | distribuzioni Linux CentOS 7+,           |
-| Ubuntu 14+ and Debian 8+        | Ubuntu 14+ e Debian 8+                   |
-|                                 |                                          |
-| Installation is built with:     | L'installazione è costruita con:         |
-+---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
-+---------------------------------+------------------------------------------+
-| Suggested deployment is:        | Posizione suggerita per l'installazione: |
-+---------------------------------+------------------------------------------+
-| $HOME/7.0                                                                  |
-=======
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -102,70 +61,28 @@ Installation / Installazione
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
 | /opt/odoo/7.0/l10n-italy/                                                  |
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
-<<<<<<< HEAD
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository installation; OCB repository must be installed
-    odoo_install_repository l10n-italy -b 7.0 -O oca -o $HOME/7.0
-    vem create $HOME/7.0/venv_odoo -O 7.0 -a "*" -DI -o $HOME/7.0
-=======
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
     odoo_install_repository l10n-italy -b 7.0 -O zero
     sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 
 From UI: go to:
 
 * |menu| Setting > Modules > Update Modules List
 * |menu| Setting > Local Modules |right_do| Select **account_central_journal** > Install
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 |
 
 Upgrade / Aggiornamento
 -----------------------
 
-<<<<<<< HEAD
-
-::
-
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -p
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -U
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
-    odoo_install_repository l10n-italy -b 7.0 -o $HOME/7.0 -U
-    vem amend $HOME/7.0/venv_odoo -o $HOME/7.0
-=======
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -177,7 +94,6 @@ Upgrade / Aggiornamento
 ::
 
     odoo_install_repository l10n-italy -b 7.0 -O zero -U
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -187,8 +103,6 @@ From UI: go to:
 * |menu| Setting > Local Modules |right_do| Select **account_central_journal** > Update
 
 |
-<<<<<<< HEAD
-=======
 
 Support / Supporto
 ------------------
@@ -198,7 +112,6 @@ Support / Supporto
 
 
 |
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 |
 
 Get involved / Ci mettiamo in gioco
@@ -206,25 +119,6 @@ Get involved / Ci mettiamo in gioco
 
 Bug reports are welcome! You can use the issue tracker to report bugs,
 and/or submit pull requests on `GitHub Issues
-<<<<<<< HEAD
-<https://github.com/OCA/l10n-italy/issues>`_.
-
-In case of trouble, please check there if your issue has already been reported.
-
-ChangeLog History / Cronologia modifiche
-----------------------------------------
-
-7.0.3.0.5 (2021-04-26)
-~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Separation line / Riga di separazione a cambio registrazione
-
-7.0.3.0.4 (2020-07-20)
-~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Separate print for special periods / Stampa separata dei periodi speciali
-
-=======
 <https://github.com/zeroincombenze/l10n-italy/issues>`_.
 
 In case of trouble, please check there if your issue has already been reported.
@@ -237,7 +131,6 @@ Proposals for enhancement
 An Enhancement Proposal may be submitted if your idea gains ground.
 
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 
 |
 |
@@ -269,15 +162,6 @@ Contributors / Collaboratori
 * Alessandro Camilli <a.camilli@yahoo.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 
-<<<<<<< HEAD
-Maintainer / Manutenzione
--------------------------
-
-
-
-
-=======
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
 |
 
 ----------------
@@ -300,15 +184,6 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-<<<<<<< HEAD
-Last Update / Ultimo aggiornamento: 2021-04-27
-
-.. |Maturity| image:: https://img.shields.io/badge/maturity-Mature-green.png
-    :target: https://odoo-community.org/page/development-status
-    :alt: production/stable
-.. |Build Status| image:: https://travis-ci.org/OCA/l10n-italy.svg?branch=7.0
-    :target: https://travis-ci.org/OCA/l10n-italy
-=======
 Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
@@ -316,7 +191,6 @@ Last Update / Ultimo aggiornamento: 2019-12-08
     :alt: Alfa
 .. |Build Status| image:: https://travis-ci.org/zeroincombenze/l10n-italy.svg?branch=7.0
     :target: https://travis-ci.org/zeroincombenze/l10n-italy
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     :alt: github.com
 .. |license gpl| image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
@@ -324,19 +198,11 @@ Last Update / Ultimo aggiornamento: 2019-12-08
 .. |license opl| image:: https://img.shields.io/badge/licence-OPL-7379c3.svg
     :target: https://www.odoo.com/documentation/user/9.0/legal/licenses/licenses.html
     :alt: License: OPL
-<<<<<<< HEAD
-.. |Coverage Status| image:: https://coveralls.io/repos/github/OCA/l10n-italy/badge.svg?branch=7.0
-    :target: https://coveralls.io/github/OCA/l10n-italy?branch=7.0
-    :alt: Coverage
-.. |Codecov Status| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
-    :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
-=======
 .. |Coverage Status| image:: https://coveralls.io/repos/github/zeroincombenze/l10n-italy/badge.svg?branch=7.0
     :target: https://coveralls.io/github/zeroincombenze/l10n-italy?branch=7.0
     :alt: Coverage
 .. |Codecov Status| image:: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/zeroincombenze/l10n-italy/branch/7.0
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     :alt: Codecov
 .. |Tech Doc| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-docs-7.svg
     :target: https://wiki.zeroincombenze.org/en/Odoo/7.0/dev
@@ -345,11 +211,7 @@ Last Update / Ultimo aggiornamento: 2019-12-08
     :target: https://wiki.zeroincombenze.org/it/Odoo/7.0/man
     :alt: Technical Documentation
 .. |Try Me| image:: https://www.zeroincombenze.it/wp-content/uploads/ci-ct/prd/button-try-it-7.svg
-<<<<<<< HEAD
-    :target: http://runbot.odoo.com/runbot
-=======
     :target: https://erp7.zeroincombenze.it
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
     :alt: Try Me
 .. |OCA Codecov| image:: https://codecov.io/gh/OCA/l10n-italy/branch/7.0/graph/badge.svg
     :target: https://codecov.io/gh/OCA/l10n-italy/branch/7.0
@@ -381,9 +243,4 @@ Last Update / Ultimo aggiornamento: 2019-12-08
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-<<<<<<< HEAD
-   :target: https://t.me/axitec_helpdesk
-
-=======
    :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
->>>>>>> 6253cb350d831709bcce8c39958cf7fe035bebf5
