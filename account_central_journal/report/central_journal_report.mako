@@ -63,7 +63,11 @@
         padding: 3px 5px;
         text-align: right;
         }
-        
+
+    .new_move {
+        border-top: 1px dotted grey;
+    }
+
     /* COLUMNS WIDTH 
     .p_cell_progr_row { width: 15px;}
     .p_cell_date { width: 45px;}
@@ -84,6 +88,7 @@
         fiscalyear_id = data["form"]["fiscalyear"]
         date_from = data["form"]["date_move_line_from"]
         date_to = data["form"]["date_move_line_to"]
+        year_name = data["form"]["year_name"]
     %>
     <%
         print_info = get_print_info(fiscalyear_id)
@@ -92,10 +97,11 @@
     %>
     <%
         page_rows = 25
-        
+
         num_rows = len(result_rows)
         num_row = 0
         new_page = True
+        save_move_id = ''
         
         progr_page = print_info['start_page']
         progr_row = print_info['start_row']
@@ -128,7 +134,7 @@
                     <span class="p_text">${ _("TEST PRINTING") }&nbsp;${ _("From date") }&nbsp;${ formatLang(date_from, date=True) or ''|entity }&nbsp;${ _("to date") }&nbsp;${ formatLang(date_to, date=True) or ''|entity }</span>
                     % endif
                 </td>
-                <td colspan="2" class="p_cell p_cell_page"><span class="p_text p_page">${ _("Page:") }&nbsp;&nbsp;${progr_page} / ${print_info['year_name']}</span></td>
+                <td colspan="2" class="p_cell p_cell_page"><span class="p_text p_page">${ _("Page:") }&nbsp;&nbsp;${progr_page} / ${year_name}</span></td>
             </tr>
             
             <tr class="p_row p_row_head">
@@ -150,7 +156,13 @@
                 <td class="p_cell p_cell_credit"><span class="p_text p_credit">${ formatLang(credit_tot, digits=get_digits(dp='Account')) |entity }</span></td>
             </tr>
         % endif
+        % if save_move_id == line.move_id.name :
         <tr class="p_row">
+        % endif
+        % if save_move_id != line.move_id.name :
+            <% save_move_id = line.move_id.name %>
+        <tr class="p_row new_move">
+        % endif
             <td class="p_cell p_cell_progr_row"><span class="p_text p_progr_row">${progr_row}</span></td>
             <td class="p_cell p_cell_date"><span class="p_text p_date">${ formatLang(line.date, date=True) or ''|entity }</span></td>
             <td class="p_cell p_cell_ref"><span class="p_text p_ref">${ line.ref or ''|entity }</span></td>
@@ -187,4 +199,3 @@
     
 </body>
 </html>
-

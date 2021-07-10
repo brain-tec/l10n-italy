@@ -39,9 +39,9 @@ Avaiable Addons / Moduli disponibili
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | Name / Nome                        | Version    | OCA Ver.   | Description / Descrizione                                                        |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_central_journal            | 7.0.3.0.4  | 7.0.3      | Print Italian Account Central Journal                                            |
+| account_central_journal            | 7.0.3.0.2  | 7.0.3      | Print Italian Account Central Journal                                            |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| account_fiscal_year_closing        | 7.0.1.0.2  | 7.0.1.0    | Fiscal Year Closing                                                              |
+| account_fiscal_year_closing        | 7.0.1.0.1  | 7.0.1.0    | Fiscal Year Closing                                                              |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | account_invoice_entry_date         | 7.0.0.1    | |same|     | Account Invoice entry Date                                                       |
 +------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -120,34 +120,6 @@ Avaiable Addons / Moduli disponibili
 
 
 
-OCA comparation / Confronto con OCA
------------------------------------
-
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Description / Descrizione            | Odoo Italia      | OCA             | Notes / Note                                                                         |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Coverage                             | |Codecov Status| | |OCA Codecov|   |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Test compatibilità OCA e Odoo        | |no_check|       | |check|         | `Errore import decimal precision <https://github.com/OCA/OCB/issues/629>`__          |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Gestione evoluta anagrafiche         | |check|          | |no_check|      | `l10n_it_base <https://github.com/zeroincombenze/l10n-italy/tree/8.0/l10n_it_base>__ |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Piano dei conti evoluto              | |check|          | |no_check|      |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Codici IVA completi                  | |check|          | |no_check|      |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Dichiaritivi fiscali                 | 2018             | 2017            |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Controllo date                       | Per anno fiscale | No anno fiscale | Versione OCA non permette l'accavallamento numerazioni a inizio anno                 |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Controllo date fatture emesse        | |check|          | |no_check|      |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| FatturaPA                            | v1.2.1           | v1.2.1          |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-| Validazione Codice Fiscale           | |check|          | |no_check|      |                                                                                      |
-+--------------------------------------+------------------+-----------------+--------------------------------------------------------------------------------------+
-
-
 
 Getting started / Come iniziare
 ===============================
@@ -170,7 +142,6 @@ Prerequisites / Prerequisiti
 Installation / Installazione
 ----------------------------
 
-
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
 +---------------------------------+------------------------------------------+
@@ -180,30 +151,26 @@ Installation / Installazione
 |                                 |                                          |
 | Installation is built with:     | L'installazione è costruita con:         |
 +---------------------------------+------------------------------------------+
-| `Zeroincombenze Tools <https://zeroincombenze-tools.readthedocs.io/>`__    |
+| `Zeroincombenze Tools <https://github.com/zeroincombenze/tools>`__         |
 +---------------------------------+------------------------------------------+
 | Suggested deployment is:        | Posizione suggerita per l'installazione: |
 +---------------------------------+------------------------------------------+
-| /home/odoo/7.0/l10n-italy/                                                 |
+| /opt/odoo/7.0/l10n-italy/                                                  |
 +----------------------------------------------------------------------------+
 
 ::
 
     cd $HOME
-    # Tools installation & activation: skip if you have installed this tool
     git clone https://github.com/zeroincombenze/tools.git
     cd ./tools
     ./install_tools.sh -p
     source /opt/odoo/dev/activate_tools
-    # Odoo installation
     odoo_install_repository l10n-italy -b 7.0 -O zero
-    vem create /opt/odoo/VENV-7.0 -O 7.0 -DI
-
+    sudo manage_odoo requirements -b 7.0 -vsy -o /opt/odoo/7.0
 
 
 Upgrade / Aggiornamento
 -----------------------
-
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -215,15 +182,7 @@ Upgrade / Aggiornamento
 
 ::
 
-    cd $HOME
-    # Tools installation & activation: skip if you have installed this tool
-    git clone https://github.com/zeroincombenze/tools.git
-    cd ./tools
-    ./install_tools.sh -p
-    source /opt/odoo/dev/activate_tools
-    # Odoo upgrade
     odoo_install_repository l10n-italy -b 7.0 -O zero -U
-    vem amend /opt/odoo/VENV-7.0 -O 7.0 -DI
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
@@ -282,7 +241,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2020-08-01
+Last Update / Ultimo aggiornamento: 2019-12-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
@@ -341,5 +300,4 @@ Last Update / Ultimo aggiornamento: 2020-08-01
 .. |FatturaPA| image:: https://raw.githubusercontent.com/zeroincombenze/grymb/master/certificates/ade/icons/fatturapa.png
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
-   :target: https://t.me/axitec_helpdesk
-
+   :target: https://tawk.to/85d4f6e06e68dd4e358797643fe5ee67540e408b
