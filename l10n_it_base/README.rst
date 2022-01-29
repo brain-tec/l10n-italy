@@ -1,8 +1,10 @@
 
 ===================================================
-|icon| Italian Localisation - Base 12.0.10.0.0.2.15
+|icon| Italian Localisation - Base 12.0.10.0.0.2.16
 ===================================================
 
+
+**Managing Italian addresses**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_base/static/description/icon.png
 
@@ -80,25 +82,6 @@ Usage / Utilizzo
 .. image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_base/static/description/partner_1.png
     :alt: partner
 
-
-|
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Description / Descrizione                                       | Odoo Italia  | OCA               | Notes / Note                   |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| City from ZIP / Città da CAP                                    | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| District from ZIP / Provincia da CAP                            | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Check for ZIP and district / Controllo coerenza CAP e provincia | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-| Check for duplicate vat / Controllo partita IVA duplicata       | |check|      | |no_check|        |                                |
-+-----------------------------------------------------------------+--------------+-------------------+--------------------------------+
-
-|OCA project|
 
 |
 |
@@ -215,6 +198,15 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
+ChangeLog History / Cronologia modifiche
+----------------------------------------
+
+10.0.0.2.16 (2022-01-27)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Foreign country w/o zip code / Stati esteri senza CAP
+
+
 |
 |
 
@@ -292,7 +284,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2022-01-05
+Last Update / Ultimo aggiornamento: 2022-01-27
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
