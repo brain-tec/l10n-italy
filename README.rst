@@ -57,7 +57,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | currency_rate_update_boi             | |no_check| | 12.0.1.0.0 | Update exchange rates using www.bancaditalia.it                                  |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| fiscal_epos_print                    | |no_check| | 12.0.1.3.4 | ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: FP81II, FP90 |
+| fiscal_epos_print                    | |no_check| | 12.0.1.3.5 | ePOS-Print XML Fiscal Printer Driver - Stampanti Epson compatibili: FP81II, FP90 |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | fiscal_epos_print_fiscalcode         | |no_check| | 12.0.1.1.0 | Consente di includere il codice fiscale negli scontrini                          |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -85,7 +85,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ateco                        | |halt|     | 12.0.1.0.1 | Ateco codes                                                                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_base                         | 12.0.10.0. | |no_check| | Italian Localisation - Base                                                      |
+| l10n_it_base                         | 12.0.10.0. | |no_check| | Managing Italian addresses                                                       |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_base_crm                     | |halt|     | |no_check| | Italian Localisation - CRM                                                       |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -123,13 +123,17 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_export_zip          | 12.0.10.0. | |no_check| | Esportazione di file XML di fatture elettroniche in uno ZIP da esportare.        |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_einvoice_import              | 12.0.10.0. | |no_check| | Import fatture elettroniche clienti                                              |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_import_zip          | 12.0.10.0. | |no_check| | Importazione di file XML di fatture elettroniche da uno ZIP                      |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_in                  | 12.0.10.0. | |no_check| | Ricezione fatture elettroniche                                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_einvoice_out                 | 12.0.10.0. | |no_check| | Electronic invoices emission                                                     |
+| l10n_it_einvoice_out                 | 12.0.10.0. | |no_check| | E-Invoice emission                                                               |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_out_ddt             | 12.0.10.0. | |no_check| | Modulo ponte tra emissione fatture elettroniche e DDT                            |
++--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
+| l10n_it_einvoice_out_li              | 12.0.10.0. | |no_check| | Dichiarazioni d'intento in fattura elettronica                                   |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_einvoice_send2sdi            | 12.0.10.0. | |no_check| | Send E-Invoice to customer by SdI                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -215,7 +219,7 @@ Avaiable Addons / Moduli disponibili
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_ricevute_bancarie            | 12.0.10.0. | 12.0.1.8.0 | Ricevute Bancarie                                                                |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
-| l10n_it_sdi_channel                  | |no_check| | 12.0.1.3.3 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI             |
+| l10n_it_sdi_channel                  | |no_check| | 12.0.1.3.4 | Aggiunge il canale di invio/ricezione dei file XML attraverso lo SdI             |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
 | l10n_it_split_payment                | 12.0.10.0. | 12.0.1.0.1 | Split Payment                                                                    |
 +--------------------------------------+------------+------------+----------------------------------------------------------------------------------+
@@ -391,6 +395,31 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 History / Cronologia
 --------------------
 
+l10n_it_ricevute_bancarie: 10.0.1.3.6 (2022-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Button [Cancel] in list / Bottone [Annulla] in distinta
+* [IMP] Button [Back2Draft] in list / Bottone [Riporta in bozza] in distinta
+
+
+l10n_it_lettera_intento: 10.0.0.1.4 (2022-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Editable Lettera intento id in invoice / Numero lettera intento in fattura modificabile
+
+
+l10n_it_account: 10.0.1.2.8 (2022-01-28)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] New function for einvoice
+
+
+
+l10n_it_base: 10.0.0.2.16 (2022-01-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Foreign country w/o zip code / Stati esteri senza CAP
+
 l10n_it_einvoice_in: 10.0.1.3.28 (2022-01-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -401,6 +430,12 @@ l10n_it_einvoice_import_zip: 10.0.1.0.5 (2022-01-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] XML filename with 4 char suffix / File xml con suffisso di 4 caratteri
+
+
+l10n_it_einvoice_import: 10.0.1.3.28 (2022-01-26)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Link existent invoice / Collegamento a fattura esistente
 
 
 l10n_it_einvoice_send2sdi: 10.0.1.0.20 (2022-01-17)
@@ -430,6 +465,14 @@ l10n_it_einvoice_send2sdi: 10.0.1.0.19 (2022-01-05)
 
 l10n_it_einvoice_in: 10.0.1.3.27 (2022-01-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
+* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
+* [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
+
+
+l10n_it_einvoice_import: 10.0.1.3.27 (2022-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
 * [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
@@ -483,7 +526,6 @@ l10n_it_central_journal: 10.0.0.0.5 (2021-09-30)
 * [FIX] Crash if final print / Errore in stampa definitiva
 
 
-
 l10n_it_fiscal: 12.0.0.2.1 (2021-08-30)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -499,12 +541,6 @@ l10n_it_vat_registries: 10.0.1.3.1 (2021-08-02)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] User can set year in footer page / L'utente può impostare l'anno di stampa del piede
-
-
-l10n_it_fiscal_payment_term: 10.0.1.0.1 (2021-07-31)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Added MP23 code in fatturapa.payment_method
 
 
 
@@ -539,7 +575,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 |
 
 
-Last Update / Ultimo aggiornamento: 2022-01-26
+Last Update / Ultimo aggiornamento: 2022-01-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-red.png
     :target: https://odoo-community.org/page/development-status
