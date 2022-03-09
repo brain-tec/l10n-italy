@@ -64,7 +64,9 @@ class AccountTax(models.Model):
         else:
             deferred_vat = False
             split_payment = False
-        tax_name = tax._get_tax_name()
+        # [antoniov: 2022-03-08] strange bug
+        # tax_name = tax._get_tax_name()
+        tax_name = self.name
         deductible = 0
         undeductible = 0
         if tax.parent_tax_ids:
@@ -115,7 +117,7 @@ class AccountTax(models.Model):
                     undeductible += child_balance
             if base_balance >= 0 and tax_balance < 0:
                 base_balance = 0
-            if tax.nature_id.code == 'N6':
+            if tax.rc:
                 undeductible = tax_balance
                 deductible = 0
             if registry_type == 'supplier':
