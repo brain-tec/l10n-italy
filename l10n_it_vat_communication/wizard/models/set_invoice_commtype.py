@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, api, fields, _
-from odoo.exceptions import UserError
+from odoo import models, api
 
 
 class WizardSetInvoiceCommyype(models.TransientModel):
@@ -11,5 +10,6 @@ class WizardSetInvoiceCommyype(models.TransientModel):
     def set_einvoice_commtype(self):
         self.ensure_one()
         invoices = self.env[self.env.context['active_model']].browse(
-            self.env.context['active_ids'])
+            self.env.context['active_ids']
+        )
         return invoices.set_einvoice_commtype()

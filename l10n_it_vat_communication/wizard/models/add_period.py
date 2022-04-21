@@ -5,8 +5,6 @@
 #    Copyright (C) 2013-17 Associazione Odoo Italia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 #
-
-import os
 from odoo import api, fields, models, exceptions, _
 
 
@@ -27,8 +25,9 @@ class AddPeriod(models.TransientModel):
 
         if wizard.period_id.vat_commitment_id:
             raise exceptions.UserError(
-                _('Period %s is already associated to commitment') % 
-                  wizard.period_id.name)
+                _('Period %s is already associated to commitment')
+                % wizard.period_id.name
+            )
 
         for record in self:
             record.period_id.write({'vat_commitment_id': context['active_id']})

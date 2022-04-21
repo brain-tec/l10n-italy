@@ -5,8 +5,6 @@
 #
 # [2017: SHS-AV s.r.l.] First version
 #
-
-import os
 from odoo import api, fields, models, exceptions, _
 
 
@@ -17,9 +15,11 @@ class RemovePeriod(models.TransientModel):
     @api.model
     def _get_period_ids(self):
         res = []
-        context=self.env.context
+        context = self.env.context
         if 'active_id' in context:
-            commitment_obj = self.env['account.vat.communication'].search([('id', '=', context['active_id'])])
+            commitment_obj = self.env['account.vat.communication'].search(
+                [('id', '=', context['active_id'])]
+            )
             for period in commitment_obj.period_ids:
                 res.append((period.id, period.name))
 
@@ -29,7 +29,7 @@ class RemovePeriod(models.TransientModel):
 
     @api.multi
     def remove_period(self):
-        context=self.env.context
+        context = self.env.context
 
         if 'active_id' not in context:
             raise exceptions.UserError(_('Current commitment not found'))
