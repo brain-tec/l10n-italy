@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Agile Business Group (<http://www.agilebg.com>)
+# Copyright 2018-2022 SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields
@@ -18,6 +19,13 @@ class AccountTax(models.Model):
     parent_tax_ids = fields.Many2many(
         'account.tax', 'account_tax_filiation_rel', 'child_tax', 'parent_tax',
         string='Parent Taxes')
+
+    def is_rc(self, nature=None):
+        nature = nature or self.nature_id.code
+        return bool(
+            nature and (
+                nature.startswith('N6') or (
+                nature.startswith('N3') and nature != 'N3.5')))
 
     def _get_tax_amount(self):
         self.ensure_one()
@@ -56,15 +64,17 @@ class AccountTax(models.Model):
 
         tax = self.env['account.tax'].with_context(context).browse(self.id)
         if 'payability' in tax and tax.payability == 'S':
-            deferred_vat = False
+            # deferred_vat = False
             split_payment = True
         elif 'payability' in tax and tax.payability == 'D':
-            deferred_vat = True
+            # deferred_vat = True
             split_payment = False
         else:
-            deferred_vat = False
+            # deferred_vat = False
             split_payment = False
-        tax_name = tax._get_tax_name()
+        # [antoniov: 2022-03-08] strange bug
+        # tax_name = tax._get_tax_name()
+        tax_name = self.name
         deductible = 0
         undeductible = 0
         if tax.parent_tax_ids:
@@ -115,7 +125,7 @@ class AccountTax(models.Model):
                     undeductible += child_balance
             if base_balance >= 0 and tax_balance < 0:
                 base_balance = 0
-            if tax.nature_id.code == 'N6':
+            if (hasattr(tax, 'rc') and tax.rc) or tax.is_rc():
                 undeductible = tax_balance
                 deductible = 0
             if registry_type == 'supplier':
@@ -123,6 +133,6 @@ class AccountTax(models.Model):
                         -tax_balance, -deductible, -undeductible)
             if split_payment and registry_type == 'customer':
                 return (tax_name, base_balance,
-                    tax_balance, undeductible, deductible)
+                        tax_balance, undeductible, deductible)
             return (tax_name, base_balance,
                     tax_balance, deductible, undeductible)
