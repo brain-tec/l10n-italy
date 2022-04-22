@@ -1,3 +1,20 @@
+10.0.1.3.29 (2022-03-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Detect RC by rc flag / Riconoscimento RC tramite flag rc
+
+10.0.1.3.28 (2022-01-26)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Link existent invoice / Collegamento a fattura esistente
+
+10.0.1.3.27 (2022-01-05)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Recognize withholding tax with wrong rate / Riconosce RA anche con base errata
+* [IMP] Accept invoice with wrong currency / Registra fattura con Divisa errata
+* [FIX] Import even if rea_code on no contact record / Importa anche se codice REA in recodr non contatto
+
 10.0.1.3.26 (2021-04-07)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
