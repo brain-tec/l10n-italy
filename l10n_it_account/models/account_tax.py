@@ -21,7 +21,9 @@ class AccountTax(models.Model):
         string='Parent Taxes')
 
     def is_rc(self, nature=None):
-        nature = nature or self.nature_id.code
+        nature = nature or (
+                hasattr(self, 'nature_id') and self.nature_id.code) or (
+                hasattr(self, 'kind_id') and self.kind_id.code)
         return bool(
             nature and (
                 nature.startswith('N6') or (
@@ -40,9 +42,8 @@ class AccountTax(models.Model):
     def _get_tax_name(self):
         self.ensure_one()
         name = self.name
-        # [antoniov: 2019-07-29]
-        # if self.parent_tax_ids and len(self.parent_tax_ids) == 1:
-        #     name = self.parent_tax_ids[0].name
+        if self.parent_tax_ids and len(self.parent_tax_ids) == 1:
+            name = self.parent_tax_ids[0].name
         return name
 
     def _compute_totals_tax(self, data):

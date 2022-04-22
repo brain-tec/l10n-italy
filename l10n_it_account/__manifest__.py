@@ -10,9 +10,9 @@
     'version': '10.0.1.2.10',
     'category': 'Hidden',
     'author': "Odoo Community Association (OCA)",
-    'website': 'https://www.zeroincombenze.it/servizi-le-imprese/software-gestionale/',
+    'website': 'https://www.zeroincombenze.it/',
     'license': 'AGPL-3',
-    "depends": ['account', 'account_fiscal_year'],
+    "depends": ['account', 'account_fiscal_year', 'account_tax_balance'],
     "data": [
         'reports/account_reports_view.xml',
     ],
