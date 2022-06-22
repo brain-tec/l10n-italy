@@ -1,3 +1,14 @@
+10.0.2.1.18 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Fiscal document type renamed
+* [IMP] Tax nature renamed
+
+10.0.2.1.17 (2022-06-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor internal improvements / Migliorie interne minori
+
 10.0.2.1.16 (2022-06-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

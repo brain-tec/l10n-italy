@@ -129,11 +129,11 @@ class ResCompany(models.Model):
         where = ["|", ("company_id", "=", False), ("company_id", "=", self.id)]
         where.append(("type_tax_use", "=", "sale"))
         where.append(("amount", "!=", 0.0))
-        where.append(("nature_id", "=", False))
+        where.append(("kind_id", "=", False))
         where.append("|")
         where.append(("payability", "=", "I"))
         where.append(("payability", "=", False))
-        for tax in tax_model.search(where):
+        for _tax in tax_model.search(where):
             tax_model.write({"payability": "D"})
 
     def set_ordinary_vat(self):
@@ -141,9 +141,9 @@ class ResCompany(models.Model):
         where = ["|", ("company_id", "=", False), ("company_id", "=", self.id)]
         where.append(("type_tax_use", "=", "sale"))
         where.append(("amount", "!=", 0.0))
-        where.append(("nature_id", "=", False))
+        where.append(("kind_id", "=", False))
         where.append(("payability", "=", "D"))
-        for tax in tax_model.search(where):
+        for _tax in tax_model.search(where):
             tax_model.write({"payability": "I"})
 
     @api.multi

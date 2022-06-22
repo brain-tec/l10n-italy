@@ -1,3 +1,13 @@
+10.0.1.0.22 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Tax nature renamed
+
+10.0.1.0.21 (2022-06-17)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] PDF attachment removed when XML deleted / Stampe PDF eliminate quanto file XML rimosso
+
 10.0.1.0.20 (2022-06-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

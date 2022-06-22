@@ -126,9 +126,20 @@ class WelfareFundType(models.Model):
     # _position = ['2.1.1.7.1']
     _name = "welfare.fund.type"
     _description = "Welfare Fund Type"
+    _rec_name = "display_name"
 
     code = fields.Char("Code")
     name = fields.Char("Name")
+    display_name = fields.Char(string="Code", compute="_compute_clean_display_name")
+
+    @api.multi
+    @api.depends("code", "name")
+    def _compute_clean_display_name(self):
+        for record in self:
+            name = record.name
+            if record.name and record.description:
+                name = u"[%s] %s" % (record.code, record.name)
+            record.display_name = name
 
 
 class WelfareFundDataLine(models.Model):
@@ -137,13 +148,35 @@ class WelfareFundDataLine(models.Model):
     _description = "E-invoice Welfare Fund Data"
 
     name = fields.Many2one("welfare.fund.type", string="Welfare Fund Type")
-    tax_nature_id = fields.Many2one("italy.ade.tax.nature", string="Non taxable nature")
+    tax_kind_id = fields.Many2one(
+        "italy.ade.tax.nature", string="Non taxable nature", oldname="tax_nature_id")
     welfare_rate_tax = fields.Float("Welfare Tax Rate")
     welfare_amount_tax = fields.Float("Welfare Tax Amount")
     welfare_taxable = fields.Float("Welfare Taxable")
     welfare_Iva_tax = fields.Float("VAT Tax Rate")
     subjected_withholding = fields.Char("Subjected to Withholding", size=2)
     pa_line_code = fields.Char("PA Code for this Record", size=20)
+    invoice_id = fields.Many2one(
+        "account.invoice", "Related Invoice", ondelete="cascade", index=True
+    )
+
+
+class WithholdingDataLine(models.Model):
+    _name = "withholding.data.line"
+    _description = "E-invoice Withholding Data"
+
+    name = fields.Selection(
+        selection=[
+            ("RT01", "Natural Person"),
+            ("RT02", "Legal Person"),
+            ("RT03", "INPS"),
+            ("RT04", "ENASARCO"),
+            ("RT05", "ENPAM"),
+            ("RT06", "OTHER"),
+        ],
+        string="Withholding Type",
+    )
+    amount = fields.Float("Withholding amount")
     invoice_id = fields.Many2one(
         "account.invoice", "Related Invoice", ondelete="cascade", index=True
     )
@@ -317,8 +350,11 @@ class AccountInvoice(models.Model):
         [("CC", "Assignee / Partner"), ("TZ", "Third Person")], "Sender"
     )
     # 2.1.1.1 doc_type
-    invoice_type_id = fields.Many2one(
-        "italy.ade.invoice.type", string="Fiscal Document Type", copy=False
+    fiscal_document_type_id = fields.Many2one(
+        "italy.ade.invoice.type",
+        string="Fiscal Document Type",
+        oldname="invoice_type_id",
+        copy=False
     )
     #  2.1.1.5
     #  2.1.1.5.1
@@ -497,9 +533,9 @@ class AccountInvoice(models.Model):
         else:
             ids = self.einvoice_type_selection(self.type, "IT", self.amount_total)
         if not ids:
-            self.invoice_type_id = False
-        elif not self.invoice_type_id or self.invoice_type_id not in ids:
-            self.invoice_type_id = ids[0]
+            self.fiscal_document_type_id = False
+        elif not self.fiscal_document_type_id or self.fiscal_document_type_id not in ids:
+            self.fiscal_document_type_id = ids[0]
 
     @api.multi
     @api.depends("partner_id", "type", "amount_total")
@@ -515,7 +551,7 @@ class AccountInvoice(models.Model):
             res.get("type"), "IT", res.get("amount_total")
         )
         if len(ids) == 1:
-            res.update({"invoice_type_id": ids[0]})
+            res.update({"fiscal_document_type_id": ids[0]})
         return res
 
     @api.model
@@ -529,5 +565,5 @@ class AccountInvoice(models.Model):
             description=description,
             journal_id=journal_id,
         )
-        res["invoice_type_id"] = False
+        res["fiscal_document_type_id"] = False
         return res
