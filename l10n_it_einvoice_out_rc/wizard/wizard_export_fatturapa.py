@@ -5,54 +5,40 @@ from odoo.addons.l10n_it_account.tools.account_tools import encode_for_export
 from odoo.addons.l10n_it_ade.bindings.fatturapa_v_1_2 import (
     IdFiscaleType,
     AnagraficaType,
-    IndirizzoType
+    CessionarioCommittenteType,
+    DatiTrasmissioneType,
+    IndirizzoType,
 )
 
 
 class WizardExportFatturapa(models.TransientModel):
     _inherit = "wizard.export.fatturapa"
 
-    def exportInvoiceXML(
-        self, company, partner, invoice_ids, attach=False, context=None
-    ):
-        context = context or {}
-        invoices = self.env["account.invoice"].browse(invoice_ids)
-        invoices_with_rc = False
-        invoices_without_rc = False
-        for invoice in invoices:
-            if invoice.rc_purchase_invoice_id:
-                invoices_with_rc = True
-            else:
-                invoices_without_rc = True
-        if invoices_with_rc and invoices_without_rc:
-            raise UserError(_(
-                "Selected invoices are both with and without reverse charge. You "
-                "should selected a smaller set of invoices"))
-        invoices_fiscal_document_type_codes = invoices.filtered(
-            lambda x: x.fiscal_document_type_id.code in ['TD17', 'TD18', 'TD19']
+    def _setIdTrasmittente_rc(self, partner, fatturapa):
+        if not partner.country_id:
+            raise UserError(_("Partner %s, Country not set.") % partner.display_name)
+        IdPaese = partner.country_id.code
+        IdCodice = partner.fiscalcode
+        if not IdCodice:
+            if partner.vat:
+                IdCodice = partner.vat[2:]
+        if not IdCodice:
+            IdCodice = "%s99999999999" % IdPaese
+        fatturapa.FatturaElettronicaHeader.DatiTrasmissione.IdTrasmittente = (
+            IdFiscaleType(IdPaese=IdPaese, IdCodice=IdCodice)
         )
-        invoices_fiscal_document_type1_codes = invoices.filtered(
-            lambda x: x.fiscal_document_type_id.code not in ['TD17', 'TD18', 'TD19']
-        )
-        if invoices_fiscal_document_type_codes and invoices_fiscal_document_type1_codes:
-            raise UserError(_(
-                "Select invoices are of too many fiscal document types: "
-                "select invoices exclusively of type 'TD17', 'TD18', 'TD19' "
-                "or exclusively of other types."
-            ))
-        rc_suppliers = invoices._get_original_suppliers()
-        if len(rc_suppliers) > 1:
-            raise UserError(_(
-                "Selected reverse charge invoices have different suppliers. Please "
-                "select invoices with same supplier"))
-        if rc_suppliers:
-            context["rc_supplier"] = rc_suppliers[0]
-            context[
-                "invoices_fiscal_document_type_codes"
-            ] = invoice.fiscal_document_type_id.code
-        return super(WizardExportFatturapa, self).exportInvoiceXML(
-            company, partner, invoice_ids, attach, context=context
-        )
+        return True
+
+    def setDatiTrasmissione(self, company, partner, fatturapa):
+        res = super(WizardExportFatturapa, self).setDatiTrasmissione(
+            company, partner, fatturapa)
+        if self.env.context.get("company_partner"):
+            company, partner = partner, company.partner_id
+            fatturapa.FatturaElettronicaHeader.DatiTrasmissione = DatiTrasmissioneType()
+            self._setIdTrasmittente_rc(company, fatturapa)
+            self._setFormatoTrasmissione(partner, fatturapa)
+            self._setCodiceDestinatario(partner, fatturapa)
+            # self._setContattiTrasmittente(company, fatturapa)
 
     def _setDatiAnagraficiCedente(self, CedentePrestatore, company):
         res = super(WizardExportFatturapa, self)._setDatiAnagraficiCedente(
@@ -151,6 +137,17 @@ class WizardExportFatturapa(models.TransientModel):
             CedentePrestatore.RiferimentoAmministrazione = None
         return res
 
+    def setCessionarioCommittente(self, partner, fatturapa):
+        res = super(WizardExportFatturapa, self).setCessionarioCommittente(
+            partner, fatturapa)
+        if self.env.context.get("company_partner"):
+            partner = self.env.context["company_partner"]
+            fatturapa.FatturaElettronicaHeader.CessionarioCommittente = (
+                CessionarioCommittenteType()
+            )
+            self._setDatiAnagraficiCessionario(partner, fatturapa)
+            self._setSedeCessionario(partner, fatturapa)
+
     def setDatiGeneraliDocumento(self, invoice, body):
         res = super(WizardExportFatturapa, self).setDatiGeneraliDocumento(
             invoice, body)
@@ -199,3 +196,46 @@ class WizardExportFatturapa(models.TransientModel):
                     and DatiPagamento.ImportoPagamento:
                 DatiPagamento.ImportoPagamento = - DatiPagamento.ImportoPagamento
         return True
+
+    def exportInvoiceXML(
+        self, company, partner, invoice_ids, attach=False, context=None
+    ):
+        context = context or {}
+        invoices = self.env["account.invoice"].browse(invoice_ids)
+        invoices_with_rc = False
+        invoices_without_rc = False
+        for invoice in invoices:
+            if invoice.rc_purchase_invoice_id:
+                invoices_with_rc = True
+            else:
+                invoices_without_rc = True
+        if invoices_with_rc and invoices_without_rc:
+            raise UserError(_(
+                "Selected invoices are both with and without reverse charge. You "
+                "should selected a smaller set of invoices"))
+        invoices_fiscal_document_type_codes = invoices.filtered(
+            lambda x: x.fiscal_document_type_id.code in ['TD17', 'TD18', 'TD19']
+        )
+        invoices_fiscal_document_type1_codes = invoices.filtered(
+            lambda x: x.fiscal_document_type_id.code not in ['TD17', 'TD18', 'TD19']
+        )
+        if invoices_fiscal_document_type_codes and invoices_fiscal_document_type1_codes:
+            raise UserError(_(
+                "Select invoices are of too many fiscal document types: "
+                "select invoices exclusively of type 'TD17', 'TD18', 'TD19' "
+                "or exclusively of other types."
+            ))
+        rc_suppliers = invoices._get_original_suppliers()
+        if len(rc_suppliers) > 1:
+            raise UserError(_(
+                "Selected reverse charge invoices have different suppliers. Please "
+                "select invoices with same supplier"))
+        if rc_suppliers:
+            context["rc_supplier"] = rc_suppliers[0]
+            context[
+                "invoices_fiscal_document_type_codes"
+            ] = invoice.fiscal_document_type_id.code
+            context["company_partner"] = company.partner_id
+        return super(WizardExportFatturapa, self).exportInvoiceXML(
+            company, partner, invoice_ids, attach, context=context
+        )
