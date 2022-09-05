@@ -494,6 +494,7 @@ class AccountInvoice(models.Model):
             einvoiceline = self.create_e_invoice_line(line)
             e_invoice_line_ids.append(einvoiceline.id)
 
+
 class FatturapaArticleCode(models.Model):
     # _position = ['2.2.1.3']
     _name = "fatturapa.article.code"
