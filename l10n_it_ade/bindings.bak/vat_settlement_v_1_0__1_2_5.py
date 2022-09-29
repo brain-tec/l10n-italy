@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./vat_settlement_v_1_0.py
 # PyXB bindings for NM:4f059617657cbf045796906b94fd6da476500108
-# Generated 2022-09-26 17:54:30.499511 by PyXB version 1.2.5 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:41:31.520317 by PyXB version 1.2.5 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp
@@ -22,7 +22,7 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:818ca012-3db3-11ed-b516-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:1811b200-3e6a-11ed-88a8-00155da0804a')
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.5'
 # Generated bindings are not compatible across PyXB versions
@@ -37,7 +37,6 @@ try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
 from . import _cm as _ImportedBinding__cm
 from . import _ds as _ImportedBinding__ds
 # NOTE: All namespace declarations are reserved within the binding
@@ -98,11 +97,11 @@ class DatoVN_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoVN_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/liquidazione/comunicazioneIvp_2017_v1.xsd', 147, 1)
     _Documentation = 'Tipo semplice che identifica numeri positivi con 2 cifre decimali. La lunghezza massima prevista \xe8 di 16 caratteri, il separatore decimale previsto \xe8 la virgola.'
-DatoVN_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoVN_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoVN_Type._CF_pattern.addPattern(pattern='[\\-]{0,1}[0-9]+,[0-9]{2}')
-DatoVN_Type._InitializeFacetMap(DatoVN_Type._CF_maxLength,
-   DatoVN_Type._CF_pattern)
+DatoVN_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
+DatoVN_Type._InitializeFacetMap(DatoVN_Type._CF_pattern,
+   DatoVN_Type._CF_maxLength)
 Namespace.addCategoryObject('typeBinding', 'DatoVN_Type', DatoVN_Type)
 _module_typeBindings.DatoVN_Type = DatoVN_Type
 # Atomic simple type: [anonymous]

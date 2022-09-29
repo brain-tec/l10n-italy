@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./_ds.py
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2022-09-27 06:51:20.925287 by PyXB version 1.2.4 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:41:31.520223 by PyXB version 1.2.5 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
@@ -22,19 +22,21 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:077cc51e-3e20-11ed-837d-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:1811b200-3e6a-11ed-88a8-00155da0804a')
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.4'
+_PyXBVersion = '1.2.5'
 # Generated bindings are not compatible across PyXB versions
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
+# A holder for module-level binding classes so we can access them from
+# inside class definitions where property names may conflict.
+_module_typeBindings = pyxb.utils.utility.Object()
 # Import bindings for namespaces imported into schema
 try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://www.w3.org/2000/09/xmldsig#', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
@@ -81,6 +83,7 @@ class CryptoBinary(pyxb.binding.datatypes.base64Binary):
     _Documentation = None
 CryptoBinary._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'CryptoBinary', CryptoBinary)
+_module_typeBindings.CryptoBinary = CryptoBinary
 # Atomic simple type: {http://www.w3.org/2000/09/xmldsig#}DigestValueType
 class DigestValueType(pyxb.binding.datatypes.base64Binary):
     """An atomic simple type."""
@@ -89,6 +92,7 @@ class DigestValueType(pyxb.binding.datatypes.base64Binary):
     _Documentation = None
 DigestValueType._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'DigestValueType', DigestValueType)
+_module_typeBindings.DigestValueType = DigestValueType
 # Atomic simple type: {http://www.w3.org/2000/09/xmldsig#}HMACOutputLengthType
 class HMACOutputLengthType(pyxb.binding.datatypes.integer):
     """An atomic simple type."""
@@ -97,6 +101,7 @@ class HMACOutputLengthType(pyxb.binding.datatypes.integer):
     _Documentation = None
 HMACOutputLengthType._InitializeFacetMap()
 Namespace.addCategoryObject('typeBinding', 'HMACOutputLengthType', HMACOutputLengthType)
+_module_typeBindings.HMACOutputLengthType = HMACOutputLengthType
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureType with content type ELEMENT_ONLY
 class SignatureType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureType with content type ELEMENT_ONLY"""
@@ -134,6 +139,7 @@ class SignatureType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name() : __Id
     })
+_module_typeBindings.SignatureType = SignatureType
 Namespace.addCategoryObject('typeBinding', 'SignatureType', SignatureType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureValueType with content type SIMPLE
 class SignatureValueType(pyxb.binding.basis.complexTypeDefinition):
@@ -156,6 +162,7 @@ class SignatureValueType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name() : __Id
     })
+_module_typeBindings.SignatureValueType = SignatureValueType
 Namespace.addCategoryObject('typeBinding', 'SignatureValueType', SignatureValueType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignedInfoType with content type ELEMENT_ONLY
 class SignedInfoType(pyxb.binding.basis.complexTypeDefinition):
@@ -190,6 +197,7 @@ class SignedInfoType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name() : __Id
     })
+_module_typeBindings.SignedInfoType = SignedInfoType
 Namespace.addCategoryObject('typeBinding', 'SignedInfoType', SignedInfoType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}CanonicalizationMethodType with content type MIXED
 class CanonicalizationMethodType(pyxb.binding.basis.complexTypeDefinition):
@@ -213,6 +221,7 @@ class CanonicalizationMethodType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name() : __Algorithm
     })
+_module_typeBindings.CanonicalizationMethodType = CanonicalizationMethodType
 Namespace.addCategoryObject('typeBinding', 'CanonicalizationMethodType', CanonicalizationMethodType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignatureMethodType with content type MIXED
 class SignatureMethodType(pyxb.binding.basis.complexTypeDefinition):
@@ -240,6 +249,7 @@ class SignatureMethodType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name() : __Algorithm
     })
+_module_typeBindings.SignatureMethodType = SignatureMethodType
 Namespace.addCategoryObject('typeBinding', 'SignatureMethodType', SignatureMethodType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}ReferenceType with content type ELEMENT_ONLY
 class ReferenceType(pyxb.binding.basis.complexTypeDefinition):
@@ -286,6 +296,7 @@ class ReferenceType(pyxb.binding.basis.complexTypeDefinition):
         __URI.name() : __URI,
         __Type.name() : __Type
     })
+_module_typeBindings.ReferenceType = ReferenceType
 Namespace.addCategoryObject('typeBinding', 'ReferenceType', ReferenceType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}TransformsType with content type ELEMENT_ONLY
 class TransformsType(pyxb.binding.basis.complexTypeDefinition):
@@ -306,6 +317,7 @@ class TransformsType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
+_module_typeBindings.TransformsType = TransformsType
 Namespace.addCategoryObject('typeBinding', 'TransformsType', TransformsType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}TransformType with content type MIXED
 class TransformType(pyxb.binding.basis.complexTypeDefinition):
@@ -333,6 +345,7 @@ class TransformType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name() : __Algorithm
     })
+_module_typeBindings.TransformType = TransformType
 Namespace.addCategoryObject('typeBinding', 'TransformType', TransformType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}DigestMethodType with content type MIXED
 class DigestMethodType(pyxb.binding.basis.complexTypeDefinition):
@@ -356,6 +369,7 @@ class DigestMethodType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Algorithm.name() : __Algorithm
     })
+_module_typeBindings.DigestMethodType = DigestMethodType
 Namespace.addCategoryObject('typeBinding', 'DigestMethodType', DigestMethodType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}KeyInfoType with content type MIXED
 class KeyInfoType(pyxb.binding.basis.complexTypeDefinition):
@@ -407,6 +421,7 @@ class KeyInfoType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name() : __Id
     })
+_module_typeBindings.KeyInfoType = KeyInfoType
 Namespace.addCategoryObject('typeBinding', 'KeyInfoType', KeyInfoType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}KeyValueType with content type MIXED
 class KeyValueType(pyxb.binding.basis.complexTypeDefinition):
@@ -432,6 +447,7 @@ class KeyValueType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
+_module_typeBindings.KeyValueType = KeyValueType
 Namespace.addCategoryObject('typeBinding', 'KeyValueType', KeyValueType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}RetrievalMethodType with content type ELEMENT_ONLY
 class RetrievalMethodType(pyxb.binding.basis.complexTypeDefinition):
@@ -464,6 +480,7 @@ class RetrievalMethodType(pyxb.binding.basis.complexTypeDefinition):
         __URI.name() : __URI,
         __Type.name() : __Type
     })
+_module_typeBindings.RetrievalMethodType = RetrievalMethodType
 Namespace.addCategoryObject('typeBinding', 'RetrievalMethodType', RetrievalMethodType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}X509DataType with content type ELEMENT_ONLY
 class X509DataType(pyxb.binding.basis.complexTypeDefinition):
@@ -501,6 +518,7 @@ class X509DataType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
+_module_typeBindings.X509DataType = X509DataType
 Namespace.addCategoryObject('typeBinding', 'X509DataType', X509DataType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}X509IssuerSerialType with content type ELEMENT_ONLY
 class X509IssuerSerialType(pyxb.binding.basis.complexTypeDefinition):
@@ -525,6 +543,7 @@ class X509IssuerSerialType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
+_module_typeBindings.X509IssuerSerialType = X509IssuerSerialType
 Namespace.addCategoryObject('typeBinding', 'X509IssuerSerialType', X509IssuerSerialType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}PGPDataType with content type ELEMENT_ONLY
 class PGPDataType(pyxb.binding.basis.complexTypeDefinition):
@@ -550,6 +569,7 @@ class PGPDataType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
+_module_typeBindings.PGPDataType = PGPDataType
 Namespace.addCategoryObject('typeBinding', 'PGPDataType', PGPDataType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SPKIDataType with content type ELEMENT_ONLY
 class SPKIDataType(pyxb.binding.basis.complexTypeDefinition):
@@ -571,6 +591,7 @@ class SPKIDataType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
+_module_typeBindings.SPKIDataType = SPKIDataType
 Namespace.addCategoryObject('typeBinding', 'SPKIDataType', SPKIDataType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}ObjectType with content type MIXED
 class ObjectType(pyxb.binding.basis.complexTypeDefinition):
@@ -606,6 +627,7 @@ class ObjectType(pyxb.binding.basis.complexTypeDefinition):
         __MimeType.name() : __MimeType,
         __Encoding.name() : __Encoding
     })
+_module_typeBindings.ObjectType = ObjectType
 Namespace.addCategoryObject('typeBinding', 'ObjectType', ObjectType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}ManifestType with content type ELEMENT_ONLY
 class ManifestType(pyxb.binding.basis.complexTypeDefinition):
@@ -632,6 +654,7 @@ class ManifestType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name() : __Id
     })
+_module_typeBindings.ManifestType = ManifestType
 Namespace.addCategoryObject('typeBinding', 'ManifestType', ManifestType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertiesType with content type ELEMENT_ONLY
 class SignaturePropertiesType(pyxb.binding.basis.complexTypeDefinition):
@@ -658,6 +681,7 @@ class SignaturePropertiesType(pyxb.binding.basis.complexTypeDefinition):
     _AttributeMap.update({
         __Id.name() : __Id
     })
+_module_typeBindings.SignaturePropertiesType = SignaturePropertiesType
 Namespace.addCategoryObject('typeBinding', 'SignaturePropertiesType', SignaturePropertiesType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}SignaturePropertyType with content type MIXED
 class SignaturePropertyType(pyxb.binding.basis.complexTypeDefinition):
@@ -687,6 +711,7 @@ class SignaturePropertyType(pyxb.binding.basis.complexTypeDefinition):
         __Target.name() : __Target,
         __Id.name() : __Id
     })
+_module_typeBindings.SignaturePropertyType = SignaturePropertyType
 Namespace.addCategoryObject('typeBinding', 'SignaturePropertyType', SignaturePropertyType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}DSAKeyValueType with content type ELEMENT_ONLY
 class DSAKeyValueType(pyxb.binding.basis.complexTypeDefinition):
@@ -731,6 +756,7 @@ class DSAKeyValueType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
+_module_typeBindings.DSAKeyValueType = DSAKeyValueType
 Namespace.addCategoryObject('typeBinding', 'DSAKeyValueType', DSAKeyValueType)
 # Complex type {http://www.w3.org/2000/09/xmldsig#}RSAKeyValueType with content type ELEMENT_ONLY
 class RSAKeyValueType(pyxb.binding.basis.complexTypeDefinition):
@@ -755,6 +781,7 @@ class RSAKeyValueType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
+_module_typeBindings.RSAKeyValueType = RSAKeyValueType
 Namespace.addCategoryObject('typeBinding', 'RSAKeyValueType', RSAKeyValueType)
 KeyName = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'KeyName'), pyxb.binding.datatypes.string, location=pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 160, 2))
 Namespace.addCategoryObject('elementBinding', KeyName.name().localName(), KeyName)

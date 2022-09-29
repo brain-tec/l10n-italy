@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./_ds.py
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2022-09-27 06:51:20.925287 by PyXB version 1.2.4 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:27:19.903366 by PyXB version 1.2.4 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://www.w3.org/2000/09/xmldsig# [xmlns:ds]
@@ -22,7 +22,7 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:077cc51e-3e20-11ed-837d-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:1c786e94-3e68-11ed-b993-00155da0804a')
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.4'
 # Generated bindings are not compatible across PyXB versions
@@ -34,7 +34,6 @@ try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://www.w3.org/2000/09/xmldsig#', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])

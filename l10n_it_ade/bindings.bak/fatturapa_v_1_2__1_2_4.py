@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./fatturapa_v_1_2.py
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
-# Generated 2022-09-27 06:52:14.128319 by PyXB version 1.2.6 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:27:19.903528 by PyXB version 1.2.4 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
@@ -22,22 +22,18 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:27208af4-3e20-11ed-a076-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:1c786e94-3e68-11ed-b993-00155da0804a')
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.6'
+_PyXBVersion = '1.2.4'
 # Generated bindings are not compatible across PyXB versions
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
-# A holder for module-level binding classes so we can access them from
-# inside class definitions where property names may conflict.
-_module_typeBindings = pyxb.utils.utility.Object()
 # Import bindings for namespaces imported into schema
 try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
 from . import _ds as _ImportedBinding__ds
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2', create_if_missing=True)
@@ -89,7 +85,6 @@ CodiceDestinatarioType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceDestinatarioType._CF_pattern.addPattern(pattern='[A-Z0-9]{6,7}')
 CodiceDestinatarioType._InitializeFacetMap(CodiceDestinatarioType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CodiceDestinatarioType', CodiceDestinatarioType)
-_module_typeBindings.CodiceDestinatarioType = CodiceDestinatarioType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceType
 class CodiceType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -101,21 +96,19 @@ CodiceType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.d
 CodiceType._InitializeFacetMap(CodiceType._CF_minLength,
    CodiceType._CF_maxLength)
 Namespace.addCategoryObject('typeBinding', 'CodiceType', CodiceType)
-_module_typeBindings.CodiceType = CodiceType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FormatoTrasmissioneType
 class FormatoTrasmissioneType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'FormatoTrasmissioneType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 74, 2)
     _Documentation = None
+FormatoTrasmissioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(5))
 FormatoTrasmissioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=FormatoTrasmissioneType, enum_prefix=None)
 FormatoTrasmissioneType.FPA12 = FormatoTrasmissioneType._CF_enumeration.addEnumeration(unicode_value='FPA12', tag='FPA12')
 FormatoTrasmissioneType.FPR12 = FormatoTrasmissioneType._CF_enumeration.addEnumeration(unicode_value='FPR12', tag='FPR12')
-FormatoTrasmissioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(5))
-FormatoTrasmissioneType._InitializeFacetMap(FormatoTrasmissioneType._CF_enumeration,
-   FormatoTrasmissioneType._CF_length)
+FormatoTrasmissioneType._InitializeFacetMap(FormatoTrasmissioneType._CF_length,
+   FormatoTrasmissioneType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'FormatoTrasmissioneType', FormatoTrasmissioneType)
-_module_typeBindings.FormatoTrasmissioneType = FormatoTrasmissioneType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CausalePagamentoType
 class CausalePagamentoType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -153,40 +146,38 @@ CausalePagamentoType.V1 = CausalePagamentoType._CF_enumeration.addEnumeration(un
 CausalePagamentoType.ZO = CausalePagamentoType._CF_enumeration.addEnumeration(unicode_value='ZO', tag='ZO')
 CausalePagamentoType._InitializeFacetMap(CausalePagamentoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'CausalePagamentoType', CausalePagamentoType)
-_module_typeBindings.CausalePagamentoType = CausalePagamentoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoScontoMaggiorazioneType
 class TipoScontoMaggiorazioneType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoScontoMaggiorazioneType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 196, 2)
     _Documentation = None
+TipoScontoMaggiorazioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 TipoScontoMaggiorazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoScontoMaggiorazioneType, enum_prefix=None)
 TipoScontoMaggiorazioneType.SC = TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(unicode_value='SC', tag='SC')
 TipoScontoMaggiorazioneType.MG = TipoScontoMaggiorazioneType._CF_enumeration.addEnumeration(unicode_value='MG', tag='MG')
-TipoScontoMaggiorazioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
-TipoScontoMaggiorazioneType._InitializeFacetMap(TipoScontoMaggiorazioneType._CF_enumeration,
-   TipoScontoMaggiorazioneType._CF_length)
+TipoScontoMaggiorazioneType._InitializeFacetMap(TipoScontoMaggiorazioneType._CF_length,
+   TipoScontoMaggiorazioneType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'TipoScontoMaggiorazioneType', TipoScontoMaggiorazioneType)
-_module_typeBindings.TipoScontoMaggiorazioneType = TipoScontoMaggiorazioneType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Art73Type
 class Art73Type(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Art73Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 211, 2)
     _Documentation = None
+Art73Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 Art73Type._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=Art73Type, enum_prefix=None)
 Art73Type.SI = Art73Type._CF_enumeration.addEnumeration(unicode_value='SI', tag='SI')
-Art73Type._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
-Art73Type._InitializeFacetMap(Art73Type._CF_enumeration,
-   Art73Type._CF_length)
+Art73Type._InitializeFacetMap(Art73Type._CF_length,
+   Art73Type._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'Art73Type', Art73Type)
-_module_typeBindings.Art73Type = Art73Type
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoCassaType
 class TipoCassaType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoCassaType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 221, 2)
     _Documentation = None
+TipoCassaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoCassaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoCassaType, enum_prefix=None)
 TipoCassaType.TC01 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC01', tag='TC01')
 TipoCassaType.TC02 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC02', tag='TC02')
@@ -210,17 +201,16 @@ TipoCassaType.TC19 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value=
 TipoCassaType.TC20 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC20', tag='TC20')
 TipoCassaType.TC21 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC21', tag='TC21')
 TipoCassaType.TC22 = TipoCassaType._CF_enumeration.addEnumeration(unicode_value='TC22', tag='TC22')
-TipoCassaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoCassaType._InitializeFacetMap(TipoCassaType._CF_enumeration,
-   TipoCassaType._CF_length)
+TipoCassaType._InitializeFacetMap(TipoCassaType._CF_length,
+   TipoCassaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'TipoCassaType', TipoCassaType)
-_module_typeBindings.TipoCassaType = TipoCassaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoDocumentoType
 class TipoDocumentoType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoDocumentoType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 336, 2)
     _Documentation = None
+TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoDocumentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoDocumentoType, enum_prefix=None)
 TipoDocumentoType.TD01 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD01', tag='TD01')
 TipoDocumentoType.TD02 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD02', tag='TD02')
@@ -240,17 +230,16 @@ TipoDocumentoType.TD24 = TipoDocumentoType._CF_enumeration.addEnumeration(unicod
 TipoDocumentoType.TD25 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD25', tag='TD25')
 TipoDocumentoType.TD26 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD26', tag='TD26')
 TipoDocumentoType.TD27 = TipoDocumentoType._CF_enumeration.addEnumeration(unicode_value='TD27', tag='TD27')
-TipoDocumentoType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_enumeration,
-   TipoDocumentoType._CF_length)
+TipoDocumentoType._InitializeFacetMap(TipoDocumentoType._CF_length,
+   TipoDocumentoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'TipoDocumentoType', TipoDocumentoType)
-_module_typeBindings.TipoDocumentoType = TipoDocumentoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoRitenutaType
 class TipoRitenutaType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoRitenutaType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 431, 2)
     _Documentation = None
+TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 TipoRitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoRitenutaType, enum_prefix=None)
 TipoRitenutaType.RT01 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT01', tag='RT01')
 TipoRitenutaType.RT02 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT02', tag='RT02')
@@ -258,11 +247,9 @@ TipoRitenutaType.RT03 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_
 TipoRitenutaType.RT04 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT04', tag='RT04')
 TipoRitenutaType.RT05 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT05', tag='RT05')
 TipoRitenutaType.RT06 = TipoRitenutaType._CF_enumeration.addEnumeration(unicode_value='RT06', tag='RT06')
-TipoRitenutaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-TipoRitenutaType._InitializeFacetMap(TipoRitenutaType._CF_enumeration,
-   TipoRitenutaType._CF_length)
+TipoRitenutaType._InitializeFacetMap(TipoRitenutaType._CF_length,
+   TipoRitenutaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'TipoRitenutaType', TipoRitenutaType)
-_module_typeBindings.TipoRitenutaType = TipoRitenutaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoNumeroLineaType
 class RiferimentoNumeroLineaType(pyxb.binding.datatypes.integer):
     """An atomic simple type."""
@@ -274,27 +261,26 @@ RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusiv
 RiferimentoNumeroLineaType._InitializeFacetMap(RiferimentoNumeroLineaType._CF_minInclusive,
    RiferimentoNumeroLineaType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RiferimentoNumeroLineaType', RiferimentoNumeroLineaType)
-_module_typeBindings.RiferimentoNumeroLineaType = RiferimentoNumeroLineaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SoggettoEmittenteType
 class SoggettoEmittenteType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'SoggettoEmittenteType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 528, 2)
     _Documentation = None
+SoggettoEmittenteType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 SoggettoEmittenteType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=SoggettoEmittenteType, enum_prefix=None)
 SoggettoEmittenteType.CC = SoggettoEmittenteType._CF_enumeration.addEnumeration(unicode_value='CC', tag='CC')
 SoggettoEmittenteType.TZ = SoggettoEmittenteType._CF_enumeration.addEnumeration(unicode_value='TZ', tag='TZ')
-SoggettoEmittenteType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
-SoggettoEmittenteType._InitializeFacetMap(SoggettoEmittenteType._CF_enumeration,
-   SoggettoEmittenteType._CF_length)
+SoggettoEmittenteType._InitializeFacetMap(SoggettoEmittenteType._CF_length,
+   SoggettoEmittenteType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'SoggettoEmittenteType', SoggettoEmittenteType)
-_module_typeBindings.SoggettoEmittenteType = SoggettoEmittenteType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RegimeFiscaleType
 class RegimeFiscaleType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RegimeFiscaleType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 568, 2)
     _Documentation = None
+RegimeFiscaleType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 RegimeFiscaleType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=RegimeFiscaleType, enum_prefix=None)
 RegimeFiscaleType.RF01 = RegimeFiscaleType._CF_enumeration.addEnumeration(unicode_value='RF01', tag='RF01')
 RegimeFiscaleType.RF02 = RegimeFiscaleType._CF_enumeration.addEnumeration(unicode_value='RF02', tag='RF02')
@@ -314,34 +300,32 @@ RegimeFiscaleType.RF16 = RegimeFiscaleType._CF_enumeration.addEnumeration(unicod
 RegimeFiscaleType.RF17 = RegimeFiscaleType._CF_enumeration.addEnumeration(unicode_value='RF17', tag='RF17')
 RegimeFiscaleType.RF19 = RegimeFiscaleType._CF_enumeration.addEnumeration(unicode_value='RF19', tag='RF19')
 RegimeFiscaleType.RF18 = RegimeFiscaleType._CF_enumeration.addEnumeration(unicode_value='RF18', tag='RF18')
-RegimeFiscaleType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-RegimeFiscaleType._InitializeFacetMap(RegimeFiscaleType._CF_enumeration,
-   RegimeFiscaleType._CF_length)
+RegimeFiscaleType._InitializeFacetMap(RegimeFiscaleType._CF_length,
+   RegimeFiscaleType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'RegimeFiscaleType', RegimeFiscaleType)
-_module_typeBindings.RegimeFiscaleType = RegimeFiscaleType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CondizioniPagamentoType
 class CondizioniPagamentoType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CondizioniPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 780, 2)
     _Documentation = None
+CondizioniPagamentoType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
+CondizioniPagamentoType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 CondizioniPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=CondizioniPagamentoType, enum_prefix=None)
 CondizioniPagamentoType.TP01 = CondizioniPagamentoType._CF_enumeration.addEnumeration(unicode_value='TP01', tag='TP01')
 CondizioniPagamentoType.TP02 = CondizioniPagamentoType._CF_enumeration.addEnumeration(unicode_value='TP02', tag='TP02')
 CondizioniPagamentoType.TP03 = CondizioniPagamentoType._CF_enumeration.addEnumeration(unicode_value='TP03', tag='TP03')
-CondizioniPagamentoType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-CondizioniPagamentoType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-CondizioniPagamentoType._InitializeFacetMap(CondizioniPagamentoType._CF_enumeration,
-   CondizioniPagamentoType._CF_minLength,
-   CondizioniPagamentoType._CF_maxLength)
+CondizioniPagamentoType._InitializeFacetMap(CondizioniPagamentoType._CF_minLength,
+   CondizioniPagamentoType._CF_maxLength,
+   CondizioniPagamentoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'CondizioniPagamentoType', CondizioniPagamentoType)
-_module_typeBindings.CondizioniPagamentoType = CondizioniPagamentoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ModalitaPagamentoType
 class ModalitaPagamentoType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'ModalitaPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 826, 2)
     _Documentation = None
+ModalitaPagamentoType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 ModalitaPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=ModalitaPagamentoType, enum_prefix=None)
 ModalitaPagamentoType.MP01 = ModalitaPagamentoType._CF_enumeration.addEnumeration(unicode_value='MP01', tag='MP01')
 ModalitaPagamentoType.MP02 = ModalitaPagamentoType._CF_enumeration.addEnumeration(unicode_value='MP02', tag='MP02')
@@ -366,11 +350,9 @@ ModalitaPagamentoType.MP20 = ModalitaPagamentoType._CF_enumeration.addEnumeratio
 ModalitaPagamentoType.MP21 = ModalitaPagamentoType._CF_enumeration.addEnumeration(unicode_value='MP21', tag='MP21')
 ModalitaPagamentoType.MP22 = ModalitaPagamentoType._CF_enumeration.addEnumeration(unicode_value='MP22', tag='MP22')
 ModalitaPagamentoType.MP23 = ModalitaPagamentoType._CF_enumeration.addEnumeration(unicode_value='MP23', tag='MP23')
-ModalitaPagamentoType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-ModalitaPagamentoType._InitializeFacetMap(ModalitaPagamentoType._CF_enumeration,
-   ModalitaPagamentoType._CF_length)
+ModalitaPagamentoType._InitializeFacetMap(ModalitaPagamentoType._CF_length,
+   ModalitaPagamentoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'ModalitaPagamentoType', ModalitaPagamentoType)
-_module_typeBindings.ModalitaPagamentoType = ModalitaPagamentoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IBANType
 class IBANType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -381,7 +363,6 @@ IBANType._CF_pattern = pyxb.binding.facets.CF_pattern()
 IBANType._CF_pattern.addPattern(pattern='[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{11,30}')
 IBANType._InitializeFacetMap(IBANType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'IBANType', IBANType)
-_module_typeBindings.IBANType = IBANType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}BICType
 class BICType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -392,37 +373,34 @@ BICType._CF_pattern = pyxb.binding.facets.CF_pattern()
 BICType._CF_pattern.addPattern(pattern='[A-Z]{6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3}){0,1}')
 BICType._InitializeFacetMap(BICType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'BICType', BICType)
-_module_typeBindings.BICType = BICType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RitenutaType
 class RitenutaType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RitenutaType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1017, 2)
     _Documentation = None
+RitenutaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 RitenutaType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=RitenutaType, enum_prefix=None)
 RitenutaType.SI = RitenutaType._CF_enumeration.addEnumeration(unicode_value='SI', tag='SI')
-RitenutaType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
-RitenutaType._InitializeFacetMap(RitenutaType._CF_enumeration,
-   RitenutaType._CF_length)
+RitenutaType._InitializeFacetMap(RitenutaType._CF_length,
+   RitenutaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'RitenutaType', RitenutaType)
-_module_typeBindings.RitenutaType = RitenutaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}EsigibilitaIVAType
 class EsigibilitaIVAType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EsigibilitaIVAType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1039, 2)
     _Documentation = None
+EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
+EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 EsigibilitaIVAType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=EsigibilitaIVAType, enum_prefix=None)
 EsigibilitaIVAType.D = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='D', tag='D')
 EsigibilitaIVAType.I = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='I', tag='I')
 EsigibilitaIVAType.S = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='S', tag='S')
-EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_enumeration,
-   EsigibilitaIVAType._CF_minLength,
-   EsigibilitaIVAType._CF_maxLength)
+EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_minLength,
+   EsigibilitaIVAType._CF_maxLength,
+   EsigibilitaIVAType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'EsigibilitaIVAType', EsigibilitaIVAType)
-_module_typeBindings.EsigibilitaIVAType = EsigibilitaIVAType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NaturaType
 class NaturaType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -456,7 +434,6 @@ NaturaType.N6_9 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N6.9'
 NaturaType.N7 = NaturaType._CF_enumeration.addEnumeration(unicode_value='N7', tag='N7')
 NaturaType._InitializeFacetMap(NaturaType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'NaturaType', NaturaType)
-_module_typeBindings.NaturaType = NaturaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceFiscaleType
 class CodiceFiscaleType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -467,7 +444,6 @@ CodiceFiscaleType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceFiscaleType._CF_pattern.addPattern(pattern='[A-Z0-9]{11,16}')
 CodiceFiscaleType._InitializeFacetMap(CodiceFiscaleType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CodiceFiscaleType', CodiceFiscaleType)
-_module_typeBindings.CodiceFiscaleType = CodiceFiscaleType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceFiscalePFType
 class CodiceFiscalePFType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -478,7 +454,6 @@ CodiceFiscalePFType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CodiceFiscalePFType._CF_pattern.addPattern(pattern='[A-Z0-9]{16}')
 CodiceFiscalePFType._InitializeFacetMap(CodiceFiscalePFType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CodiceFiscalePFType', CodiceFiscalePFType)
-_module_typeBindings.CodiceFiscalePFType = CodiceFiscalePFType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodEORIType
 class CodEORIType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -490,7 +465,6 @@ CodEORIType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.
 CodEORIType._InitializeFacetMap(CodEORIType._CF_minLength,
    CodEORIType._CF_maxLength)
 Namespace.addCategoryObject('typeBinding', 'CodEORIType', CodEORIType)
-_module_typeBindings.CodEORIType = CodEORIType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SocioUnicoType
 class SocioUnicoType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -502,7 +476,6 @@ SocioUnicoType.SU = SocioUnicoType._CF_enumeration.addEnumeration(unicode_value=
 SocioUnicoType.SM = SocioUnicoType._CF_enumeration.addEnumeration(unicode_value='SM', tag='SM')
 SocioUnicoType._InitializeFacetMap(SocioUnicoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'SocioUnicoType', SocioUnicoType)
-_module_typeBindings.SocioUnicoType = SocioUnicoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}StatoLiquidazioneType
 class StatoLiquidazioneType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -514,23 +487,21 @@ StatoLiquidazioneType.LS = StatoLiquidazioneType._CF_enumeration.addEnumeration(
 StatoLiquidazioneType.LN = StatoLiquidazioneType._CF_enumeration.addEnumeration(unicode_value='LN', tag='LN')
 StatoLiquidazioneType._InitializeFacetMap(StatoLiquidazioneType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'StatoLiquidazioneType', StatoLiquidazioneType)
-_module_typeBindings.StatoLiquidazioneType = StatoLiquidazioneType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoCessionePrestazioneType
 class TipoCessionePrestazioneType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TipoCessionePrestazioneType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1231, 2)
     _Documentation = None
+TipoCessionePrestazioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
 TipoCessionePrestazioneType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=TipoCessionePrestazioneType, enum_prefix=None)
 TipoCessionePrestazioneType.SC = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(unicode_value='SC', tag='SC')
 TipoCessionePrestazioneType.PR = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(unicode_value='PR', tag='PR')
 TipoCessionePrestazioneType.AB = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(unicode_value='AB', tag='AB')
 TipoCessionePrestazioneType.AC = TipoCessionePrestazioneType._CF_enumeration.addEnumeration(unicode_value='AC', tag='AC')
-TipoCessionePrestazioneType._CF_length = pyxb.binding.facets.CF_length(value=pyxb.binding.datatypes.nonNegativeInteger(2))
-TipoCessionePrestazioneType._InitializeFacetMap(TipoCessionePrestazioneType._CF_enumeration,
-   TipoCessionePrestazioneType._CF_length)
+TipoCessionePrestazioneType._InitializeFacetMap(TipoCessionePrestazioneType._CF_length,
+   TipoCessionePrestazioneType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'TipoCessionePrestazioneType', TipoCessionePrestazioneType)
-_module_typeBindings.TipoCessionePrestazioneType = TipoCessionePrestazioneType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TitoloType
 class TitoloType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -543,7 +514,6 @@ TitoloType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding
 TitoloType._InitializeFacetMap(TitoloType._CF_pattern,
    TitoloType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'TitoloType', TitoloType)
-_module_typeBindings.TitoloType = TitoloType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String10Type
 class String10Type(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -554,7 +524,6 @@ String10Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String10Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,10})')
 String10Type._InitializeFacetMap(String10Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String10Type', String10Type)
-_module_typeBindings.String10Type = String10Type
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String15Type
 class String15Type(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -565,7 +534,6 @@ String15Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String15Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,15})')
 String15Type._InitializeFacetMap(String15Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String15Type', String15Type)
-_module_typeBindings.String15Type = String15Type
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String20Type
 class String20Type(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -576,7 +544,6 @@ String20Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String20Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,20})')
 String20Type._InitializeFacetMap(String20Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String20Type', String20Type)
-_module_typeBindings.String20Type = String20Type
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String35Type
 class String35Type(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -587,7 +554,6 @@ String35Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String35Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,35})')
 String35Type._InitializeFacetMap(String35Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String35Type', String35Type)
-_module_typeBindings.String35Type = String35Type
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String35LatinExtType
 class String35LatinExtType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -599,7 +565,6 @@ String35LatinExtType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb
 String35LatinExtType._InitializeFacetMap(String35LatinExtType._CF_minLength,
    String35LatinExtType._CF_maxLength)
 Namespace.addCategoryObject('typeBinding', 'String35LatinExtType', String35LatinExtType)
-_module_typeBindings.String35LatinExtType = String35LatinExtType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String60Type
 class String60Type(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -610,7 +575,6 @@ String60Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String60Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,60})')
 String60Type._InitializeFacetMap(String60Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String60Type', String60Type)
-_module_typeBindings.String60Type = String60Type
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String80Type
 class String80Type(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -621,7 +585,6 @@ String80Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,80})')
 String80Type._InitializeFacetMap(String80Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String80Type', String80Type)
-_module_typeBindings.String80Type = String80Type
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String100Type
 class String100Type(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -632,7 +595,6 @@ String100Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100Type._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,100})')
 String100Type._InitializeFacetMap(String100Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String100Type', String100Type)
-_module_typeBindings.String100Type = String100Type
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String60LatinType
 class String60LatinType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -643,7 +605,6 @@ String60LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String60LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,60}')
 String60LatinType._InitializeFacetMap(String60LatinType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String60LatinType', String60LatinType)
-_module_typeBindings.String60LatinType = String60LatinType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String80LatinType
 class String80LatinType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -654,7 +615,6 @@ String80LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String80LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,80}')
 String80LatinType._InitializeFacetMap(String80LatinType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String80LatinType', String80LatinType)
-_module_typeBindings.String80LatinType = String80LatinType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String100LatinType
 class String100LatinType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -665,7 +625,6 @@ String100LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String100LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,100}')
 String100LatinType._InitializeFacetMap(String100LatinType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String100LatinType', String100LatinType)
-_module_typeBindings.String100LatinType = String100LatinType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String200LatinType
 class String200LatinType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -676,7 +635,6 @@ String200LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String200LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,200}')
 String200LatinType._InitializeFacetMap(String200LatinType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String200LatinType', String200LatinType)
-_module_typeBindings.String200LatinType = String200LatinType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}String1000LatinType
 class String1000LatinType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -687,7 +645,6 @@ String1000LatinType._CF_pattern = pyxb.binding.facets.CF_pattern()
 String1000LatinType._CF_pattern.addPattern(pattern='[\\p{IsBasicLatin}\\p{IsLatin-1Supplement}]{1,1000}')
 String1000LatinType._InitializeFacetMap(String1000LatinType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'String1000LatinType', String1000LatinType)
-_module_typeBindings.String1000LatinType = String1000LatinType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ProvinciaType
 class ProvinciaType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -698,7 +655,6 @@ ProvinciaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 ProvinciaType._CF_pattern.addPattern(pattern='[A-Z]{2}')
 ProvinciaType._InitializeFacetMap(ProvinciaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'ProvinciaType', ProvinciaType)
-_module_typeBindings.ProvinciaType = ProvinciaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NazioneType
 class NazioneType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -709,7 +665,6 @@ NazioneType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NazioneType._CF_pattern.addPattern(pattern='[A-Z]{2}')
 NazioneType._InitializeFacetMap(NazioneType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'NazioneType', NazioneType)
-_module_typeBindings.NazioneType = NazioneType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DivisaType
 class DivisaType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -720,7 +675,6 @@ DivisaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 DivisaType._CF_pattern.addPattern(pattern='[A-Z]{3}')
 DivisaType._InitializeFacetMap(DivisaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DivisaType', DivisaType)
-_module_typeBindings.DivisaType = DivisaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TipoResaType
 class TipoResaType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -731,7 +685,6 @@ TipoResaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TipoResaType._CF_pattern.addPattern(pattern='[A-Z]{3}')
 TipoResaType._InitializeFacetMap(TipoResaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'TipoResaType', TipoResaType)
-_module_typeBindings.TipoResaType = TipoResaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroCivicoType
 class NumeroCivicoType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -742,7 +695,6 @@ NumeroCivicoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 NumeroCivicoType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{1,8})')
 NumeroCivicoType._InitializeFacetMap(NumeroCivicoType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'NumeroCivicoType', NumeroCivicoType)
-_module_typeBindings.NumeroCivicoType = NumeroCivicoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}BolloVirtualeType
 class BolloVirtualeType(pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -753,7 +705,6 @@ BolloVirtualeType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_dat
 BolloVirtualeType.SI = BolloVirtualeType._CF_enumeration.addEnumeration(unicode_value='SI', tag='SI')
 BolloVirtualeType._InitializeFacetMap(BolloVirtualeType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'BolloVirtualeType', BolloVirtualeType)
-_module_typeBindings.BolloVirtualeType = BolloVirtualeType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TelFaxType
 class TelFaxType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -764,7 +715,6 @@ TelFaxType._CF_pattern = pyxb.binding.facets.CF_pattern()
 TelFaxType._CF_pattern.addPattern(pattern='(\\p{IsBasicLatin}{5,12})')
 TelFaxType._InitializeFacetMap(TelFaxType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'TelFaxType', TelFaxType)
-_module_typeBindings.TelFaxType = TelFaxType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}EmailType
 class EmailType(pyxb.binding.datatypes.normalizedString):
     """An atomic simple type."""
@@ -777,7 +727,6 @@ EmailType._CF_pattern.addPattern(pattern='([!#-\'*+/-9=?A-Z^-~-]+(\\.[!#-\'*+/-9
 EmailType._InitializeFacetMap(EmailType._CF_maxLength,
    EmailType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'EmailType', EmailType)
-_module_typeBindings.EmailType = EmailType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}PesoType
 # Follow decimal class updated to string
 class PesoType(pyxb.binding.datatypes.string):
@@ -789,7 +738,6 @@ PesoType._CF_pattern = pyxb.binding.facets.CF_pattern()
 PesoType._CF_pattern.addPattern(pattern='[0-9]{1,4}\\.[0-9]{1,2}')
 PesoType._InitializeFacetMap(PesoType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'PesoType', PesoType)
-_module_typeBindings.PesoType = PesoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount8DecimalType
 # Follow decimal class updated to string
 class Amount8DecimalType(pyxb.binding.datatypes.string):
@@ -801,7 +749,6 @@ Amount8DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount8DecimalType._CF_pattern.addPattern(pattern='[\\-]?[0-9]{1,11}\\.[0-9]{2,8}')
 Amount8DecimalType._InitializeFacetMap(Amount8DecimalType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'Amount8DecimalType', Amount8DecimalType)
-_module_typeBindings.Amount8DecimalType = Amount8DecimalType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}Amount2DecimalType
 # Follow decimal class updated to string
 class Amount2DecimalType(pyxb.binding.datatypes.string):
@@ -813,7 +760,6 @@ Amount2DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount2DecimalType._CF_pattern.addPattern(pattern='[\\-]?[0-9]{1,11}\\.[0-9]{2}')
 Amount2DecimalType._InitializeFacetMap(Amount2DecimalType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'Amount2DecimalType', Amount2DecimalType)
-_module_typeBindings.Amount2DecimalType = Amount2DecimalType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RateType
 # Follow decimal class updated to string
 class RateType(pyxb.binding.datatypes.string):
@@ -821,15 +767,14 @@ class RateType(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RateType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1385, 2)
     _Documentation = None
+# Follow(s) line(s) are ignored because string class
+# # RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
 # Follow(s) line(s) are ignored because string class
-# # RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
-RateType._InitializeFacetMap(RateType._CF_pattern,
-# Follow(s) line(s) are ignored because string class
-# #    RateType._CF_maxInclusive)
+# RateType._InitializeFacetMap(RateType._CF_maxInclusive,
+#    RateType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
-_module_typeBindings.RateType = RateType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoFaseType
 class RiferimentoFaseType(pyxb.binding.datatypes.integer):
     """An atomic simple type."""
@@ -841,7 +786,6 @@ RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value
 RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_minInclusive,
    RiferimentoFaseType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RiferimentoFaseType', RiferimentoFaseType)
-_module_typeBindings.RiferimentoFaseType = RiferimentoFaseType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroColliType
 class NumeroColliType(pyxb.binding.datatypes.integer):
     """An atomic simple type."""
@@ -853,7 +797,6 @@ NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_dat
 NumeroColliType._InitializeFacetMap(NumeroColliType._CF_minInclusive,
    NumeroColliType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroColliType', NumeroColliType)
-_module_typeBindings.NumeroColliType = NumeroColliType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroLineaType
 class NumeroLineaType(pyxb.binding.datatypes.integer):
     """An atomic simple type."""
@@ -865,7 +808,6 @@ NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_dat
 NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_minInclusive,
    NumeroLineaType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroLineaType', NumeroLineaType)
-_module_typeBindings.NumeroLineaType = NumeroLineaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CAPType
 class CAPType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -876,7 +818,6 @@ CAPType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CAPType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 CAPType._InitializeFacetMap(CAPType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CAPType', CAPType)
-_module_typeBindings.CAPType = CAPType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ABIType
 class ABIType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -887,7 +828,6 @@ ABIType._CF_pattern = pyxb.binding.facets.CF_pattern()
 ABIType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 ABIType._InitializeFacetMap(ABIType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'ABIType', ABIType)
-_module_typeBindings.ABIType = ABIType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CABType
 class CABType(pyxb.binding.datatypes.string):
     """An atomic simple type."""
@@ -898,7 +838,6 @@ CABType._CF_pattern = pyxb.binding.facets.CF_pattern()
 CABType._CF_pattern.addPattern(pattern='[0-9][0-9][0-9][0-9][0-9]')
 CABType._InitializeFacetMap(CABType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'CABType', CABType)
-_module_typeBindings.CABType = CABType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}GiorniTerminePagamentoType
 class GiorniTerminePagamentoType(pyxb.binding.datatypes.integer):
     """An atomic simple type."""
@@ -910,7 +849,6 @@ GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusiv
 GiorniTerminePagamentoType._InitializeFacetMap(GiorniTerminePagamentoType._CF_minInclusive,
    GiorniTerminePagamentoType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'GiorniTerminePagamentoType', GiorniTerminePagamentoType)
-_module_typeBindings.GiorniTerminePagamentoType = GiorniTerminePagamentoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}QuantitaType
 # Follow decimal class updated to string
 class QuantitaType(pyxb.binding.datatypes.string):
@@ -922,7 +860,6 @@ QuantitaType._CF_pattern = pyxb.binding.facets.CF_pattern()
 QuantitaType._CF_pattern.addPattern(pattern='[0-9]{1,12}\\.[0-9]{2,8}')
 QuantitaType._InitializeFacetMap(QuantitaType._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'QuantitaType', QuantitaType)
-_module_typeBindings.QuantitaType = QuantitaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DataFatturaType
 class DataFatturaType(pyxb.binding.datatypes.date):
     """An atomic simple type."""
@@ -932,7 +869,6 @@ class DataFatturaType(pyxb.binding.datatypes.date):
 DataFatturaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=DataFatturaType, value=pyxb.binding.datatypes.date('1970-01-01'))
 DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
-_module_typeBindings.DataFatturaType = DataFatturaType
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaHeaderType with content type ELEMENT_ONLY
 class FatturaElettronicaHeaderType(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaHeaderType with content type ELEMENT_ONLY"""
@@ -972,7 +908,6 @@ class FatturaElettronicaHeaderType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.FatturaElettronicaHeaderType = FatturaElettronicaHeaderType
 Namespace.addCategoryObject('typeBinding', 'FatturaElettronicaHeaderType', FatturaElettronicaHeaderType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaBodyType with content type ELEMENT_ONLY
 class FatturaElettronicaBodyType(pyxb.binding.basis.complexTypeDefinition):
@@ -1009,7 +944,6 @@ class FatturaElettronicaBodyType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.FatturaElettronicaBodyType = FatturaElettronicaBodyType
 Namespace.addCategoryObject('typeBinding', 'FatturaElettronicaBodyType', FatturaElettronicaBodyType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasmissioneType with content type ELEMENT_ONLY
 class DatiTrasmissioneType(pyxb.binding.basis.complexTypeDefinition):
@@ -1050,7 +984,6 @@ class DatiTrasmissioneType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiTrasmissioneType = DatiTrasmissioneType
 Namespace.addCategoryObject('typeBinding', 'DatiTrasmissioneType', DatiTrasmissioneType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IdFiscaleType with content type ELEMENT_ONLY
 class IdFiscaleType(pyxb.binding.basis.complexTypeDefinition):
@@ -1075,7 +1008,6 @@ class IdFiscaleType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.IdFiscaleType = IdFiscaleType
 Namespace.addCategoryObject('typeBinding', 'IdFiscaleType', IdFiscaleType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiTrasmittenteType with content type ELEMENT_ONLY
 class ContattiTrasmittenteType(pyxb.binding.basis.complexTypeDefinition):
@@ -1100,7 +1032,6 @@ class ContattiTrasmittenteType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.ContattiTrasmittenteType = ContattiTrasmittenteType
 Namespace.addCategoryObject('typeBinding', 'ContattiTrasmittenteType', ContattiTrasmittenteType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliType with content type ELEMENT_ONLY
 class DatiGeneraliType(pyxb.binding.basis.complexTypeDefinition):
@@ -1159,7 +1090,6 @@ class DatiGeneraliType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiGeneraliType = DatiGeneraliType
 Namespace.addCategoryObject('typeBinding', 'DatiGeneraliType', DatiGeneraliType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiGeneraliDocumentoType with content type ELEMENT_ONLY
 class DatiGeneraliDocumentoType(pyxb.binding.basis.complexTypeDefinition):
@@ -1224,7 +1154,6 @@ class DatiGeneraliDocumentoType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiGeneraliDocumentoType = DatiGeneraliDocumentoType
 Namespace.addCategoryObject('typeBinding', 'DatiGeneraliDocumentoType', DatiGeneraliDocumentoType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRitenutaType with content type ELEMENT_ONLY
 class DatiRitenutaType(pyxb.binding.basis.complexTypeDefinition):
@@ -1257,7 +1186,6 @@ class DatiRitenutaType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiRitenutaType = DatiRitenutaType
 Namespace.addCategoryObject('typeBinding', 'DatiRitenutaType', DatiRitenutaType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBolloType with content type ELEMENT_ONLY
 class DatiBolloType(pyxb.binding.basis.complexTypeDefinition):
@@ -1282,7 +1210,6 @@ class DatiBolloType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiBolloType = DatiBolloType
 Namespace.addCategoryObject('typeBinding', 'DatiBolloType', DatiBolloType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiCassaPrevidenzialeType with content type ELEMENT_ONLY
 class DatiCassaPrevidenzialeType(pyxb.binding.basis.complexTypeDefinition):
@@ -1331,7 +1258,6 @@ class DatiCassaPrevidenzialeType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiCassaPrevidenzialeType = DatiCassaPrevidenzialeType
 Namespace.addCategoryObject('typeBinding', 'DatiCassaPrevidenzialeType', DatiCassaPrevidenzialeType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ScontoMaggiorazioneType with content type ELEMENT_ONLY
 class ScontoMaggiorazioneType(pyxb.binding.basis.complexTypeDefinition):
@@ -1360,7 +1286,6 @@ class ScontoMaggiorazioneType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.ScontoMaggiorazioneType = ScontoMaggiorazioneType
 Namespace.addCategoryObject('typeBinding', 'ScontoMaggiorazioneType', ScontoMaggiorazioneType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiSALType with content type ELEMENT_ONLY
 class DatiSALType(pyxb.binding.basis.complexTypeDefinition):
@@ -1381,7 +1306,6 @@ class DatiSALType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiSALType = DatiSALType
 Namespace.addCategoryObject('typeBinding', 'DatiSALType', DatiSALType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDocumentiCorrelatiType with content type ELEMENT_ONLY
 class DatiDocumentiCorrelatiType(pyxb.binding.basis.complexTypeDefinition):
@@ -1426,7 +1350,6 @@ class DatiDocumentiCorrelatiType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiDocumentiCorrelatiType = DatiDocumentiCorrelatiType
 Namespace.addCategoryObject('typeBinding', 'DatiDocumentiCorrelatiType', DatiDocumentiCorrelatiType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiDDTType with content type ELEMENT_ONLY
 class DatiDDTType(pyxb.binding.basis.complexTypeDefinition):
@@ -1455,7 +1378,6 @@ class DatiDDTType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiDDTType = DatiDDTType
 Namespace.addCategoryObject('typeBinding', 'DatiDDTType', DatiDDTType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiTrasportoType with content type ELEMENT_ONLY
 class DatiTrasportoType(pyxb.binding.basis.complexTypeDefinition):
@@ -1524,7 +1446,6 @@ class DatiTrasportoType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiTrasportoType = DatiTrasportoType
 Namespace.addCategoryObject('typeBinding', 'DatiTrasportoType', DatiTrasportoType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IndirizzoType with content type ELEMENT_ONLY
 class IndirizzoType(pyxb.binding.basis.complexTypeDefinition):
@@ -1565,7 +1486,6 @@ class IndirizzoType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.IndirizzoType = IndirizzoType
 Namespace.addCategoryObject('typeBinding', 'IndirizzoType', IndirizzoType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaPrincipaleType with content type ELEMENT_ONLY
 class FatturaPrincipaleType(pyxb.binding.basis.complexTypeDefinition):
@@ -1590,7 +1510,6 @@ class FatturaPrincipaleType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.FatturaPrincipaleType = FatturaPrincipaleType
 Namespace.addCategoryObject('typeBinding', 'FatturaPrincipaleType', FatturaPrincipaleType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CedentePrestatoreType with content type ELEMENT_ONLY
 class CedentePrestatoreType(pyxb.binding.basis.complexTypeDefinition):
@@ -1631,7 +1550,6 @@ class CedentePrestatoreType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.CedentePrestatoreType = CedentePrestatoreType
 Namespace.addCategoryObject('typeBinding', 'CedentePrestatoreType', CedentePrestatoreType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCedenteType with content type ELEMENT_ONLY
 class DatiAnagraficiCedenteType(pyxb.binding.basis.complexTypeDefinition):
@@ -1680,7 +1598,6 @@ class DatiAnagraficiCedenteType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiAnagraficiCedenteType = DatiAnagraficiCedenteType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiCedenteType', DatiAnagraficiCedenteType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AnagraficaType with content type ELEMENT_ONLY
 class AnagraficaType(pyxb.binding.basis.complexTypeDefinition):
@@ -1717,7 +1634,6 @@ class AnagraficaType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.AnagraficaType = AnagraficaType
 Namespace.addCategoryObject('typeBinding', 'AnagraficaType', AnagraficaType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiVettoreType with content type ELEMENT_ONLY
 class DatiAnagraficiVettoreType(pyxb.binding.basis.complexTypeDefinition):
@@ -1750,7 +1666,6 @@ class DatiAnagraficiVettoreType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiAnagraficiVettoreType = DatiAnagraficiVettoreType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiVettoreType', DatiAnagraficiVettoreType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}IscrizioneREAType with content type ELEMENT_ONLY
 class IscrizioneREAType(pyxb.binding.basis.complexTypeDefinition):
@@ -1787,7 +1702,6 @@ class IscrizioneREAType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.IscrizioneREAType = IscrizioneREAType
 Namespace.addCategoryObject('typeBinding', 'IscrizioneREAType', IscrizioneREAType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ContattiType with content type ELEMENT_ONLY
 class ContattiType(pyxb.binding.basis.complexTypeDefinition):
@@ -1816,7 +1730,6 @@ class ContattiType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.ContattiType = ContattiType
 Namespace.addCategoryObject('typeBinding', 'ContattiType', ContattiType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleType with content type ELEMENT_ONLY
 class RappresentanteFiscaleType(pyxb.binding.basis.complexTypeDefinition):
@@ -1837,7 +1750,6 @@ class RappresentanteFiscaleType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.RappresentanteFiscaleType = RappresentanteFiscaleType
 Namespace.addCategoryObject('typeBinding', 'RappresentanteFiscaleType', RappresentanteFiscaleType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiRappresentanteType with content type ELEMENT_ONLY
 class DatiAnagraficiRappresentanteType(pyxb.binding.basis.complexTypeDefinition):
@@ -1866,7 +1778,6 @@ class DatiAnagraficiRappresentanteType(pyxb.binding.basis.complexTypeDefinition)
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiAnagraficiRappresentanteType = DatiAnagraficiRappresentanteType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiRappresentanteType', DatiAnagraficiRappresentanteType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CessionarioCommittenteType with content type ELEMENT_ONLY
 class CessionarioCommittenteType(pyxb.binding.basis.complexTypeDefinition):
@@ -1899,7 +1810,6 @@ class CessionarioCommittenteType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.CessionarioCommittenteType = CessionarioCommittenteType
 Namespace.addCategoryObject('typeBinding', 'CessionarioCommittenteType', CessionarioCommittenteType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RappresentanteFiscaleCessionarioType with content type ELEMENT_ONLY
 class RappresentanteFiscaleCessionarioType(pyxb.binding.basis.complexTypeDefinition):
@@ -1932,7 +1842,6 @@ class RappresentanteFiscaleCessionarioType(pyxb.binding.basis.complexTypeDefinit
     })
     _AttributeMap.update({
     })
-_module_typeBindings.RappresentanteFiscaleCessionarioType = RappresentanteFiscaleCessionarioType
 Namespace.addCategoryObject('typeBinding', 'RappresentanteFiscaleCessionarioType', RappresentanteFiscaleCessionarioType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiCessionarioType with content type ELEMENT_ONLY
 class DatiAnagraficiCessionarioType(pyxb.binding.basis.complexTypeDefinition):
@@ -1961,7 +1870,6 @@ class DatiAnagraficiCessionarioType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiAnagraficiCessionarioType = DatiAnagraficiCessionarioType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiCessionarioType', DatiAnagraficiCessionarioType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiBeniServiziType with content type ELEMENT_ONLY
 class DatiBeniServiziType(pyxb.binding.basis.complexTypeDefinition):
@@ -1986,7 +1894,6 @@ class DatiBeniServiziType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiBeniServiziType = DatiBeniServiziType
 Namespace.addCategoryObject('typeBinding', 'DatiBeniServiziType', DatiBeniServiziType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiVeicoliType with content type ELEMENT_ONLY
 class DatiVeicoliType(pyxb.binding.basis.complexTypeDefinition):
@@ -2012,7 +1919,6 @@ class DatiVeicoliType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiVeicoliType = DatiVeicoliType
 Namespace.addCategoryObject('typeBinding', 'DatiVeicoliType', DatiVeicoliType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiPagamentoType with content type ELEMENT_ONLY
 class DatiPagamentoType(pyxb.binding.basis.complexTypeDefinition):
@@ -2037,7 +1943,6 @@ class DatiPagamentoType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiPagamentoType = DatiPagamentoType
 Namespace.addCategoryObject('typeBinding', 'DatiPagamentoType', DatiPagamentoType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioPagamentoType with content type ELEMENT_ONLY
 class DettaglioPagamentoType(pyxb.binding.basis.complexTypeDefinition):
@@ -2138,7 +2043,6 @@ class DettaglioPagamentoType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DettaglioPagamentoType = DettaglioPagamentoType
 Namespace.addCategoryObject('typeBinding', 'DettaglioPagamentoType', DettaglioPagamentoType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}TerzoIntermediarioSoggettoEmittenteType with content type ELEMENT_ONLY
 class TerzoIntermediarioSoggettoEmittenteType(pyxb.binding.basis.complexTypeDefinition):
@@ -2159,7 +2063,6 @@ class TerzoIntermediarioSoggettoEmittenteType(pyxb.binding.basis.complexTypeDefi
     })
     _AttributeMap.update({
     })
-_module_typeBindings.TerzoIntermediarioSoggettoEmittenteType = TerzoIntermediarioSoggettoEmittenteType
 Namespace.addCategoryObject('typeBinding', 'TerzoIntermediarioSoggettoEmittenteType', TerzoIntermediarioSoggettoEmittenteType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiAnagraficiTerzoIntermediarioType with content type ELEMENT_ONLY
 class DatiAnagraficiTerzoIntermediarioType(pyxb.binding.basis.complexTypeDefinition):
@@ -2188,7 +2091,6 @@ class DatiAnagraficiTerzoIntermediarioType(pyxb.binding.basis.complexTypeDefinit
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiAnagraficiTerzoIntermediarioType = DatiAnagraficiTerzoIntermediarioType
 Namespace.addCategoryObject('typeBinding', 'DatiAnagraficiTerzoIntermediarioType', DatiAnagraficiTerzoIntermediarioType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AllegatiType with content type ELEMENT_ONLY
 class AllegatiType(pyxb.binding.basis.complexTypeDefinition):
@@ -2225,7 +2127,6 @@ class AllegatiType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.AllegatiType = AllegatiType
 Namespace.addCategoryObject('typeBinding', 'AllegatiType', AllegatiType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DettaglioLineeType with content type ELEMENT_ONLY
 class DettaglioLineeType(pyxb.binding.basis.complexTypeDefinition):
@@ -2306,7 +2207,6 @@ class DettaglioLineeType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DettaglioLineeType = DettaglioLineeType
 Namespace.addCategoryObject('typeBinding', 'DettaglioLineeType', DettaglioLineeType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CodiceArticoloType with content type ELEMENT_ONLY
 class CodiceArticoloType(pyxb.binding.basis.complexTypeDefinition):
@@ -2331,7 +2231,6 @@ class CodiceArticoloType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.CodiceArticoloType = CodiceArticoloType
 Namespace.addCategoryObject('typeBinding', 'CodiceArticoloType', CodiceArticoloType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}AltriDatiGestionaliType with content type ELEMENT_ONLY
 class AltriDatiGestionaliType(pyxb.binding.basis.complexTypeDefinition):
@@ -2364,7 +2263,6 @@ class AltriDatiGestionaliType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.AltriDatiGestionaliType = AltriDatiGestionaliType
 Namespace.addCategoryObject('typeBinding', 'AltriDatiGestionaliType', AltriDatiGestionaliType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}DatiRiepilogoType with content type ELEMENT_ONLY
 class DatiRiepilogoType(pyxb.binding.basis.complexTypeDefinition):
@@ -2413,7 +2311,6 @@ class DatiRiepilogoType(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiRiepilogoType = DatiRiepilogoType
 Namespace.addCategoryObject('typeBinding', 'DatiRiepilogoType', DatiRiepilogoType)
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}FatturaElettronicaType with content type ELEMENT_ONLY
 class FatturaElettronicaType(pyxb.binding.basis.complexTypeDefinition):
@@ -2436,12 +2333,12 @@ class FatturaElettronicaType(pyxb.binding.basis.complexTypeDefinition):
     __Signature = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), 'Signature', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_httpwww_w3_org200009xmldsigSignature', False, pyxb.utils.utility.Location('http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd', 43, 0), )
     Signature = property(__Signature.value, __Signature.set, None, None)
     # Attribute versione uses Python identifier versione
-    __versione = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'versione'), 'versione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_versione', _module_typeBindings.FormatoTrasmissioneType, required=True)
+    __versione = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'versione'), 'versione', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_versione', FormatoTrasmissioneType, required=True)
     __versione._DeclarationLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 22, 4)
     __versione._UseLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 22, 4)
     versione = property(__versione.value, __versione.set, None, None)
     # Attribute SistemaEmittente uses Python identifier SistemaEmittente
-    __SistemaEmittente = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'SistemaEmittente'), 'SistemaEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_SistemaEmittente', _module_typeBindings.String10Type)
+    __SistemaEmittente = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'SistemaEmittente'), 'SistemaEmittente', '__httpivaservizi_agenziaentrate_gov_itdocsxsdfatturev1_2_FatturaElettronicaType_SistemaEmittente', String10Type)
     __SistemaEmittente._DeclarationLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 23, 4)
     __SistemaEmittente._UseLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 23, 4)
     SistemaEmittente = property(__SistemaEmittente.value, __SistemaEmittente.set, None, None)
@@ -2454,7 +2351,6 @@ class FatturaElettronicaType(pyxb.binding.basis.complexTypeDefinition):
         __versione.name() : __versione,
         __SistemaEmittente.name() : __SistemaEmittente
     })
-_module_typeBindings.FatturaElettronicaType = FatturaElettronicaType
 Namespace.addCategoryObject('typeBinding', 'FatturaElettronicaType', FatturaElettronicaType)
 FatturaElettronica = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'FatturaElettronica'), FatturaElettronicaType, documentation='XML schema fatture destinate a PA e privati in forma ordinaria 1.2.1', location=pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 10, 2))
 Namespace.addCategoryObject('elementBinding', FatturaElettronica.name().localName(), FatturaElettronica)

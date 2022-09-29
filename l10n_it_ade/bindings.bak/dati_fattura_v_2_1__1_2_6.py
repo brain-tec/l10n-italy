@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./dati_fattura_v_2_1.py
 # PyXB bindings for NM:c8403c44c9a54a32bd3b5aec75a6504db99822c4
-# Generated 2022-09-27 06:52:14.128245 by PyXB version 1.2.6 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:28:24.824161 by PyXB version 1.2.6 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0
@@ -22,7 +22,7 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:27208af4-3e20-11ed-a076-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:4328bd82-3e68-11ed-81ac-00155da0804a')
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
@@ -37,7 +37,6 @@ try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
 from . import _ds as _ImportedBinding__ds
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0', create_if_missing=True)
@@ -197,10 +196,10 @@ class DataFatturaType(pyxb.binding.datatypes.date):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DataFatturaType')
     _XSDLocation = pyxb.utils.utility.Location('../data/datifatture/DatiFatturav2.1.xsd', 333, 2)
     _Documentation = None
-DataFatturaType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 DataFatturaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=DataFatturaType, value=pyxb.binding.datatypes.date('1970-01-01'))
-DataFatturaType._InitializeFacetMap(DataFatturaType._CF_whiteSpace,
-   DataFatturaType._CF_minInclusive)
+DataFatturaType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+DataFatturaType._InitializeFacetMap(DataFatturaType._CF_minInclusive,
+   DataFatturaType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'DataFatturaType', DataFatturaType)
 _module_typeBindings.DataFatturaType = DataFatturaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}PosizioneType
@@ -209,12 +208,12 @@ class PosizioneType(pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'PosizioneType')
     _XSDLocation = pyxb.utils.utility.Location('../data/datifatture/DatiFatturav2.1.xsd', 340, 2)
     _Documentation = None
-PosizioneType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
-PosizioneType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(1))
 PosizioneType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(9999999))
-PosizioneType._InitializeFacetMap(PosizioneType._CF_whiteSpace,
+PosizioneType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=PosizioneType, value=pyxb.binding.datatypes.integer(1))
+PosizioneType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+PosizioneType._InitializeFacetMap(PosizioneType._CF_maxInclusive,
    PosizioneType._CF_minInclusive,
-   PosizioneType._CF_maxInclusive)
+   PosizioneType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'PosizioneType', PosizioneType)
 _module_typeBindings.PosizioneType = PosizioneType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}CaricaType
@@ -223,12 +222,12 @@ class CaricaType(pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CaricaType')
     _XSDLocation = pyxb.utils.utility.Location('../data/datifatture/DatiFatturav2.1.xsd', 348, 2)
     _Documentation = None
-CaricaType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
-CaricaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(1))
 CaricaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(15))
-CaricaType._InitializeFacetMap(CaricaType._CF_whiteSpace,
+CaricaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=CaricaType, value=pyxb.binding.datatypes.integer(1))
+CaricaType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+CaricaType._InitializeFacetMap(CaricaType._CF_maxInclusive,
    CaricaType._CF_minInclusive,
-   CaricaType._CF_maxInclusive)
+   CaricaType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'CaricaType', CaricaType)
 _module_typeBindings.CaricaType = CaricaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}String10Type
@@ -335,15 +334,15 @@ class EsigibilitaIVAType(pyxb.binding.datatypes.string, pyxb.binding.basis.enume
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EsigibilitaIVAType')
     _XSDLocation = pyxb.utils.utility.Location('../data/datifatture/DatiFatturav2.1.xsd', 437, 2)
     _Documentation = None
+EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
+EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 EsigibilitaIVAType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=EsigibilitaIVAType, enum_prefix=None)
 EsigibilitaIVAType.D = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='D', tag='D')
 EsigibilitaIVAType.I = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='I', tag='I')
 EsigibilitaIVAType.S = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='S', tag='S')
-EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_enumeration,
-   EsigibilitaIVAType._CF_minLength,
-   EsigibilitaIVAType._CF_maxLength)
+EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_minLength,
+   EsigibilitaIVAType._CF_maxLength,
+   EsigibilitaIVAType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'EsigibilitaIVAType', EsigibilitaIVAType)
 _module_typeBindings.EsigibilitaIVAType = EsigibilitaIVAType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}RateType
@@ -353,15 +352,15 @@ class RateType(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RateType')
     _XSDLocation = pyxb.utils.utility.Location('../data/datifatture/DatiFatturav2.1.xsd', 459, 3)
     _Documentation = None
-RateType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
 # Follow(s) line(s) are ignored because string class
 # # RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
-RateType._InitializeFacetMap(RateType._CF_whiteSpace,
-   RateType._CF_pattern,
+RateType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+# RateType._InitializeFacetMap(RateType._CF_pattern,
 # Follow(s) line(s) are ignored because string class
-# #    RateType._CF_maxInclusive)
+   RateType._CF_maxInclusive,
+#    RateType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 _module_typeBindings.RateType = RateType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}Amount2DecimalType
@@ -371,11 +370,11 @@ class Amount2DecimalType(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'Amount2DecimalType')
     _XSDLocation = pyxb.utils.utility.Location('../data/datifatture/DatiFatturav2.1.xsd', 468, 2)
     _Documentation = None
-Amount2DecimalType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
 Amount2DecimalType._CF_pattern = pyxb.binding.facets.CF_pattern()
 Amount2DecimalType._CF_pattern.addPattern(pattern='[\\-]?[0-9]{1,11}\\.[0-9]{2}')
-Amount2DecimalType._InitializeFacetMap(Amount2DecimalType._CF_whiteSpace,
-   Amount2DecimalType._CF_pattern)
+Amount2DecimalType._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.collapse)
+Amount2DecimalType._InitializeFacetMap(Amount2DecimalType._CF_pattern,
+   Amount2DecimalType._CF_whiteSpace)
 Namespace.addCategoryObject('typeBinding', 'Amount2DecimalType', Amount2DecimalType)
 _module_typeBindings.Amount2DecimalType = Amount2DecimalType
 # Complex type {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v2.0}DatiFatturaHeaderType with content type ELEMENT_ONLY

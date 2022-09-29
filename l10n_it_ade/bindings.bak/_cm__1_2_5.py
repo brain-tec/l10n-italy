@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./_cm.py
 # PyXB bindings for NM:6d05a298a781c71d177aab761a79c5e637d7f467
-# Generated 2022-09-27 06:52:14.128077 by PyXB version 1.2.6 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:41:31.520074 by PyXB version 1.2.5 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:common [xmlns:cm]
@@ -22,9 +22,9 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:27208af4-3e20-11ed-a076-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:1811b200-3e6a-11ed-88a8-00155da0804a')
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.6'
+_PyXBVersion = '1.2.5'
 # Generated bindings are not compatible across PyXB versions
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 if pyxb.__version__ != _PyXBVersion:
@@ -37,7 +37,6 @@ try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('urn:www.agenziaentrate.gov.it:specificheTecniche:common', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])

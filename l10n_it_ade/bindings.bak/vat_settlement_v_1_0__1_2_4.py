@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./vat_settlement_v_1_0.py
 # PyXB bindings for NM:4f059617657cbf045796906b94fd6da476500108
-# Generated 2022-09-26 17:54:30.499511 by PyXB version 1.2.5 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:27:19.903602 by PyXB version 1.2.4 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp
@@ -22,24 +22,20 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:818ca012-3db3-11ed-b516-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:1c786e94-3e68-11ed-b993-00155da0804a')
 # Version of PyXB used to generate the bindings
-_PyXBVersion = '1.2.5'
+_PyXBVersion = '1.2.4'
 # Generated bindings are not compatible across PyXB versions
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 if pyxb.__version__ != _PyXBVersion:
     raise pyxb.PyXBVersionError(_PyXBVersion)
-# A holder for module-level binding classes so we can access them from
-# inside class definitions where property names may conflict.
-_module_typeBindings = pyxb.utils.utility.Object()
 # Import bindings for namespaces imported into schema
 try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
-from . import _cm as _ImportedBinding__cm
 from . import _ds as _ImportedBinding__ds
+from . import _cm as _ImportedBinding__cm
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
@@ -91,7 +87,6 @@ Eventi_Ecc_Type.n1 = Eventi_Ecc_Type._CF_enumeration.addEnumeration(unicode_valu
 Eventi_Ecc_Type.n9 = Eventi_Ecc_Type._CF_enumeration.addEnumeration(unicode_value='9', tag='n9')
 Eventi_Ecc_Type._InitializeFacetMap(Eventi_Ecc_Type._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'Eventi_Ecc_Type', Eventi_Ecc_Type)
-_module_typeBindings.Eventi_Ecc_Type = Eventi_Ecc_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}DatoVN_Type
 class DatoVN_Type(pyxb.binding.datatypes.string):
     """Tipo semplice che identifica numeri positivi con 2 cifre decimali. La lunghezza massima prevista è di 16 caratteri, il separatore decimale previsto è la virgola."""
@@ -104,7 +99,6 @@ DatoVN_Type._CF_pattern.addPattern(pattern='[\\-]{0,1}[0-9]+,[0-9]{2}')
 DatoVN_Type._InitializeFacetMap(DatoVN_Type._CF_maxLength,
    DatoVN_Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DatoVN_Type', DatoVN_Type)
-_module_typeBindings.DatoVN_Type = DatoVN_Type
 # Atomic simple type: [anonymous]
 class STD_ANON(_ImportedBinding__cm.DatoNP_Type, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -127,7 +121,6 @@ STD_ANON.n12 = STD_ANON._CF_enumeration.addEnumeration(unicode_value='12', tag='
 STD_ANON.n13 = STD_ANON._CF_enumeration.addEnumeration(unicode_value='13', tag='n13')
 STD_ANON.n99 = STD_ANON._CF_enumeration.addEnumeration(unicode_value='99', tag='n99')
 STD_ANON._InitializeFacetMap(STD_ANON._CF_enumeration)
-_module_typeBindings.STD_ANON = STD_ANON
 # Atomic simple type: [anonymous]
 class STD_ANON_(_ImportedBinding__cm.DatoNP_Type, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -150,7 +143,6 @@ STD_ANON_.n13 = STD_ANON_._CF_enumeration.addEnumeration(unicode_value='13', tag
 STD_ANON_.n14 = STD_ANON_._CF_enumeration.addEnumeration(unicode_value='14', tag='n14')
 STD_ANON_.n15 = STD_ANON_._CF_enumeration.addEnumeration(unicode_value='15', tag='n15')
 STD_ANON_._InitializeFacetMap(STD_ANON_._CF_enumeration)
-_module_typeBindings.STD_ANON_ = STD_ANON_
 # Atomic simple type: [anonymous]
 class STD_ANON_2(_ImportedBinding__cm.DatoN1_Type, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -161,7 +153,6 @@ STD_ANON_2._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=S
 STD_ANON_2.n1 = STD_ANON_2._CF_enumeration.addEnumeration(unicode_value='1', tag='n1')
 STD_ANON_2.n2 = STD_ANON_2._CF_enumeration.addEnumeration(unicode_value='2', tag='n2')
 STD_ANON_2._InitializeFacetMap(STD_ANON_2._CF_enumeration)
-_module_typeBindings.STD_ANON_2 = STD_ANON_2
 # Atomic simple type: [anonymous]
 class STD_ANON_3(_ImportedBinding__cm.DatoNP_Type, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -182,7 +173,6 @@ STD_ANON_3.n10 = STD_ANON_3._CF_enumeration.addEnumeration(unicode_value='10', t
 STD_ANON_3.n11 = STD_ANON_3._CF_enumeration.addEnumeration(unicode_value='11', tag='n11')
 STD_ANON_3.n12 = STD_ANON_3._CF_enumeration.addEnumeration(unicode_value='12', tag='n12')
 STD_ANON_3._InitializeFacetMap(STD_ANON_3._CF_enumeration)
-_module_typeBindings.STD_ANON_3 = STD_ANON_3
 # Atomic simple type: [anonymous]
 class STD_ANON_4(_ImportedBinding__cm.DatoN1_Type, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -196,7 +186,6 @@ STD_ANON_4.n3 = STD_ANON_4._CF_enumeration.addEnumeration(unicode_value='3', tag
 STD_ANON_4.n4 = STD_ANON_4._CF_enumeration.addEnumeration(unicode_value='4', tag='n4')
 STD_ANON_4.n5 = STD_ANON_4._CF_enumeration.addEnumeration(unicode_value='5', tag='n5')
 STD_ANON_4._InitializeFacetMap(STD_ANON_4._CF_enumeration)
-_module_typeBindings.STD_ANON_4 = STD_ANON_4
 # Atomic simple type: [anonymous]
 class STD_ANON_5(_ImportedBinding__cm.DatoAN_Type, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -206,7 +195,6 @@ class STD_ANON_5(_ImportedBinding__cm.DatoAN_Type, pyxb.binding.basis.enumeratio
 STD_ANON_5._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=STD_ANON_5, enum_prefix=None)
 STD_ANON_5.IVP17 = STD_ANON_5._CF_enumeration.addEnumeration(unicode_value='IVP17', tag='IVP17')
 STD_ANON_5._InitializeFacetMap(STD_ANON_5._CF_enumeration)
-_module_typeBindings.STD_ANON_5 = STD_ANON_5
 # Atomic simple type: [anonymous]
 class STD_ANON_6(_ImportedBinding__cm.DatoNP_Type, pyxb.binding.basis.enumeration_mixin):
     """An atomic simple type."""
@@ -229,7 +217,6 @@ STD_ANON_6.n13 = STD_ANON_6._CF_enumeration.addEnumeration(unicode_value='13', t
 STD_ANON_6.n14 = STD_ANON_6._CF_enumeration.addEnumeration(unicode_value='14', tag='n14')
 STD_ANON_6.n15 = STD_ANON_6._CF_enumeration.addEnumeration(unicode_value='15', tag='n15')
 STD_ANON_6._InitializeFacetMap(STD_ANON_6._CF_enumeration)
-_module_typeBindings.STD_ANON_6 = STD_ANON_6
 # Complex type {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Frontespizio_IVP_Type with content type ELEMENT_ONLY
 class Frontespizio_IVP_Type(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Frontespizio_IVP_Type with content type ELEMENT_ONLY"""
@@ -309,7 +296,6 @@ class Frontespizio_IVP_Type(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.Frontespizio_IVP_Type = Frontespizio_IVP_Type
 Namespace.addCategoryObject('typeBinding', 'Frontespizio_IVP_Type', Frontespizio_IVP_Type)
 # Complex type {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}DatiContabili_IVP_Type with content type ELEMENT_ONLY
 class DatiContabili_IVP_Type(pyxb.binding.basis.complexTypeDefinition):
@@ -330,7 +316,6 @@ class DatiContabili_IVP_Type(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.DatiContabili_IVP_Type = DatiContabili_IVP_Type
 Namespace.addCategoryObject('typeBinding', 'DatiContabili_IVP_Type', DatiContabili_IVP_Type)
 # Complex type [anonymous] with content type ELEMENT_ONLY
 class CTD_ANON(pyxb.binding.basis.complexTypeDefinition):
@@ -423,7 +408,6 @@ class CTD_ANON(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.CTD_ANON = CTD_ANON
 # Complex type [anonymous] with content type ELEMENT_ONLY
 class CTD_ANON_(pyxb.binding.basis.complexTypeDefinition):
     """Complex type [anonymous] with content type ELEMENT_ONLY"""
@@ -451,7 +435,6 @@ class CTD_ANON_(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.CTD_ANON_ = CTD_ANON_
 # Complex type {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Intestazione_IVP_Type with content type ELEMENT_ONLY
 class Intestazione_IVP_Type(pyxb.binding.basis.complexTypeDefinition):
     """Complex type {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Intestazione_IVP_Type with content type ELEMENT_ONLY"""
@@ -483,7 +466,6 @@ class Intestazione_IVP_Type(pyxb.binding.basis.complexTypeDefinition):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.Intestazione_IVP_Type = Intestazione_IVP_Type
 Namespace.addCategoryObject('typeBinding', 'Intestazione_IVP_Type', Intestazione_IVP_Type)
 # Complex type {urn:www.agenziaentrate.gov.it:specificheTecniche:sco:ivp}Comunicazione_IVP_Type with content type ELEMENT_ONLY
 class Comunicazione_IVP_Type(_ImportedBinding__cm.Documento_Type):
@@ -509,7 +491,6 @@ class Comunicazione_IVP_Type(_ImportedBinding__cm.Documento_Type):
     })
     _AttributeMap.update({
     })
-_module_typeBindings.Comunicazione_IVP_Type = Comunicazione_IVP_Type
 Namespace.addCategoryObject('typeBinding', 'Comunicazione_IVP_Type', Comunicazione_IVP_Type)
 Intestazione = pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'Intestazione'), pyxb.binding.datatypes.anyType, location=pyxb.utils.utility.Location('../data/common/liquidazione/intestazioneIvp_2017_v1.xsd', 10, 1))
 Namespace.addCategoryObject('elementBinding', Intestazione.name().localName(), Intestazione)

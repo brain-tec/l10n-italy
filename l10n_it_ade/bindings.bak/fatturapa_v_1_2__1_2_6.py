@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./fatturapa_v_1_2.py
 # PyXB bindings for NM:32e521a6da5b62d07147ea75b23acb0fb9726893
-# Generated 2022-09-27 06:52:14.128319 by PyXB version 1.2.6 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:28:24.824237 by PyXB version 1.2.6 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2
@@ -22,7 +22,7 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:27208af4-3e20-11ed-a076-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:4328bd82-3e68-11ed-81ac-00155da0804a')
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
@@ -37,7 +37,6 @@ try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
 from . import _ds as _ImportedBinding__ds
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2', create_if_missing=True)
@@ -269,10 +268,10 @@ class RiferimentoNumeroLineaType(pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RiferimentoNumeroLineaType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 482, 2)
     _Documentation = None
-RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
 RiferimentoNumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
-RiferimentoNumeroLineaType._InitializeFacetMap(RiferimentoNumeroLineaType._CF_minInclusive,
-   RiferimentoNumeroLineaType._CF_maxInclusive)
+RiferimentoNumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=RiferimentoNumeroLineaType, value=pyxb.binding.datatypes.integer(1))
+RiferimentoNumeroLineaType._InitializeFacetMap(RiferimentoNumeroLineaType._CF_maxInclusive,
+   RiferimentoNumeroLineaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'RiferimentoNumeroLineaType', RiferimentoNumeroLineaType)
 _module_typeBindings.RiferimentoNumeroLineaType = RiferimentoNumeroLineaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}SoggettoEmittenteType
@@ -325,15 +324,15 @@ class CondizioniPagamentoType(pyxb.binding.datatypes.string, pyxb.binding.basis.
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'CondizioniPagamentoType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 780, 2)
     _Documentation = None
+CondizioniPagamentoType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
+CondizioniPagamentoType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
 CondizioniPagamentoType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=CondizioniPagamentoType, enum_prefix=None)
 CondizioniPagamentoType.TP01 = CondizioniPagamentoType._CF_enumeration.addEnumeration(unicode_value='TP01', tag='TP01')
 CondizioniPagamentoType.TP02 = CondizioniPagamentoType._CF_enumeration.addEnumeration(unicode_value='TP02', tag='TP02')
 CondizioniPagamentoType.TP03 = CondizioniPagamentoType._CF_enumeration.addEnumeration(unicode_value='TP03', tag='TP03')
-CondizioniPagamentoType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-CondizioniPagamentoType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(4))
-CondizioniPagamentoType._InitializeFacetMap(CondizioniPagamentoType._CF_enumeration,
-   CondizioniPagamentoType._CF_minLength,
-   CondizioniPagamentoType._CF_maxLength)
+CondizioniPagamentoType._InitializeFacetMap(CondizioniPagamentoType._CF_minLength,
+   CondizioniPagamentoType._CF_maxLength,
+   CondizioniPagamentoType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'CondizioniPagamentoType', CondizioniPagamentoType)
 _module_typeBindings.CondizioniPagamentoType = CondizioniPagamentoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}ModalitaPagamentoType
@@ -412,15 +411,15 @@ class EsigibilitaIVAType(pyxb.binding.datatypes.string, pyxb.binding.basis.enume
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'EsigibilitaIVAType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1039, 2)
     _Documentation = None
+EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
+EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 EsigibilitaIVAType._CF_enumeration = pyxb.binding.facets.CF_enumeration(value_datatype=EsigibilitaIVAType, enum_prefix=None)
 EsigibilitaIVAType.D = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='D', tag='D')
 EsigibilitaIVAType.I = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='I', tag='I')
 EsigibilitaIVAType.S = EsigibilitaIVAType._CF_enumeration.addEnumeration(unicode_value='S', tag='S')
-EsigibilitaIVAType._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
-EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_enumeration,
-   EsigibilitaIVAType._CF_minLength,
-   EsigibilitaIVAType._CF_maxLength)
+EsigibilitaIVAType._InitializeFacetMap(EsigibilitaIVAType._CF_minLength,
+   EsigibilitaIVAType._CF_maxLength,
+   EsigibilitaIVAType._CF_enumeration)
 Namespace.addCategoryObject('typeBinding', 'EsigibilitaIVAType', EsigibilitaIVAType)
 _module_typeBindings.EsigibilitaIVAType = EsigibilitaIVAType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NaturaType
@@ -825,9 +824,9 @@ RateType._CF_pattern = pyxb.binding.facets.CF_pattern()
 RateType._CF_pattern.addPattern(pattern='[0-9]{1,3}\\.[0-9]{2}')
 # Follow(s) line(s) are ignored because string class
 # # RateType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RateType, value=pyxb.binding.datatypes.decimal('100.0'))
-RateType._InitializeFacetMap(RateType._CF_pattern,
+# RateType._InitializeFacetMap(RateType._CF_pattern,
 # Follow(s) line(s) are ignored because string class
-# #    RateType._CF_maxInclusive)
+#    RateType._CF_maxInclusive)
 Namespace.addCategoryObject('typeBinding', 'RateType', RateType)
 _module_typeBindings.RateType = RateType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}RiferimentoFaseType
@@ -836,10 +835,10 @@ class RiferimentoFaseType(pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'RiferimentoFaseType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1391, 2)
     _Documentation = None
-RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(1))
 RiferimentoFaseType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(999))
-RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_minInclusive,
-   RiferimentoFaseType._CF_maxInclusive)
+RiferimentoFaseType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=RiferimentoFaseType, value=pyxb.binding.datatypes.integer(1))
+RiferimentoFaseType._InitializeFacetMap(RiferimentoFaseType._CF_maxInclusive,
+   RiferimentoFaseType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'RiferimentoFaseType', RiferimentoFaseType)
 _module_typeBindings.RiferimentoFaseType = RiferimentoFaseType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroColliType
@@ -848,10 +847,10 @@ class NumeroColliType(pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroColliType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1397, 2)
     _Documentation = None
-NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(1))
 NumeroColliType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(9999))
-NumeroColliType._InitializeFacetMap(NumeroColliType._CF_minInclusive,
-   NumeroColliType._CF_maxInclusive)
+NumeroColliType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=NumeroColliType, value=pyxb.binding.datatypes.integer(1))
+NumeroColliType._InitializeFacetMap(NumeroColliType._CF_maxInclusive,
+   NumeroColliType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroColliType', NumeroColliType)
 _module_typeBindings.NumeroColliType = NumeroColliType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}NumeroLineaType
@@ -860,10 +859,10 @@ class NumeroLineaType(pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'NumeroLineaType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1403, 2)
     _Documentation = None
-NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(1))
 NumeroLineaType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(9999))
-NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_minInclusive,
-   NumeroLineaType._CF_maxInclusive)
+NumeroLineaType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=NumeroLineaType, value=pyxb.binding.datatypes.integer(1))
+NumeroLineaType._InitializeFacetMap(NumeroLineaType._CF_maxInclusive,
+   NumeroLineaType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'NumeroLineaType', NumeroLineaType)
 _module_typeBindings.NumeroLineaType = NumeroLineaType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}CAPType
@@ -905,10 +904,10 @@ class GiorniTerminePagamentoType(pyxb.binding.datatypes.integer):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'GiorniTerminePagamentoType')
     _XSDLocation = pyxb.utils.utility.Location('../data/fattura_elettronica_B2B/Fattura_VFPR12.xsd', 1424, 2)
     _Documentation = None
-GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
 GiorniTerminePagamentoType._CF_maxInclusive = pyxb.binding.facets.CF_maxInclusive(value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(999))
-GiorniTerminePagamentoType._InitializeFacetMap(GiorniTerminePagamentoType._CF_minInclusive,
-   GiorniTerminePagamentoType._CF_maxInclusive)
+GiorniTerminePagamentoType._CF_minInclusive = pyxb.binding.facets.CF_minInclusive(value_datatype=GiorniTerminePagamentoType, value=pyxb.binding.datatypes.integer(0))
+GiorniTerminePagamentoType._InitializeFacetMap(GiorniTerminePagamentoType._CF_maxInclusive,
+   GiorniTerminePagamentoType._CF_minInclusive)
 Namespace.addCategoryObject('typeBinding', 'GiorniTerminePagamentoType', GiorniTerminePagamentoType)
 _module_typeBindings.GiorniTerminePagamentoType = GiorniTerminePagamentoType
 # Atomic simple type: {http://ivaservizi.agenziaentrate.gov.it/docs/xsd/fatture/v1.2}QuantitaType

@@ -3,7 +3,7 @@
 # flake8: noqa
 # ./_cm.py
 # PyXB bindings for NM:6d05a298a781c71d177aab761a79c5e637d7f467
-# Generated 2022-09-27 06:52:14.128077 by PyXB version 1.2.6 using Python 2.7.18.final.0
+# Generated 2022-09-27 15:28:24.823993 by PyXB version 1.2.6 using Python 2.7.18.final.0
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # by Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 # Namespace urn:www.agenziaentrate.gov.it:specificheTecniche:common [xmlns:cm]
@@ -22,7 +22,7 @@ try:
 except ImportError as err:
     _logger.debug(err)
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:27208af4-3e20-11ed-a076-00155da0804a')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:4328bd82-3e68-11ed-81ac-00155da0804a')
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
 # Generated bindings are not compatible across PyXB versions
@@ -37,7 +37,6 @@ try:
     import pyxb.binding.datatypes
 except ImportError as err:
     _logger.debug(err)
-SCHEMA_FILE = ''
 # NOTE: All namespace declarations are reserved within the binding
 Namespace = pyxb.namespace.NamespaceForURI('urn:www.agenziaentrate.gov.it:specificheTecniche:common', create_if_missing=True)
 Namespace.configureCategories(['typeBinding', 'elementBinding'])
@@ -104,11 +103,11 @@ class DatoNU_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoNU_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 23, 1)
     _Documentation = 'Tipo semplice che identifica numeri naturali positivi e negativi con al massimo 16 cifre.'
+DatoNU_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoNU_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoNU_Type._CF_pattern.addPattern(pattern='(\\-[1-9]|[1-9])[0-9]*')
-DatoNU_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
-DatoNU_Type._InitializeFacetMap(DatoNU_Type._CF_pattern,
-   DatoNU_Type._CF_maxLength)
+DatoNU_Type._InitializeFacetMap(DatoNU_Type._CF_maxLength,
+   DatoNU_Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DatoNU_Type', DatoNU_Type)
 _module_typeBindings.DatoNU_Type = DatoNU_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoPC_Type
@@ -117,11 +116,11 @@ class DatoPC_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoPC_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 32, 1)
     _Documentation = 'Tipo semplice che esprime una percentuale e dunque consente valori positivi non superiori a 100, con al massimo 2 cifre decimali. Il separatore decimale previsto \xe8 la virgola.'
+DatoPC_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoPC_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoPC_Type._CF_pattern.addPattern(pattern='[0-9]?[0-9](,\\d{1,3})?|100(,0{1,3})?')
-DatoPC_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
-DatoPC_Type._InitializeFacetMap(DatoPC_Type._CF_pattern,
-   DatoPC_Type._CF_maxLength)
+DatoPC_Type._InitializeFacetMap(DatoPC_Type._CF_maxLength,
+   DatoPC_Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DatoPC_Type', DatoPC_Type)
 _module_typeBindings.DatoPC_Type = DatoPC_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoQU_Type
@@ -130,11 +129,11 @@ class DatoQU_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoQU_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 41, 1)
     _Documentation = 'Tipo semplice che identifica numeri positivi con al massimo 5 cifre decimali. La lunghezza massima prevista \xe8 di 16 caratteri, il separatore decimale previsto \xe8 la virgola.'
+DatoQU_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoQU_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoQU_Type._CF_pattern.addPattern(pattern='[0-9]+(,[0-9]{1,5})?')
-DatoQU_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
-DatoQU_Type._InitializeFacetMap(DatoQU_Type._CF_pattern,
-   DatoQU_Type._CF_maxLength)
+DatoQU_Type._InitializeFacetMap(DatoQU_Type._CF_maxLength,
+   DatoQU_Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DatoQU_Type', DatoQU_Type)
 _module_typeBindings.DatoQU_Type = DatoQU_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoVP_Type
@@ -143,11 +142,11 @@ class DatoVP_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoVP_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 50, 1)
     _Documentation = 'Tipo semplice che identifica numeri positivi con 2 cifre decimali. La lunghezza massima prevista \xe8 di 16 caratteri, il separatore decimale previsto \xe8 la virgola.'
+DatoVP_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
 DatoVP_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoVP_Type._CF_pattern.addPattern(pattern='[0-9]+,[0-9]{2}')
-DatoVP_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(16))
-DatoVP_Type._InitializeFacetMap(DatoVP_Type._CF_pattern,
-   DatoVP_Type._CF_maxLength)
+DatoVP_Type._InitializeFacetMap(DatoVP_Type._CF_maxLength,
+   DatoVP_Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DatoVP_Type', DatoVP_Type)
 _module_typeBindings.DatoVP_Type = DatoVP_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoN1_Type
@@ -156,11 +155,11 @@ class DatoN1_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoN1_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 59, 1)
     _Documentation = 'Tipo semplice che identifica i numeri naturali da 1 a 9.'
+DatoN1_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 DatoN1_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
 DatoN1_Type._CF_pattern.addPattern(pattern='[1-9]')
-DatoN1_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
-DatoN1_Type._InitializeFacetMap(DatoN1_Type._CF_pattern,
-   DatoN1_Type._CF_maxLength)
+DatoN1_Type._InitializeFacetMap(DatoN1_Type._CF_maxLength,
+   DatoN1_Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DatoN1_Type', DatoN1_Type)
 _module_typeBindings.DatoN1_Type = DatoN1_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoNP_Type
@@ -302,13 +301,13 @@ class DatoGA_Type(pyxb.binding.datatypes.string):
     _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'DatoGA_Type')
     _XSDLocation = pyxb.utils.utility.Location('../data/common/typesDati_v3.xsd', 162, 1)
     _Documentation = 'Tipo semplice che identifica il numero di giorni in un anno e va da 1 a 365'
-DatoGA_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
-DatoGA_Type._CF_pattern.addPattern(pattern='[1-9]|([1-9][0-9])|([12][0-9][0-9])|(3[0-5][0-9])|(36[0-5])')
 DatoGA_Type._CF_minLength = pyxb.binding.facets.CF_minLength(value=pyxb.binding.datatypes.nonNegativeInteger(1))
 DatoGA_Type._CF_maxLength = pyxb.binding.facets.CF_maxLength(value=pyxb.binding.datatypes.nonNegativeInteger(3))
-DatoGA_Type._InitializeFacetMap(DatoGA_Type._CF_pattern,
-   DatoGA_Type._CF_minLength,
-   DatoGA_Type._CF_maxLength)
+DatoGA_Type._CF_pattern = pyxb.binding.facets.CF_pattern()
+DatoGA_Type._CF_pattern.addPattern(pattern='[1-9]|([1-9][0-9])|([12][0-9][0-9])|(3[0-5][0-9])|(36[0-5])')
+DatoGA_Type._InitializeFacetMap(DatoGA_Type._CF_minLength,
+   DatoGA_Type._CF_maxLength,
+   DatoGA_Type._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'DatoGA_Type', DatoGA_Type)
 _module_typeBindings.DatoGA_Type = DatoGA_Type
 # Atomic simple type: {urn:www.agenziaentrate.gov.it:specificheTecniche:common}DatoTL_Type
