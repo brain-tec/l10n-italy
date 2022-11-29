@@ -90,6 +90,7 @@ class StockPickingPackagePreparation(models.Model):
         ("ddt_number", "unique(ddt_number)", "DdT number already exists!")
     ]
 
+    # All fields name are base on stock.picking.package.preparation (DdT) names
     FIELD_MAP = {
         "res.partner": {
             "ddt_type_id": False,
@@ -402,7 +403,7 @@ class StockPickingPackagePreparation(models.Model):
             Ok: field in model
             X:  field not in model
             ID: field is key of model
-        1.  field name is "property_carrier_id"
+        1.  field name is "property_delivery_carrier_id"
         2.  field name is prefixed with "default_"
         3.  field name is ddt_type
         4.  field name is "number_of packages"
