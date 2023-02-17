@@ -1,6 +1,6 @@
 
 ======================
-|icon| DDT 10.0.1.8.19
+|icon| DDT 10.0.1.8.20
 ======================
 
 
@@ -221,6 +221,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.20 (2023-02-16)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Field carrie_partner moved on other module / Il campo anagrfaica vettore spostato su altro modulo
+
 10.0.1.8.19 (2023-01-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -264,11 +269,6 @@ ChangeLog History / Cronologia modifiche
 
 * [IMP] Fiscal document type renamed
 
-10.0.1.8.12 (2022-02-10)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Selected journal / Registro selezionato
-
 
 
 |
@@ -295,6 +295,8 @@ Authors / Autori
 * `Open Force <https://www.openforce.it/>`__
 * `Dinamiche Aziendali <http://www.dinamicheaziendali.it>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+Authors
+-------
 
 
 Contributors / Collaboratori
@@ -309,6 +311,9 @@ Contributors / Collaboratori
 * Alessandro Camilli <alessandrocamilli@openforce.it>
 * Gianmarco Conte <gconte@dinamicheaziendali.it>
 * Antonio M. Vigliotti <info@shs-av.com>
+Contributors
+------------
+
 
 
 Maintainer / Manutenzione
@@ -340,7 +345,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-01-23
+Last Update / Ultimo aggiornamento: 2023-02-16
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

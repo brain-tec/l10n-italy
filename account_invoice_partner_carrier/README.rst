@@ -1,12 +1,12 @@
 
-================================
-|icon| multibase_plus 10.0.0.1.5
-================================
+============================================
+|icon| Partner Carrier on invoice 10.0.0.1.0
+============================================
 
 
-**Enhanced Odoo Features**
+**Add the Partner Carrier field on account.invoice**
 
-.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/multibase_plus/static/description/icon.png
+.. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/account_invoice_partner_carrier/static/description/icon.png
 
 |Maturity| |Build Status| |Codecov Status| |license gpl| |Try Me|
 
@@ -18,36 +18,12 @@
 Overview / Panoramica
 =====================
 
-|en| This module add various useful features to Odoo instance in order to make installation interface indipendent by version.
+|en| This module add the field partner_carrier on invoice
 
 
 |
 
-|it| Questo modulo aggiunge varie caratteristiche utili che rendono l'interfaccia dell'installazione indipendente dalla versione di Odoo.
-
-
-|
-
-Features / Caratteristiche
---------------------------
-
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
-| Feature / Caratteristica                                             | 6.1 | 7.0 | 8.0 | 9.0 | 10.0 | 11.0 | 12.0 | 13.0 | 14.0 | 15.0 | 16.0 |
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
-| Customer ref in Sale Order tree / Rif. Cliente in lista ordini       | ✗   | ✔   | ✗   | ✗   | ✔    | ✗    | 🛈    | 🛈    | 🛈    | 🛈    | 🛈    |
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
-| Subtotal in Sale Order tree / Imponibile in lista ordini             | ✗   | ✔   | ✗   | ✗   | ✔    | ✗    | 🛈    | 🛈    | 🛈    | 🛈    | 🛈    |
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
-| Supplier ref in Purchase Order tree / Rif. Fornitore in lista ordini | ✗   | ✗   | ✔   | ✗   | ✔    | ✗    | 🛈    | 🛈    | 🛈    | 🛈    | 🛈    |
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
-| Refund (credit note) invoice menu / Menù Note Credito                | 🗘   | 🗘   | 🗘   | 🗘   | ✔    | 🗘    | 🛈    | 🛈    | 🛈    | 🛈    | 🛈    |
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
-| Invoice group by company / Raggruppamento fatture per azienda        | ✗   | ✗   | ✗   | ✔   | ✔    | ✗    | 🛈    | 🛈    | 🛈    | 🛈    | 🛈    |
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
-| Supplier ref in Purchase Order tree / Rif. Fornitore in lista ordini | ✗   | ✗   | ✗   | ✗   | ✔    | ✗    | ✗    | ✗    | ✗    | ✗    | ✗    |
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
-| Date in invoice tree / Data contabile in lista fatture               | ✗   | ✗   | ✗   | ✗   | ✔    | ✗    | ✗    | ✗    | ✗    | ✗    | ✗    |
-+----------------------------------------------------------------------+-----+-----+-----+-----+------+------+------+------+------+------+------+
+|it| QUesto modulo aggiunge il campo nominativo vettore in fattura.
 
 
 |
@@ -116,7 +92,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode 
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **multibase_plus** > Install
+* |menu| Setting > Apps |right_do| Select **account_invoice_partner_carrier** > Install
 
 
 |
@@ -149,7 +125,7 @@ From UI: go to:
 
 * |menu| Setting > Activate Developer mode
 * |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **multibase_plus** > Update
+* |menu| Setting > Apps |right_do| Select **account_invoice_partner_carrier** > Update
 
 |
 
@@ -185,16 +161,10 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
-10.0.0.1.6 (2023-02-15)
+10.0.0.1.0 (2023-01-20)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] multibase_plus: invoice data in invoice tree / Data contabile in vista fatture
-
-10.0.0.1.5 (2022-12-23)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] multibase_plus: supplier ref / Riferimento fornitori in lista ordini fornitori
-
+* [IMP] First release / Prima versione
 
 
 
@@ -216,18 +186,20 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors / Autori
 ----------------
 
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
+
 Authors
 -------
+
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
 Contributors / Collaboratori
 ----------------------------
 
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
 Contributors
 ------------
 
+* Antonio M. Vigliotti <info@shs-av.com>
 
 
 Maintainer / Manutenzione
