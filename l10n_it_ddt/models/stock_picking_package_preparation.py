@@ -1129,10 +1129,10 @@ class StockPickingPackagePreparation(models.Model):
                 ddt.pricelist_id = self._default_pricelist()
             carrier = ddt.carrier_id
             if carrier:
-                if ddt.state != 'draft':
-                    raise UserError(_(
-                        'The delivery note state have to be draft '
-                        'to add delivery lines.'))
+                # if ddt.state != 'draft':
+                #     raise UserError(_(
+                #         'The delivery note state have to be draft '
+                #         'to evaluate delivery lines.'))
 
                 if carrier.delivery_type in ['fixed', 'base_on_rule']:
                     price_unit = ddt.get_price_from_picking()
@@ -1144,7 +1144,7 @@ class StockPickingPackagePreparation(models.Model):
                     1.0 + (float(self.carrier_id.margin) / 100.0))
 
             else:
-                raise UserError(_('No carrier set for this order.'))
+                raise UserError(_('No carrier set for this delivery note.'))
 
         return True
 

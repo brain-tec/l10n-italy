@@ -1,6 +1,6 @@
 
 ======================
-|icon| DDT 10.0.1.8.20
+|icon| DDT 10.0.1.8.21
 ======================
 
 
@@ -221,6 +221,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.21 (2023-03-29)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Recalculate delivery cost on done delivery note / Ricalcolo spese trasporto su DDT ufficiale
+
 10.0.1.8.20 (2023-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -345,7 +350,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-02-16
+Last Update / Ultimo aggiornamento: 2023-03-29
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status

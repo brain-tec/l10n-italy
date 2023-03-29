@@ -312,22 +312,32 @@ class SaleOrderLine(models.Model):
 
     weight = fields.Float(string="Line Weight")
 
-    @api.multi
     @api.onchange("product_id", "product_uom_qty")
     def _compute_weight(self):
         if self.product_id:
             self.weight = self.product_id.weight * self.product_uom_qty
-        # return super(SaleOrderLine, self)._compute_weight()
+
+    @api.depends("price_subtotal")
+    def _compute_delivery_price(self):
+        for line in self:
+            if line.product_id and line.product_id.is_delivery and line.price_subtotal:
+                line.order_id.delivery_price = line.price_subtotal
 
     @api.model
     def create(self, vals):
         if vals.get("product_id"):
             order = self.env["sale.order"].browse(vals["order_id"])
+            product = self.env["product.product"].browse(vals["product_id"])
             if not order.carrier_id:
-                product = self.env["product.product"].browse(vals["product_id"])
                 if product.is_delivery:
                     carrier = self.env['delivery.carrier'].search(
                         [('product_id', '=', vals["product_id"])])
                     if carrier:
                         order.carrier_id = carrier.id
+            if order.carrier_id and product.is_delivery:
+                delivery_price = (vals.get("price_subtotal", 0.0)
+                                  or vals.get("price_unit", 0.0))
+                if delivery_price:
+                    order.delivery_price = delivery_price
+
         return super(SaleOrderLine, self).create(vals)

@@ -1,3 +1,8 @@
+10.0.1.8.21 (2023-03-29)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Recalculate delivery cost on done delivery note / Ricalcolo spese trasporto su DDT ufficiale
+
 10.0.1.8.20 (2023-02-16)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
