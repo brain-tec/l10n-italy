@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-<data noupdate="1">
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
     <!-- DdT Sequence -->
     <record id="seq_ddt" model="ir.sequence">
         <field name="name">DDT</field>
@@ -12,11 +11,9 @@
     <!-- DdT Type -->
     <record id="ddt_type_ddt" model="stock.ddt.type">
         <field name="name">DdT</field>
-        <field name="sequence_id" ref="seq_ddt" />
+        <field name="sequence_id" ref="seq_ddt"/>
     </record>
-</data>
 
-<data noupdate="0">
     <!-- carriage conditions -->
     <record id="carriage_condition_PF" model="stock.picking.carriage_condition">
         <field name="name">Porto Franco (DDP)</field>
@@ -72,5 +69,4 @@
         <field name="name">Corriere</field>
     </record>
 
-</data>
 </odoo>
