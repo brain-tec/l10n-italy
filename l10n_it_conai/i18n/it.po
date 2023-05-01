@@ -1,21 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_it_conai
+#	* l10n_it_conai
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 19:43+0000\n"
-"PO-Revision-Date: 2021-03-14 20:46+0100\n"
+"POT-Creation-Date: 2023-04-30 09:20+0000\n"
+"PO-Revision-Date: 2023-04-30 09:20+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
 "Language: it_IT\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_product_category_account_id
@@ -34,12 +33,17 @@ msgid "Applying percent"
 msgstr "Percentuale da applicare"
 
 #. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.account_config_view_conai_product
+msgid "CONAI"
+msgstr "CONAI"
+
+#. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_account_invoice_line_conai_category2_id
 #: model:ir.model.fields,field_description:l10n_it_conai.field_delivery_carrier_conai_category2_id
 #: model:ir.model.fields,field_description:l10n_it_conai.field_product_product_conai_category2_id
 #: model:ir.model.fields,field_description:l10n_it_conai.field_product_template_conai_category2_id
 msgid "CONAI 2nd Category"
-msgstr "2da categoria CONAI"
+msgstr "2.a categoria CONAI"
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_account_invoice_line_weight2
@@ -47,7 +51,7 @@ msgstr "2da categoria CONAI"
 #: model:ir.model.fields,field_description:l10n_it_conai.field_product_product_weight2
 #: model:ir.model.fields,field_description:l10n_it_conai.field_product_template_weight2
 msgid "CONAI 2nd Category Weight"
-msgstr "Peso 2da categoria CONAi"
+msgstr "Peso 2.a categoria CONAi"
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_account_invoice_amount_conai
@@ -68,9 +72,6 @@ msgstr "Importo CONAI"
 #: model:ir.model.fields,field_description:l10n_it_conai.field_product_product_conai_category_id
 #: model:ir.model.fields,field_description:l10n_it_conai.field_product_template_conai_category_id
 #: model:ir.model.fields,field_description:l10n_it_conai.field_res_partner_conai_exemption_id
-#: model:ir.model.fields,field_description:l10n_it_conai.field_res_partner_invoice_conai_exemption_id
-#: model:ir.model.fields,field_description:l10n_it_conai.field_res_partner_shipping_conai_exemption_id
-#: model:ir.model.fields,field_description:l10n_it_conai.field_res_partner_supplier_conai_exemption_id
 #: model:ir.model.fields,field_description:l10n_it_conai.field_res_users_conai_exemption_id
 #: model:ir.model.fields,field_description:l10n_it_conai.field_sale_order_line_conai_category_id
 #: model:ir.model.fields,field_description:l10n_it_conai.field_stock_picking_package_preparation_conai_exemption_id
@@ -122,14 +123,48 @@ msgid "CONAI Weight"
 msgstr "Peso CONAI"
 
 #. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
+msgid "CONAI amount"
+msgstr "CONAI amount"
+
+#. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
+msgid "CONAI cat."
+msgstr "CONAI cat."
+
+#. module: l10n_it_conai
 #: model:ir.ui.menu,name:l10n_it_conai.menu_conai
 msgid "CONAI configuration"
 msgstr "Configurazione CONAI"
 
 #. module: l10n_it_conai
+#: model:ir.actions.report.xml,name:l10n_it_conai.action_report_conai_statement
+msgid "CONAI data"
+msgstr "Dati CONAI"
+
+#. module: l10n_it_conai
+#: model:product.product,name:l10n_it_conai.Contributo ambientale conai
+#: model:product.template,name:l10n_it_conai.Contributo ambientale conai_product_template
+msgid "CONAI environmental contribution"
+msgstr "Contributo ambientale CONAI"
+
+#. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
+msgid "CONAI lines"
+msgstr "Righe CONAI"
+
+#. module: l10n_it_conai
 #: model:ir.model,name:l10n_it_conai.model_italy_conai_partner_category
 msgid "CONAI partner category"
 msgstr "Categoria CONAI cliente"
+
+#. module: l10n_it_conai
+#: model:ir.model.fields,field_description:l10n_it_conai.field_account_config_settings_conai_product_id
+#: model:ir.model.fields,field_description:l10n_it_conai.field_res_company_conai_product_id
+#: model:ir.model.fields,help:l10n_it_conai.field_account_config_settings_conai_product_id
+#: model:ir.ui.view,arch_db:l10n_it_conai.account_config_view_conai_product
+msgid "CONAI product"
+msgstr "Prodotto CONAI"
 
 #. module: l10n_it_conai
 #: model:ir.model,name:l10n_it_conai.model_italy_conai_product_category
@@ -170,14 +205,15 @@ msgid "CONAI summary"
 msgstr "Riepilogo CONAI"
 
 #. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
-msgid "Cat. CONAI"
-msgstr ""
+#: model:ir.model.fields,field_description:l10n_it_conai.field_account_invoice_line_conai_summary_line
+#: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_line_conai_summary_line
+msgid "CONAI summary line"
+msgstr "Riga riepilogo CONAI"
 
 #. module: l10n_it_conai
 #: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
 msgid "Categoria conai"
-msgstr ""
+msgstr "Categoria conai"
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_conai_category_ids
@@ -199,18 +235,6 @@ msgstr "Codice"
 #. module: l10n_it_conai
 #: sql_constraint:italy.conai.partner.category:0
 #: sql_constraint:italy.conai.product.category:0
-#: sql_constraint:italy.conai.partner.category
-#: sql_constraint:italy.conai.product.category
-#: sql_constraint:italy.conai.partner.category
-#: sql_constraint:italy.conai.product.category
-#: sql_constraint:italy.conai.partner.category
-#: sql_constraint:italy.conai.product.category
-#: sql_constraint:italy.conai.partner.category
-#: sql_constraint:italy.conai.product.category
-#: sql_constraint:italy.conai.partner.category
-#: sql_constraint:italy.conai.product.category
-#: sql_constraint:italy.conai.partner.category
-#: sql_constraint:italy.conai.product.category
 msgid "Code already exists!"
 msgstr "Il codice esiste già!"
 
@@ -223,45 +247,6 @@ msgstr "Aziende"
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_company_id
 msgid "Company"
 msgstr "Azienda"
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
-msgid "Con conai"
-msgstr ""
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
-msgid "Con peso"
-msgstr ""
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.account_config_view_conai_product
-msgid "Conai"
-msgstr ""
-
-#. module: l10n_it_conai
-#: model:ir.model.fields,help:l10n_it_conai.field_account_config_settings_conai_product_id
-#: model:ir.ui.view,arch_db:l10n_it_conai.account_config_view_conai_product
-msgid "Conai product"
-msgstr "Prodotto CONAI"
-
-#. module: l10n_it_conai
-#: model:ir.model.fields,field_description:l10n_it_conai.field_account_config_settings_conai_product_id
-#: model:ir.model.fields,field_description:l10n_it_conai.field_res_company_conai_product_id
-msgid "Conai product id"
-msgstr "ID prodotto CONAI"
-
-#. module: l10n_it_conai
-#: model:product.product,name:l10n_it_conai.Contributo ambientale conai
-#: model:product.template,name:l10n_it_conai.Contributo conai_product_template
-#: ambientale conai conai_product_template
-#: ambientale conai conai_product_template
-#: ambientale conai conai_product_template
-#: ambientale conai conai_product_template
-#: ambientale conai conai_product_template
-#: ambientale conai conai_product_template
-msgid "Contributo ambientale CONAI"
-msgstr ""
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_partner_category_create_uid
@@ -282,11 +267,6 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
-msgid "Data fattura"
-msgstr ""
-
-#. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_account_invoice_line_date_invoice
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_line_date_invoice
 #: model:ir.model.fields,field_description:l10n_it_conai.field_sale_order_line_date_order
@@ -294,14 +274,14 @@ msgid "Date"
 msgstr "Data"
 
 #. module: l10n_it_conai
-#: model:ir.actions.report.xml,name:l10n_it_conai.action_report_conai_statement
-msgid "Dati per CONAI"
-msgstr ""
+#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
+msgid "Date Invoice"
+msgstr "Data fattura"
 
 #. module: l10n_it_conai
 #: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
-msgid "Descrizione"
-msgstr ""
+msgid "Description"
+msgstr "Descrizione"
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_partner_category_display_name
@@ -313,6 +293,28 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: l10n_it_conai
+#: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_category_conai_amount_due
+#: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_line_conai_amount_due
+msgid "Due CONAI Amount"
+msgstr "Importo CONAI dovuto"
+
+#. module: l10n_it_conai
+#: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_category_weight_due
+#: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_line_weight_due
+msgid "Due CONAI Weight"
+msgstr "Peso CONAI dovuto"
+
+#. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.italy_conai_statement_form_view
+msgid "Due Total CONAI"
+msgstr "Totale CONAI dovuto"
+
+#. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.italy_conai_statement_form_view
+msgid "Due Total Weight"
+msgstr "Peso totale CONAI dovuto"
+
+#. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_product_category_end_date
 msgid "End Applying Date"
 msgstr "Fine validità"
@@ -320,28 +322,22 @@ msgstr "Fine validità"
 #. module: l10n_it_conai
 #: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
 msgid "Esenzione conai"
-msgstr ""
+msgstr "Esenzione conai"
 
 #. module: l10n_it_conai
 #: selection:italy.conai.partner.category,sector:0
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
 msgid "Excluded"
 msgstr "Escluso"
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_partner_category_conai_percent
-msgid "Exemtion percent"
+msgid "Exemption percent"
 msgstr "Percentuale di esenzione"
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_date_from
 msgid "From Date"
-msgstr "Dalla data"
+msgstr "Da data"
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_account_invoice_amount_goods_service
@@ -362,11 +358,6 @@ msgstr "Raggruppare per"
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_line_id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
-msgid "Importo CONAI"
-msgstr ""
 
 #. module: l10n_it_conai
 #: model:ir.model,name:l10n_it_conai.model_account_invoice
@@ -413,11 +404,17 @@ msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
 
 #. module: l10n_it_conai
+#: model:ir.model.fields,field_description:l10n_it_conai.field_account_invoice_line_conai_manual
+#: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_line_conai_manual
+msgid "Manual CONAI amount"
+msgstr "Importo CONAI manuale"
+
+#. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_partner_category_name
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_product_category_name
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_name
 msgid "Name"
-msgstr "Descrizione"
+msgstr "Nome"
 
 #. module: l10n_it_conai
 #: model:ir.model,name:l10n_it_conai.model_stock_picking_package_preparation
@@ -431,12 +428,6 @@ msgstr "Riga preparazione collo"
 
 #. module: l10n_it_conai
 #: selection:italy.conai.product.category,type:0
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
 msgid "Packing"
 msgstr "Imballo"
 
@@ -451,53 +442,22 @@ msgid "Partner"
 msgstr "Nominativo"
 
 #. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
-msgid "Peso"
-msgstr ""
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
-msgid "Prezzo Un."
-msgstr "."
-
-#. module: l10n_it_conai
 #: model:ir.actions.act_window,name:l10n_it_conai.action_invoice_line_tree
 #: model:ir.ui.menu,name:l10n_it_conai.menu_invoice_line_tree
 msgid "Prodotti CONAI"
-msgstr ""
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.view_invoice_line_tree
-msgid "Prodotti in Fattura"
-msgstr ""
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
-msgid "Prodotto"
-msgstr ""
+msgstr "Prodotti 2"
 
 #. module: l10n_it_conai
 #: selection:italy.conai.partner.category,sector:0
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
 msgid "Producer"
-msgstr ""
+msgstr "Produttore"
 
 #. module: l10n_it_conai
 #: model:ir.model,name:l10n_it_conai.model_product_product
+#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
 #: selection:italy.conai.product.category,type:0
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
-#: selection:italy.conai.product.category,type
 msgid "Product"
-msgstr "Prodotto"
+msgstr "Prodotti"
 
 #. module: l10n_it_conai
 #: model:ir.model,name:l10n_it_conai.model_product_template
@@ -505,9 +465,14 @@ msgid "Product Template"
 msgstr "Prodotto radice"
 
 #. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.view_invoice_line_tree
+msgid "Products in invoice"
+msgstr "Prodotti in Fattura"
+
+#. module: l10n_it_conai
 #: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
-msgid "Quantità"
-msgstr ""
+msgid "Quantity"
+msgstr "Quantità"
 
 #. module: l10n_it_conai
 #: model:ir.ui.view,arch_db:l10n_it_conai.italy_conai_statement_form_view
@@ -533,16 +498,6 @@ msgstr "Riga ordine di vendita"
 #: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
 msgid "Search CONAI"
 msgstr "Ricerca CONAI"
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
-msgid "Senza conai"
-msgstr ""
-
-#. module: l10n_it_conai
-#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
-msgid "Senza peso"
-msgstr ""
 
 #. module: l10n_it_conai
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_product_category_start_date
@@ -574,6 +529,7 @@ msgstr "Tipo"
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_product_category_conai_price_unit
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_category_conai_price_unit
 #: model:ir.model.fields,field_description:l10n_it_conai.field_italy_conai_statement_line_conai_price_unit
+#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
 msgid "Unit Price"
 msgstr "Prezzo Unitario"
 
@@ -584,14 +540,13 @@ msgstr "Unità di misura"
 
 #. module: l10n_it_conai
 #: selection:italy.conai.partner.category,sector:0
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
-#: selection:italy.conai.partner.category,sector
 msgid "User"
 msgstr "Utente"
+
+#. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.conai_statement
+msgid "Weight"
+msgstr "Weight"
 
 #. module: l10n_it_conai
 #: model:ir.ui.view,arch_db:l10n_it_conai.view_invoice_line_tree
@@ -599,8 +554,28 @@ msgid "Weight Total"
 msgstr "Peso totale"
 
 #. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
+msgid "With CONAI"
+msgstr "Con CONAI"
+
+#. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
+msgid "With weight"
+msgstr "Con weight"
+
+#. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
+msgid "Without CONAI"
+msgstr "Senza CONAI"
+
+#. module: l10n_it_conai
+#: model:ir.ui.view,arch_db:l10n_it_conai.account_invoice_conai_search
+msgid "Without weight"
+msgstr "Senza peso"
+
+#. module: l10n_it_conai
 #: model:ir.model,name:l10n_it_conai.model_account_config_settings
 msgid "account.config.settings"
-msgstr ""
+msgstr "account.config.settings"
 
 

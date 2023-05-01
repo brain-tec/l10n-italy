@@ -13,7 +13,7 @@ class AccountConfigSettings(models.TransientModel):
 
     conai_product_id = fields.Many2one(
         related="company_id.conai_product_id",
-        help="Conai product",
+        help="CONAI product",
         domain=[("type", "=", "service")],
     )
 
@@ -29,4 +29,4 @@ class ResCompany(models.Model):
 
     _inherit = "res.company"
 
-    conai_product_id = fields.Many2one("product.product")
+    conai_product_id = fields.Many2one("product.product", string="CONAI product")
