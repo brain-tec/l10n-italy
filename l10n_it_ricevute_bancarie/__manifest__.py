@@ -5,7 +5,7 @@
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2017 Lorenzo Battistini - Agile Business Group
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -13,7 +13,6 @@
     "version": "10.0.1.3.12",
     "category": "Accounting & Finance",
     "author": "Odoo Community Association (OCA)",
-    "category": "Accounting & Finance",
     "website": "https://odoo-community.org/",
     "license": "AGPL-3",
     "depends": [
@@ -30,6 +29,7 @@
         "data/riba_sequence.xml",
         "wizard/wizard_accreditation.xml",
         "wizard/wizard_unsolved.xml",
+        "wizard/wizard_line_settlement.xml",
         "views/riba_view.xml",
         "views/account_view.xml",
         "wizard/wizard_riba_issue.xml",

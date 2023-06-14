@@ -32,7 +32,7 @@
         </record>
 
         <!-- ====================================================== -->
-        <!--                     ACTION EMISSIONE RIBA                -->
+        <!--                     ACTION EMISSIONE RIBA              -->
         <!-- ====================================================== -->
         <record id="riba_issue_action" model="ir.actions.act_window">
             <field name="name">Issue Ri.Ba.</field>

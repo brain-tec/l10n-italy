@@ -5,12 +5,12 @@
 # Copyright (C) 2012 Associazione OpenERP Italia
 # (<http://www.odoo-italia.org>).
 # Copyright (C) 2012-2018 Lorenzo Battistini - Agile Business Group
-# Copyright 2018-22 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2018-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
-
+from .open_items import OpenItems
 import odoo.addons.decimal_precision as dp
 
 
@@ -48,7 +48,7 @@ class AccountMove(models.Model):
     riba_accredited_ids = fields.One2many(
         "riba.distinta",
         "accreditation_move_id",
-        "Distinte RiBa accredited",
+        "Accredited C/O Slips",
         readonly=True,
     )
     riba_unsolved_ids = fields.One2many(
@@ -64,7 +64,7 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     distinta_line_ids = fields.One2many(
-        "riba.distinta.move.line", "move_line_id", "Dettaglio riba", copy=False
+        "riba.distinta.move.line", "move_line_id", "C/O slip lines", copy=False
     )
     riba = fields.Boolean(
         # related="invoice_id.payment_term_id.riba",
@@ -137,6 +137,22 @@ class AccountMoveLine(models.Model):
             line.update_paid_riba_lines()
         return res
 
+    @api.multi
+    def registra_incasso_riba(self):
+        open_items = OpenItems()
+        for move_line in self:
+            open_items.add_move_line(move_line)
+
+        vals = open_items.load_move_vals()
+        if vals:
+            settlement_move = self.env["account.move"].create(vals)
+            settlement_move.post()
+            open_items.couple_settlement(settlement_move)
+        open_items.do_reconciles()
+        for move_line in self:
+            for riba_move_line in move_line.distinta_line_ids:
+                riba_line = riba_move_line.riba_line_id
+                riba_line.riba_line_set_state("paid")
 
 class AccountInvoice(models.Model):
     @api.multi

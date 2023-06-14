@@ -1,6 +1,6 @@
 
 ===================
-|icon|  10.0.1.8.22
+|icon|  10.0.1.8.25
 ===================
 
 
@@ -221,6 +221,13 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.8.25 (2023-06-13)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Cancel DdT from order with invoice / Annullo DdT da ordine con fattura
+* [IMP] Cancel DdT check for backorder / Annullo DdT controlla se creato ordine saldo
+* [QUA] Coverage 67% (1377/453) + 247cp
+
 10.0.1.8.24 (2023-05-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -286,11 +293,6 @@ ChangeLog History / Cronologia modifiche
 * [IMP] More check for <add_to_ddt> function / Nuovi controlli
 * [FIX] All picking states driven by DdT / Prelivei guidati da DdT
 * [IMP] Create DdT from 2 or more sale order / Crea DdT da 2 o più ordini
-
-10.0.1.8.13 (2022-06-20)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Fiscal document type renamed
 
 
 
