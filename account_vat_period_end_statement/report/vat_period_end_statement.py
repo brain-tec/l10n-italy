@@ -37,10 +37,10 @@ class Report(orm.Model):
 
 class VatPeriodEndStatementReport(report_sxw.rml_parse):
     _name = 'report.vat.period.end.statement'
+    _description = "VAT Statement report"
 
     def __init__(self, cr, uid, name, context=None):
-        if context is None:
-            context = {}
+        context = context or {}
         super(VatPeriodEndStatementReport, self).__init__(
             cr, uid, name, context=context)
         self.query = ""
@@ -52,6 +52,7 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
             'time': time,
             'statement': self._get_statement,
             'tax_codes_amounts': self._get_tax_codes_amounts,
+            'tax_codes_year_amounts': self._get_tax_codes_year_amounts,
             'account_vat_amounts': self._get_account_vat_amounts,
             'l10n_it_count_fiscal_page_base': self._get_fiscal_page_base,
         })
@@ -73,107 +74,51 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
                 self.cr, self.uid, statement_id, self.context)
         return statement.fiscal_page_base
 
-    def _compute_tax_amount(self, tax, tax_code, base_code, context=None):
-        '''
-        The Tax is child of another main tax.
-        The main tax has more childs:
-        - Child with tax_code_id are deductible
-        - Child without tax_code_id are undeductible
-        '''
+    def _get_tax_codes_amounts(
+            self, period_id, type, statement_line_ids=None, context=None):
         res = {}
-        vat_deductible = 0
-        vat_undeductible = 0
-        vat_name = False
-        if tax.parent_id:
-            vat_code = tax.parent_id.description
-            vat_name = tax.parent_id.name
-            for child in tax.parent_id.child_ids:
-                # deductibile
-                if (
-                    child.tax_code_id and
-                    child.tax_code_id.vat_statement_account_id
-                ):
-                    vat_deductible = child.tax_code_id.sum_period
-                # undeductibile
-                else:
-                    vat_undeductible = child.tax_code_id.sum_period
-        else:
-            vat_code = tax_code.code
-            vat_name = tax_code.name
-            vat_deductible = tax_code.sum_period
-
-        res[vat_name] = {
-            'code': vat_code,
-            'tax_code_name': vat_name,
-            'vat': vat_deductible + vat_undeductible,
-            'vat_deductible': vat_deductible,
-            'vat_undeductible': vat_undeductible,
-            'base': base_code.sum_period
-        }
-
+        for stmt_line in statement_line_ids:
+            if not stmt_line.tax_code_id and not stmt_line.base_code_id:
+                continue
+            res[stmt_line.tax_code_id] = {
+                'code': stmt_line.base_code_id.code
+                if stmt_line.base_code_id else stmt_line.tax_code_id.code,
+                'name': stmt_line.base_code_id.name
+                if stmt_line.base_code_id else stmt_line.tax_code_id.name,
+                'base': stmt_line.base_amount,
+                'vat': stmt_line.amount,
+                'vat_deductible': stmt_line.amount,
+                'vat_undeductible': 0.0,
+            }
         return res
+    # def _get_tax_codes_amounts(self, period_id, tax_code_ids=None,
+    #                            context=None):
+    #     code_pool = self.pool.get('account.tax.code')
+    #     return code_pool._get_tax_codes_amounts(
+    #         self.cr, self.uid, period_id, tax_code_ids, context)
 
-    def _build_codes_dict(self, tax_code, res=None, context=None):
-
-        if context is None:
-            context = {}
-        if res is None:
-            res = {}
-        tax_pool = self.pool.get('account.tax')
-
-        # search for taxes linked to that code
-        tax_ids = tax_pool.search(
-            self.cr, self.uid, [('tax_code_id', '=', tax_code.id)],
-            context=context)
-        if tax_ids:
-            tax = tax_pool.browse(
-                self.cr, self.uid, tax_ids[0], context=context)
-            # search for the related base code
-            base_code = (
-                tax.base_code_id or tax.parent_id and
-                tax.parent_id.base_code_id or False)
-            if not base_code:
-                raise orm.except_orm(
-                    _('Error'),
-                    _('No base code found for tax code %s') % tax_code.name)
-            # check if every tax is linked to the same tax code and base code
-            for tax in tax_pool.browse(
-                self.cr, self.uid, tax_ids, context=context
-            ):
-                test_base_code = (
-                    tax.base_code_id or tax.parent_id and
-                    tax.parent_id.base_code_id or False)
-                if test_base_code.id != base_code.id:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _('Not every tax linked to tax code %s is linked to '
-                          'the same base code')
-                        % tax_code.name)
-            if tax_code.sum_period or base_code.sum_period:
-                tax_vals = self._compute_tax_amount(
-                    tax, tax_code, base_code, context)
-                res.update(tax_vals)
-
-        for child_code in tax_code.child_ids:
-            res = self._build_codes_dict(
-                child_code, res=res, context=context)
-
-        return res
-
-    def _get_tax_codes_amounts(self, period_id, tax_code_ids=None,
-                               context=None):
-        if context is None:
-            context = {}
-        if tax_code_ids is None:
-            tax_code_ids = []
-        res = {}
-        code_pool = self.pool.get('account.tax.code')
-        context['period_id'] = period_id
-        for tax_code in code_pool.browse(
-            self.cr, self.uid, tax_code_ids, context=context
-        ):
-            res = self._build_codes_dict(tax_code, res=res, context=context)
-        return res
+    def _get_tax_codes_year_amounts(
+            self, code_amounts, statement_line_ids=None, context=None):
+        code_amounts = code_amounts or {}
+        for stmt_line in statement_line_ids:
+            if not stmt_line.tax_code_id and not stmt_line.base_code_id:
+                continue
+            if stmt_line.base_code_id not in code_amounts:
+                code_amounts[stmt_line.tax_code_id] = {
+                    'code': stmt_line.base_code_id.code
+                    if stmt_line.base_code_id else stmt_line.tax_code_id.code,
+                    'name': stmt_line.base_code_id.name
+                    if stmt_line.base_code_id else stmt_line.tax_code_id.name,
+                    'base': 0.0,
+                    'vat': 0.0,
+                    'vat_deductible': 0.0,
+                    'vat_undeductible': 0.0,
+                }
+            code_amounts[stmt_line.tax_code_id]['base'] += stmt_line.base_amount
+            code_amounts[stmt_line.tax_code_id]['vat'] += stmt_line.amount
+            code_amounts[stmt_line.tax_code_id]['vat_deductible'] += stmt_line.amount
+            # code_amounts[stmt_line.tax_code_id]['vat_undeductible'] += 0.0
+        return code_amounts
 
     def _get_account_vat_amounts(
         self, type='credit', statement_account_line=None, context=None

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # flake8: noqa
 # -*- coding: utf-8 -*-
 #    Copyright (C) 2011-12 Domsense s.r.l. <http://www.domsense.com>.
@@ -504,7 +505,7 @@ class AccountVatPeriodEndStatement(orm.Model):
         """ Create new no_gap entry sequence for progressivo_telematico
         """
         # Company sent own statement, so set next number as the nth quarter
-        next_number = int((date.today().toordinal() - 
+        next_number = int((date.today().toordinal() -
                            date(2017, 7, 1).toordinal()) / 90) + 1
         sequence_model = self.pool['ir.sequence']
         vals = {
@@ -801,7 +802,11 @@ class AccountVatPeriodEndStatement(orm.Model):
     def get_date_start_stop(self, statement, context=None):
         date_start = False
         date_stop = False
-        for period in statement.period_ids:
+        if statement.type == 'year':
+            periods = statement.y_period_ids
+        else:
+            periods = statement.period_ids
+        for period in periods:
             if not date_start:
                 date_start = period.date_start
             else:
@@ -879,9 +884,11 @@ class AccountVatPeriodEndStatement(orm.Model):
                             dbt_crd = 'credit'
                         else:
                             dbt_crd = dbt_crd_tax_code.vat_statement_type
-                        if dbt_crd == 'debit':
+                        if dbt_crd == 'debit' and dbt_crd_tax_code.vat_statement_sign:
                             type_sign = 1
-                        elif dbt_crd == 'credit':
+                        elif (
+                                dbt_crd == 'credit' and dbt_crd_tax_code.vat_statement_sign
+                        ):
                             type_sign = -1
                         else:
                             type_sign = 0
