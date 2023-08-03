@@ -1,3 +1,9 @@
+10.0.1.0.36 (2023-08-01)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+ 
+
 10.0.1.0.35 (2023-07-25)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -145,3 +151,4 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [IMP] Checks for valid channel / Test validazione canale
+* [QUA] Test coverage 15% (816: 694+122) 
