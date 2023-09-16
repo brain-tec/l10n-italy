@@ -1,6 +1,6 @@
 
 ========================================
-|icon| Send E-Invoice to SdI 10.0.1.0.33
+|icon| Send E-Invoice to SdI 10.0.1.0.37
 ========================================
 
 
@@ -38,23 +38,10 @@ terzo incaricato e il canale PEC.
 
 
 |
-
-OCA comparation / Confronto con OCA
------------------------------------
-
-
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Description / Descrizione                                       | Zeroincombenze    | OCA            | Notes / Note                   |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-| Coverage / Copertura test                                       |  |Codecov Status| | |OCA Codecov|  |                                |
-+-----------------------------------------------------------------+-------------------+----------------+--------------------------------+
-
-
-|
 |
 
-Getting started / Come iniziare
-===============================
+Getting started / Primi passi
+=============================
 
 |Try Me|
 
@@ -174,10 +161,32 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History / Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.37 (2023-08-08)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+
+10.0.1.0.36 (2023-08-01)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+
+10.0.1.0.35 (2023-07-25)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 15% (816: 694+122)
+
+10.0.1.0.34 (2023-07-04)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
+* [QUA] Test coverage 15% (816: 694+122) 
+
 10.0.1.0.33 (2023-04-20)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [FIX] new state mappingple  
+* [FIX] new state mapping
 
 10.0.1.0.29 (2022-08-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -189,26 +198,6 @@ ChangeLog History / Cronologia modifiche
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] TD17/18/19 recognition
-
-10.0.1.0.27 (2022-07-28)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Module migration
-
-10.0.1.0.26 (2022-06-24)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Module migration
-
-10.0.1.0.25 (2022-06-15)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Old "recipient error" to ready / Stato ready di vecchie fatture
-
-10.0.1.0.22 (2022-06-09)
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Now import invoices for all companies / Ora importa le fatture per tutte le aziende
 
 
 
@@ -232,8 +221,6 @@ Authors / Autori
 
 * `Pointec s.r.l. <https://www.pointec.it/>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
-Authors
--------
 
 
 Contributors / Collaboratori
@@ -241,15 +228,6 @@ Contributors / Collaboratori
 
 * Cesare Pellegrini <cesare@pointec.it>
 * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
-Contributors
-------------
-
-
-
-Maintainer / Manutenzione
--------------------------
-
-
 
 
 |
@@ -259,12 +237,12 @@ Maintainer / Manutenzione
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
-`Zeroincombenze® distribution of Odoo <https://wiki.zeroincombenze.org/en/Odoo>`__
+`Zeroincombenze® distribution of Odoo <https://www.zeroincombenze.it/>`__
 is mainly designed to cover Italian law and markeplace.
 
 |it| **zeroincombenze®** è un marchio registrato da `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 che distribuisce e promuove **Odoo** pronto all'uso sulla propria infrastuttura.
-La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ è progettata per le esigenze del mercato italiano.
+La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è progettata per le esigenze del mercato italiano.
 
 
 
@@ -275,7 +253,7 @@ La distribuzione `Zeroincombenze® <https://wiki.zeroincombenze.org/en/Odoo>`__ 
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-04-21
+Last Update / Ultimo aggiornamento: 2023-08-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
