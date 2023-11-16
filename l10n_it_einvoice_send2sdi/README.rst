@@ -1,9 +1,8 @@
-
 ============================================================
-|icon| Send E-Invoice to SdI/Invio fatture a SDI 10.0.1.0.39
+|icon| Send E-Invoice to SdI/Invio fatture a SdI 10.0.1.0.40
 ============================================================
 
-**Send E-Invoice to customer by SdI**
+**Send E-Invoice to customer through SdI**
 
 .. |icon| image:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/10.0/l10n_it_einvoice_send2sdi/static/description/icon.png
 
@@ -15,26 +14,31 @@
 Overview | Panoramica
 =====================
 
-|en| Send invoices to Customer by SdI
-
-Use a defined channel to send E-Invoice to Customer by SdI
-
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
+|en| This module can send Italian e-invoices to Customer through
+`Sdi <http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm>`__
 
 
-|
+|it| Questo modulo permette di inviare le fatture tramite uno canale
+`Sdi <http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm>`__
 
-|it| Invio fatture a clienti attraverso SdI
-
-Questo modulo permette di inviare le fatture tramite uno canale SdI
-
-http://www.fatturapa.gov.it/export/fatturazione/it/sdi.htm
-
-In questa versione sono implementati il canale JSON verso hub di
+In questa versione è implementato uno specifico canale JSON verso hub di
 terzo incaricato e il canale PEC.
 
 
-|
+
+Configuration | Configurazione
+------------------------------
+
+☰ Accounting > Configuration > Accounting > Tax Authority Definition > Sender Channel
+
+
+
+Usage | Utilizzo
+----------------
+
+Click on button [Invia a Sdi]
+
+
 
 Getting started | Primi passi
 =============================
@@ -42,11 +46,26 @@ Getting started | Primi passi
 |Try Me|
 
 
-|
+Prerequisites | Prerequisiti
+----------------------------
+
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
+
 
 Installation | Installazione
 ----------------------------
-
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -66,74 +85,31 @@ Installation | Installazione
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
     deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
 
-From UI: go to:
 
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_send2sdi** > Install
-
-
-|
 
 Upgrade | Aggiornamento
 -----------------------
 
-
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
     deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
 
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_einvoice_send2sdi** > Update
-
-
-|
 
 Support | Supporto
 ------------------
 
-
 |Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
 
 Get involved | Ci mettiamo in gioco
 ===================================
@@ -144,9 +120,10 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -154,14 +131,21 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
+
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
+
+10.0.1.0.40 (2023-11-15)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Minor improvements
 
 10.0.1.0.39 (2023-10-25)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Rejected invoce / Stato fattura rifiutata
 * [FIX] NO response / Nessuna risposta da SDI
+* [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)
 
 10.0.1.0.38 (2023-10-05)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -198,8 +182,6 @@ ChangeLog History | Cronologia modifiche
 * [QUA] Test coverage 16% (812: 686+126) [1 TestPoints] - quality rating 77 (target 100)
 
 
-|
-|
 
 Credits | Didascalie
 ====================
@@ -210,29 +192,30 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-|
-
 Authors | Autori
 ----------------
 
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 * `Pointec s.r.l. <https://www.pointec.it>`__
 
+
+
 Contributors | Contributi da
 ----------------------------
 
-* Cesare Pellegrini <cesare@pointec.it>
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Cesare Pellegrini <cesare@pointec.it>`__
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+
+
 
 Maintainer | Manutenzione
 -------------------------
 
-Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
-|
+
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
@@ -245,10 +228,11 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 
 |
+|
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-10-25
+Last Update / Ultimo aggiornamento: 2023-11-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
@@ -308,5 +292,3 @@ Last Update / Ultimo aggiornamento: 2023-10-25
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-
-

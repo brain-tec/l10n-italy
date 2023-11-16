@@ -1,4 +1,3 @@
-
 ===========================================================================
 |icon| Agenzia delle Entrate (italian IRS)/Agenzia delle Entrate 10.0.0.3.8
 ===========================================================================
@@ -26,43 +25,31 @@ This module requires `PyXB 1.2.5 <http://pyxb.sourceforge.net/>`__ or `PyXB 1.2.
 This code partially inherits some parts from l10n_it_account of OCA.
 
 
-|
-
-|it| ::
-
-    Cosa è:
-
-Questo modulo non ha funzioni specifiche per l'utente finale.
+|it| Questo modulo non ha funzioni specifiche per l'utente finale.
 Contiene dati e definizioni come stabilito dall'Agenzia delle Entrate
 All'interno sono presenti gli schemi xml usati da FatturaPA,
 Fattura Elettronica B2B, Liquidazione IVA elettronica e Comunicazione IVA.
 
-::
-
-    Destinatari:
+Destinatari
+-----------
 
 Tutti i soggetti passivi IVA in regime non forfettario
 
-::
 
-    Normativa e prassi:
+Normativa e prassi
+------------------
 
-* `DPR n. 633/72 <https://www.gazzettaufficiale.it/eli/id/1972/11/11/072U0633/sg>`__
-* DL 331/93
-* DL 41/95
+* `DPR 633/72 <https://www.gazzettaufficiale.it/eli/id/1972/11/11/072U0633/sg>`__
+* `DL 331/93 <https://www.gazzettaufficiale.it/atto/serie_generale/caricaDettaglioAtto/originario?atto.dataPubblicazioneGazzetta=1993-12-07&amp;atto.codiceRedazionale=093A6723&amp;elenco30giorni=false>`__
+* `DL 41/95 <https://www.gazzettaufficiale.it/atto/serie_generale/caricaDettaglioAtto/originario?atto.dataPubblicazioneGazzetta=1995-02-23&amp;atto.codiceRedazionale=095G0076&amp;elenco30giorni=false>`__
 
-::
-
-|info| Questo modulo è incompatibile con alcuni moduli OCA.
-
-Tutti i moduli che generano file xml dipendenti
-dallo schema dell'Agenzia delle Entrate devono dichiare il modulo
-`l10n_it_ade <https://github.com/zeroincombenze/l10n-italy/tree/10.0/l10n_it_ade>`__ come dipendenza.
+Tutti i moduli che generano file xml dipendenti dallo schema dell'Agenzia delle Entrate
+devono dichiare il modulo `l10n_it_ade <https://github.com/zeroincombenze/l10n-italy/tree/10.0/l10n_it_ade>`__
+come dipendenza.
 
 Questo modulo eredita alcune parti di codice del modulo l10n_it_account di OCA.
 
 
-|
 
 Features | Caratteristiche
 --------------------------
@@ -70,18 +57,16 @@ Features | Caratteristiche
 +--------------------------------------------+----------+-----+----------------------------------------------+
 | Description | Descrizione                  | Z0incomb | OCA | Note(s)                                      |
 +--------------------------------------------+----------+-----+----------------------------------------------+
-| Fiscal Invoice Type | Tipo fattura fiscale | ✅        | ✅   | Codifica tipo di fattura come da AdE         |
+| Fiscal Invoice Type | Tipo fattura fiscale | ✅       | ✅  | Codifica tipo di fattura come da AdE         |
 +--------------------------------------------+----------+-----+----------------------------------------------+
-| N/A | Codice Carica                        | ✅        | ✅   | Codifica codice carica come da AdE           |
+| N/A | Codice Carica                        | ✅       | ✅  | Codifica codice carica come da AdE           |
 +--------------------------------------------+----------+-----+----------------------------------------------+
-| Tax Nature | Natura fiscale dell'IVA       | ✅        | ✅   | Codifica natura fiscale dell'IVA come da AdE |
+| Tax Nature | Natura fiscale dell'IVA       | ✅       | ✅  | Codifica natura fiscale dell'IVA come da AdE |
 +--------------------------------------------+----------+-----+----------------------------------------------+
-| N/A | Codici Assosoftware                  | ✅        | ❌   | Codifica per interscambio                    |
+| N/A | Codici Assosoftware                  | ✅       | ❌  | Codifica per interscambio                    |
 +--------------------------------------------+----------+-----+----------------------------------------------+
 
 
-|
-|
 
 Certifications | Certificazioni
 -------------------------------
@@ -95,7 +80,6 @@ Certifications | Certificazioni
 +---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+-------------+----------------------------------------------+
 
 
-|
 
 Getting started | Primi passi
 =============================
@@ -103,11 +87,26 @@ Getting started | Primi passi
 |Try Me|
 
 
-|
+Prerequisites | Prerequisiti
+----------------------------
+
+* python 2.7+ (best 2.7.5+)
+* postgresql 9.2+ (best 9.5)
+
+::
+
+    cd $HOME
+    # Follow statements activate deployment, installation and upgrade tools
+    cd $HOME
+    [[ ! -d ./tools ]] && git clone https://github.com/zeroincombenze/tools.git
+    cd ./tools
+    ./install_tools.sh -pUT
+    source $HOME/devel/activate_tools
+
+
 
 Installation | Installazione
 ----------------------------
-
 
 +---------------------------------+------------------------------------------+
 | |en|                            | |it|                                     |
@@ -127,74 +126,31 @@ Installation | Installazione
 
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
     # Odoo repository installation; OCB repository must be installed
     deploy_odoo clone -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     # Upgrade virtual environment
     vem amend $HOME/10.0/venv_odoo
 
-From UI: go to:
 
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Install
-
-
-|
 
 Upgrade | Aggiornamento
 -----------------------
 
-
 ::
 
-    cd $HOME
-    # *** Tools installation & activation ***
-    # Case 1: you have not installed zeroincombenze tools
-    git clone https://github.com/zeroincombenze/tools.git
-    cd $HOME/tools
-    ./install_tools.sh -pT
-    source $HOME/devel/activate_tools
-    # Case 2: you have already installed zeroincombenze tools
-    cd $HOME/tools
-    ./install_tools.sh -UT
-    source $HOME/devel/activate_tools
-    # *** End of tools installation or upgrade ***
-    # Odoo repository upgrade
     deploy_odoo update -r l10n-italy -b 10.0 -G zero -p $HOME/10.0
     vem amend $HOME/10.0/venv_odoo
     # Adjust following statements as per your system
     sudo systemctl restart odoo
 
-From UI: go to:
 
-* |menu| Setting > Activate Developer mode
-* |menu| Apps > Update Apps List
-* |menu| Setting > Apps |right_do| Select **l10n_it_ade** > Update
-
-
-|
 
 Support | Supporto
 ------------------
 
-
 |Zeroincombenze| This module is supported by the `SHS-AV s.r.l. <https://www.zeroincombenze.it/>`__
 
 
-|
-|
 
 Get involved | Ci mettiamo in gioco
 ===================================
@@ -205,9 +161,24 @@ and/or submit pull requests on `GitHub Issues
 
 In case of trouble, please check there if your issue has already been reported.
 
+
+
+Known issues | Roadmap
+----------------------
+
+This module is incompatible with:
+
+* l10n_it_account_tax_kind
+* l10n_it_causali_pagamento
+* l10n_it_fiscal_document_type
+* l10n_it_fiscal_payment_term
+* l10n_it_esigibilita_iva
+* l10n_it_fatturapa
+
+
+
 Proposals for enhancement
 -------------------------
-
 
 |en| If you have a proposal to change this module, you may want to send an email to <cc@shs-av.com> for initial feedback.
 An Enhancement Proposal may be submitted if your idea gains ground.
@@ -215,10 +186,11 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 |it| Se hai proposte per migliorare questo modulo, puoi inviare una mail a <cc@shs-av.com> per un iniziale contatto.
 
 
+
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.0.3.8 (2023-10-23)
+10.0.0.3.8 (2023-11-15)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] pyxb 1.2.6
@@ -230,9 +202,28 @@ ChangeLog History | Cronologia modifiche
 
 * [IMP] Self invoice flag / Identificatore documento autofattura
 
+10.0.0.3.6 (2022-09-26)
+~~~~~~~~~~~~~~~~~~~~~~~
 
-|
-|
+* [FIX] l10n_it_ade/binding numeric data with 2 decimals
+
+10.0.0.3.5 (2022-09-22)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [REF] l10n_it_ade/binding refactoring
+
+10.0.0.3.4 (2022-06-20)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Best record display/ Migliorie visualizzazione codice
+* [IMP] Tax nature renamed
+
+10.0.0.3.3 (2022-04-26)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Regression test
+
+
 
 Credits | Didascalie
 ====================
@@ -243,34 +234,36 @@ Copyright
 Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 
 
-|
-
 Authors | Autori
 ----------------
 
-* SHS-AV s.r.l. <https://www.zeroincombenze.it>
+* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
+
+
 
 Contributors | Contributi da
 ----------------------------
 
-* Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
+
+
 
 Acknowledges | Riconoscimenti
 -----------------------------
 
-* Davide Corio <info@davidecorio.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Alex Comba <alex.comba@agilebg.com>
+* `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
+* `Alex Comba <alex.comba@agilebg.com>`__
+
+
 
 Maintainer | Manutenzione
 -------------------------
 
-Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>
+* `Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>`__
 
-|
+
 
 ----------------
-
 
 |en| **zeroincombenze®** is a trademark of `SHS-AV s.r.l. <https://www.shs-av.com/>`__
 which distributes and promotes ready-to-use **Odoo** on own cloud infrastructure.
@@ -283,10 +276,11 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 
 |
+|
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2023-10-23
+Last Update / Ultimo aggiornamento: 2023-11-15
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
@@ -346,5 +340,3 @@ Last Update / Ultimo aggiornamento: 2023-10-23
    :target: https://github.com/zeroincombenze/grymb/blob/master/certificates/ade/scope/fatturapa.md
 .. |chat_with_us| image:: https://www.shs-av.com/wp-content/chat_with_us.gif
    :target: https://t.me/Assitenza_clienti_powERP
-
-

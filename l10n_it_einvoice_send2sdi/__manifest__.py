@@ -9,9 +9,9 @@
 #
 {
     "name": "Send E-Invoice to SdI",
-    "version": "10.0.1.0.39",
+    "version": "10.0.1.0.40",
     "category": "Localization/Italy",
-    "summary": "Send E-Invoice to customer by SdI",
+    "summary": "Send E-Invoice to customer through SdI",
     "author": "SHS-AV s.r.l.,Pointec s.r.l.",
     "website": "https://www.zeroincombenze.it/fatturazione-elettronica",
     "development_status": "Beta",
