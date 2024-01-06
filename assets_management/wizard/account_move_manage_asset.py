@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -259,6 +259,10 @@ class WizardAccountMoveManageAsset(models.TransientModel):
 
         if not self.management_type:
             raise ValidationError(_("Couldn't determine which action should be done."))
+        if self.env["asset.depreciation.line"].search([("asset_id",
+                                                        "=",
+                                                        self.asset_id.id)]):
+            raise ValidationError(_("Cannot update depreciated asset!"))
 
     def check_pre_partial_dismiss_asset(self):
         self.ensure_one()
@@ -401,7 +405,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
             "sale_amount": writeoff,
             "sale_date": move.date,
             "sale_move_id": move.id,
-            "sold": True,
+            # "sold": True,
         }
         for dep in asset.depreciation_ids:
             residual = dep.amount_residual
@@ -481,7 +485,7 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         move = self.move_line_ids.mapped("move_id")
         move_nums = move.name
 
-        writeoff = 0
+        writeoff = 0.0
         for ln in self.move_line_ids:
             writeoff += ln.currency_id.compute(ln.credit - ln.debit, currency)
         writeoff = round(writeoff, digits)
@@ -489,8 +493,8 @@ class WizardAccountMoveManageAsset(models.TransientModel):
         vals = {"depreciation_ids": []}
         for dep in asset.depreciation_ids:
             if dep.pro_rata_temporis:
-                dep_writeoff = writeoff * dep.get_pro_rata_temporis_multiplier(
-                    dismiss_date, "std"
+                dep_writeoff = round(writeoff * dep.get_pro_rata_temporis_multiplier(
+                    dismiss_date, "std"), digits
                 )
             else:
                 dep_writeoff = writeoff

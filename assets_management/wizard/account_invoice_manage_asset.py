@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 #
 from odoo import _, api, fields, models
@@ -310,7 +310,10 @@ class WizardInvoiceManageAsset(models.TransientModel):
             raise ValidationError(
                 _("At least one invoice line is mandatory to update" " an asset!")
             )
-
+        if self.env["asset.depreciation.line"].search([("asset_id",
+                                                        "=",
+                                                        self.asset_id.id)]):
+            raise ValidationError(_("Cannot update depreciated asset!"))
         if not all(
             [
                 ln.account_id == self.asset_id.category_id.asset_account_id
@@ -346,7 +349,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
             amount += ln.currency_id.compute(ln.price_subtotal, currency)
         amount = round(amount, digits)
         vals = {
-            "customer_id": invoice.partner_id.id,
+            # "customer_id": invoice.partner_id.id,
             "asset_id": self.asset_id.id,
             "amount": amount,
             "date": self.dismiss_date.strftime("%Y-%m-%d")
@@ -649,7 +652,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
             amount += ln.currency_id.compute(ln.price_subtotal, currency)
         amount = round(amount, digits)
         vals = {
-            "customer_id": invoice.partner_id.id,
+            # "customer_id": invoice.partner_id.id,
             "asset_id": self.asset_id.id,
             "amount": amount,
             "date": self.dismiss_date.strftime("%Y-%m-%d"),
@@ -663,8 +666,7 @@ class WizardInvoiceManageAsset(models.TransientModel):
             'sale_amount': amount,
             'sale_date': invoice.date,
             'sale_invoice_id': invoice.id,
-            'sold': True,
-            "partial_dismiss_percentage": 100.0,
+            # 'sold': True,
         }
         self.asset_id.write(vals)
 

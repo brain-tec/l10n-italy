@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -163,8 +163,10 @@ class AssetDepreciationLine(models.Model):
         """
         dep = self.env["asset.depreciation"].browse(vals["depreciation_id"])
         dep_lines = dep.with_context(
-            depreciated_by_line=False).generate_depreciation_lines(
-            datetime.strptime(vals["date"], "%Y-%m-%d").date()
+            depreciated_by_line=False
+        ).generate_depreciation_lines(
+            datetime.strptime(vals["date"], "%Y-%m-%d").date(),
+            ignore_depreciated=False if vals["move_type"] == "in" else True
         )
         # dep_lines.generate_account_move()
         return dep_lines
@@ -172,37 +174,29 @@ class AssetDepreciationLine(models.Model):
     @api.model
     def check_4_values(self, vals):
         """Check for valid values on create"""
-        if (vals.get("partial_dismiss_percentage") and
-            not vals.get("partial_dismissal", False)
+        if vals.get("partial_dismiss_percentage") and not vals.get(
+            "partial_dismissal", False
         ):
-            raise ValidationError(
-                _("Partial dismiss without flag")
-            )
-        elif (vals.get("partial_dismissal", False) and
-              not vals.get("partial_dismiss_percentage", 0.0)
+            raise ValidationError(_("Partial dismiss without flag"))
+        elif vals.get("partial_dismissal", False) and not vals.get(
+            "partial_dismiss_percentage", 0.0
         ):
-            raise ValidationError(
-                _("Partial dismiss without percentage")
-            )
+            raise ValidationError(_("Partial dismiss without percentage"))
         if not vals.get("asset_id"):
-            raise ValidationError(
-                _("Missed asset")
-            )
+            raise ValidationError(_("Missed asset"))
         if not vals.get("depreciation_id"):
-            raise ValidationError(
-                _("Missed depreciation nature")
-            )
+            raise ValidationError(_("Missed depreciation nature"))
         vals["move_type"] = vals.get("move_type", "depreciated")
-        if 'message_follower_ids' in vals:
-            del vals['message_follower_ids']
-
+        if "message_follower_ids" in vals:
+            del vals["message_follower_ids"]
 
     @api.model
     def create(self, vals):
         self.check_4_values(vals)
-        if (self._context.get("depreciated_by_line") and
-              vals["move_type"] in ("in", "out")):
-
+        if self._context.get("depreciated_by_line") and vals["move_type"] in (
+            "in",
+            "out",
+        ):
             dep_lines = self.depreciation_before_in_out(vals)
             if "asset_accounting_info_ids" not in vals:
                 vals["asset_accounting_info_ids"] = [
@@ -216,9 +210,9 @@ class AssetDepreciationLine(models.Model):
                         },
                     )
                 ]
-            else:
+            elif dep_lines:
                 for acc_info in vals["asset_accounting_info_ids"]:
-                    acc_info[2]["related_dep_line_id"] =  dep_lines[0].id
+                    acc_info[2]["related_dep_line_id"] = dep_lines[0].id
 
         line = super().create(vals)
         if line.need_normalize_depreciation_nr():
@@ -239,7 +233,7 @@ class AssetDepreciationLine(models.Model):
 
     @api.multi
     def unlink(self):
-        if self.mapped("asset_accounting_info_ids"):
+        if self.mapped("asset_accounting_info_ids"):                 # pragma: no cover
             lines = self.filtered("asset_accounting_info_ids")
             name_list = "\n".join([ln[-1] for ln in lines.name_get()])
             raise ValidationError(
@@ -250,7 +244,8 @@ class AssetDepreciationLine(models.Model):
                 )
                 + name_list
             )
-        if any([m.state != "draft" for m in self.mapped("move_id")]):
+        if any([m.state != "draft"
+                for m in self.mapped("move_id")]):                   # pragma: no cover
             lines = self.filtered(lambda l: l.move_id and l.move_id.state != "draft")
             name_list = "\n".join([ln[-1] for ln in lines.name_get()])
             raise ValidationError(
@@ -264,7 +259,7 @@ class AssetDepreciationLine(models.Model):
         return super().unlink()
 
     @api.multi
-    def name_get(self):
+    def name_get(self):                                              # pragma: no cover
         return [(line.id, line.make_name()) for line in self]
 
     @api.constrains("depreciation_nr")
@@ -293,7 +288,8 @@ class AssetDepreciationLine(models.Model):
             line.requires_depreciation_nr = line.is_depreciation_nr_required()
 
     @api.multi
-    def _search_requires_depreciation_nr_lines(self, operator, value):
+    def _search_requires_depreciation_nr_lines(self,
+                                               operator, value):    # pragma: no cover
         if operator not in ("=", "!="):
             raise ValidationError(_("Invalid search operator!"))
 
@@ -303,12 +299,12 @@ class AssetDepreciationLine(models.Model):
             return [("move_type", "not in", self.get_numbered_move_types())]
 
     @api.onchange("move_type")
-    def onchange_move_type(self):
+    def onchange_move_type(self):                                    # pragma: no cover
         if self.move_type not in ("in", "out"):
             self.depreciation_line_type_id = False
 
     @api.onchange("asset_id")
-    def onchange_asset_id(self):
+    def onchange_asset_id(self):                                     # pragma: no cover
         res = dict()
         ids = list()
         for dep in self.asset_id.depreciation_ids:
@@ -420,7 +416,6 @@ class AssetDepreciationLine(models.Model):
         :param force: force normalization for every depreciations' lines
         """
         for dep in self.with_context(no_update_move=True).mapped("depreciation_id"):
-
             # Avoid if user chooses to use custom numbers
             if dep.force_all_dep_nr:
                 continue
@@ -483,7 +478,6 @@ class AssetDepreciationLine(models.Model):
             vals = {
                 "company_id": self.company_id.id,
                 "date": self.date,
-                "line_ids": [],
                 "ref": _("Asset: ") + self.asset_id.make_name(),
                 "line_ids": [],
             }
@@ -531,7 +525,6 @@ class AssetDepreciationLine(models.Model):
 
         # Asset depreciation
         if not self.partial_dismissal:
-
             if self.depreciation_id.mode_id.indirect_depreciation:
                 credit_account_id = self.asset_id.category_id.fund_account_id.id
             else:

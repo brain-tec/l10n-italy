@@ -1,6 +1,6 @@
 # Author(s): Silvio Gregorini (silviogregorini@openforce.it)
 # Copyright 2019 Openforce Srls Unipersonale (www.openforce.it)
-# Copyright 2021-22 librERP enterprise network <https://www.librerp.it>
+# Copyright 2021-24 librERP enterprise network <https://www.librerp.it>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -89,7 +89,7 @@ class AssetDepreciationMode(models.Model):
                 )
 
     def get_depreciation_amount_multiplier(self):
-        multiplier = 1
+        multiplier = 1.0
         if not self:
             return multiplier
 
