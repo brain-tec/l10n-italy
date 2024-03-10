@@ -1,1 +1,1 @@
-This module add the field partner_carrier on invoice
+This module adds the Partner Carrier field on account invoice
