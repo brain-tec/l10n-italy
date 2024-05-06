@@ -49,7 +49,9 @@ class ResCompany(models.Model):
             else:
                 raise UserError(_("E-Invoice without VAT number"))
             return self.env.user.company_id
-        if vat and vat == self.env.user.company_id.vat:
+        if vat.startswith("EUIT"):
+            vat = vat[2:]
+        if vat == self.env.user.company_id.vat:
             return self.env.user.company_id
         companies = self.search([("vat", "=", vat)])
         if not companies:

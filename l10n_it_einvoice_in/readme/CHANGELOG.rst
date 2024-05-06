@@ -1,3 +1,10 @@
+10.0.1.3.45 (2024-05-05)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Weird error linking self-invoice
+* [IMP] Avoid company data update from self-invoice
+* [QUA] Test coverage 63% (1330: 495+835) [0 TestPoints] - quality rating 38 (target 100)
+
 10.0.1.3.44 (2024-02-06)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
