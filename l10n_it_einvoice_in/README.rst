@@ -219,12 +219,15 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.3.48 (2024-07-16)
+10.0.1.3.48 (2024-07-21)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [FIX] Wrong invoice total if wrong rounding / Totale fattura errato in caso di errato arrotondamento
 * [IMP] Store and show e-invoice totals / Memorizza e mostra totali e-fattura
-* [QUA] Test coverage 64% (1361: 485+876) [0 TestPoints] - quality rating 39 (target 100)
+* [IMP] Dati terzo intermediario in fattura
+* [IMP] Cassa previdenziale in fattura
+* [IMP] Best partner searching / Migliorie ricerca partner
+* [QUA] Test coverage 69% (1386: 424+962) [0 TestPoints] - quality rating 42 (target 100)
 
 10.0.1.3.47 (2024-06-14)
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -359,7 +362,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-07-16
+Last Update / Ultimo aggiornamento: 2024-07-21
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Alfa-black.png
     :target: https://odoo-community.org/page/development-status
