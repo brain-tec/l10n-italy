@@ -140,12 +140,12 @@ class WizardImportFatturapa(models.TransientModel):
             "res.partner",
             vals,
             skeys=(
-                ["vat", "fiscalcode", "is_company"],
-                ["vat", "name", "is_company"],
-                ["fiscalcode", "%name", "is_company"],
-                ["vat", "%name", "is_company"],
-                ["vat", "is_company"],
-                ["name", "!vat", "is_company"],
+                ["vat", "fiscalcode", "is_company", "type"],
+                ["vat", "name", "is_company", "type"],
+                ["fiscalcode", "%name", "is_company", "type"],
+                ["vat", "%name", "is_company", "type"],
+                ["vat", "is_company", "type"],
+                ["name", "!vat", "is_company", "type"],
             ),
             constraints=[("id", "!=", "parent_id")],
             keep=[
@@ -830,11 +830,25 @@ class WizardImportFatturapa(models.TransientModel):
                 "partner_id": partner_id,
                 "journal_id": purchase_journal.id,
                 # 'origin': xmlData.datiOrdineAcquisto,
-                "fiscal_position_id": partner.property_account_position_id.id,
                 "company_id": company.id,
                 "fatturapa_attachment_in_id": fatturapa_attachment.id,
             }
         )
+        if (
+                not hasattr(partner.property_account_position_id, 'split_payment')
+                or not partner.property_account_position_id.split_payment
+        ):
+            invoice_data["fiscal_position_id"] = partner.property_account_position_id.id
+        else:
+            domain = [
+                ("name", "ilike", "ita"),
+                ("split_payment", "=", False)
+            ]
+            if hasattr(partner.property_account_position_id, 'rc_type_id'):
+                domain.append(("rc_type_id", "=", False),)
+            ids = self.env["account.fiscal.position"].search(domain)
+            if ids:
+                invoice_data["fiscal_position_id"] = ids[0].id
 
         # 2.2.1
         invoice_lines = []
@@ -1114,8 +1128,8 @@ class WizardImportFatturapa(models.TransientModel):
         )
 
         # compute the invoice
+        invoice.set_einvoice_data(FatturaBody)
         invoice.compute_taxes()
-        invoice._compute_einvoice_amounts()
         invoice.create_round_lines()
         return invoice_id
 
@@ -1219,7 +1233,6 @@ class WizardImportFatturapa(models.TransientModel):
                         vals["intermediary"] = intermediary_id
                 if vals:
                     invoice.write(vals)
-                invoice.set_einvoice_data(FatturaBody)
                 new_invoices.append(invoice_id)
                 self.check_invoice_amount(invoice, FatturaBody)
 
