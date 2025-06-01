@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-24 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2019-25 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -9,11 +9,12 @@
 #
 {
     "name": "CONAI Management",
-    "summary": "CONAI data and amount evalutation",
     "version": "10.0.0.1.13",
     "category": "Localization/Italy",
+    "summary": "CONAI data and amount evalutation",
     "author": "SHS-AV s.r.l.",
     "website": "https://github.com/OCA/l10n-italy",
+    "development_status": "Beta",
     "license": "AGPL-3",
     "depends": [
         "account",
@@ -27,7 +28,6 @@
         "data/conai_product_category.xml",
         "data/conai_partner_category.xml",
         "data/product_template.xml",
-        # "data/res_company.xml",
         "views/account_config_view.xml",
         "views/product_category_view.xml",
         "views/partner_category_view.xml",
@@ -38,12 +38,10 @@
         "views/sale_order_view.xml",
         "views/conai_statement.xml",
         "report/conai_statement.xml",
-        # 'views/help_online.xml',
     ],
+    "maintainer": "Zeroincombenze (R) <False>",
     "installable": True,
-    "maintainer": "Zeroincombenze (R)",
-    "development_status": "Beta",
     "application": True,
-    "post_init_hook": "set_company_conai_product_post",
     "pre_init_hook": "check_4_depending",
+    "post_init_hook": "set_company_conai_product_post",
 }

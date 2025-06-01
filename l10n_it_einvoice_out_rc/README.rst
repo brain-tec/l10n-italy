@@ -1,5 +1,5 @@
 ===================================================================
-|icon| ITA - Emissione e-auto-fattura con reverse charge 10.0.1.0.4
+|icon| ITA - Emissione e-auto-fattura con reverse charge 10.0.1.0.6
 ===================================================================
 
 **Integrazione l10n_it_fatturapa_out e l10n_it_reverse_charge**
@@ -22,7 +22,7 @@ reverse charge. This module creates the e-invoice from self-invoice.
 |it| Questo module integra le funzione di *l10n_it_einvoice_out* e *l10n_it_reverse_charge*.
 Il modulo *l10n_it_reverse_charge* crea un'auto-fattura da una fattura fornitore con
 reverse charge, sia locali che esteri.
-Questo modulo creta il file xml della fattura elettronica dell'auto-fattura.
+Questo modulo crea il file xml della fattura elettronica dell'auto-fattura.
 
 
 |thumbnail|
@@ -125,35 +125,16 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.0.6 (2025-06-01)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Depends on l10n_it_account_pay_amt
+* [QUA] Test coverage 76% (100: 24+76) [44 TestPoints] - quality rating 72 (target 100)
+
 10.0.1.0.5 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * [QUA] Test coverage 78% (100: 22+78) [20 TestPoints] - quality rating 79 (target 100)
-
-10.0.1.0.4 (2023-03-07)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] AttributeError: 'DatiPagamentoType' object has no attribute 'ImportoPagamento'
-
-10.0.1.0.3 (2023-03-06)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Self-invoice TD17-19 with "IT" vat / Codice IVA italiano modificato eper autofatture TD17-19
-
-10.0.1.0.2 (2022-10-04)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] No latin chars in partner / Anagrafica estera con caratteri non latini
-
-10.0.1.0.1 (2022-09-27)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [FIX] Refund of TD17..TD19 / Nota credito con TD17..TD19
-
-10.0.1.0.0 (2022-06-21)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [IMP] Created documentation directory
 
 
 
@@ -204,7 +185,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-06
+Last Update / Ultimo aggiornamento: 2025-06-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

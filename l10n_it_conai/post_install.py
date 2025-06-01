@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-23 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
+# Copyright 2019-25 - SHS-AV s.r.l. <https://www.zeroincombenze.it/>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -23,13 +23,8 @@ def set_company_conai_product(cr):
         env = api.Environment(cr, SUPERUSER_ID, {})
         company_model = env["res.company"]
         for company in company_model.search([]):
-            company.conai_product_id = (
-                env["product.product"].search(
-                    [
-                        ("product_tmpl_id",
-                         "=",
-                         env.ref("l10n_it_conai.product_conai").id)
-                    ])
+            company.conai_product_id = env["product.product"].search(
+                [("product_tmpl_id", "=", env.ref("l10n_it_conai.product_conai").id)]
             )
 
 

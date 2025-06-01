@@ -666,4 +666,3 @@ class AccountInvoiceLine(models.Model):
                 }
             self._set_rc_flag()
         return res
-

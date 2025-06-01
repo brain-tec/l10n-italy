@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-09 15:37+0000\n"
+"POT-Creation-Date: 2025-06-01 19:33+0000\n"
 "PO-Revision-Date: 2024-06-09 17:53+0200\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
@@ -95,7 +95,8 @@ msgstr "Codice"
 #: model:ir.model.fields,help:l10n_it_withholding_tax.field_account_invoice_withholding_tax_tax_coeff
 msgid "Coeff used         to compute amount competence in the riconciliation"
 msgstr ""
-"Coefficiente per calcolare l'imponibile di competenza in base all'importo pagamento"
+"Coefficiente per calcolare l'imponibile di competenza in base all'importo "
+"pagamento"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_company_id
@@ -155,6 +156,16 @@ msgstr "Data iniziale"
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_rate_date_stop
 msgid "Date Stop"
 msgstr "Data finale"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_use_daticassaprev
+msgid "DatiCassa export"
+msgstr "DatiCassa export"
+
+#. module: l10n_it_withholding_tax
+#: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_daticassprev_tax_id
+msgid "Daticassprev tax id"
+msgstr "Daticassprev tax id"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax_display_name
@@ -243,7 +254,8 @@ msgstr "Movimento contabile"
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,help:l10n_it_withholding_tax.field_withholding_tax_journal_id
 msgid "Journal used at invoice payment to register withholding tax"
-msgstr "Sezionale utilizzato al pagamento della fattura per rilevare la ritenuta"
+msgstr ""
+"Sezionale utilizzato al pagamento della fattura per rilevare la ritenuta"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_account_invoice_withholding_tax___last_update
@@ -364,8 +376,8 @@ msgid ""
 "Setting this, while exporting e-invoice XML, data will be also added to "
 "DatiCassaPrevidenziale"
 msgstr ""
-"Questo impostazione, XML e-invoice exporting while, DatiCassaPrevidenziale a added "
-"e pagamenti example dati"
+"Questo impostazione, XML e-invoice exporting while, DatiCassaPrevidenziale a "
+"added e pagamenti example dati"
 
 #. module: l10n_it_withholding_tax
 #: model:ir.model.fields,field_description:l10n_it_withholding_tax.field_withholding_tax_move_statement_id
@@ -477,8 +489,10 @@ msgstr "Voci Ritenuta"
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:473
 #, python-format
 msgid ""
-"Warning! Only Withholding Tax moves in Due status                     can be deleted"
-msgstr "Attenzione! Solo Voci di ritenuta \"Da pagare\" possono essere cancellate"
+"Warning! Only Withholding Tax moves in Due status                     can be "
+"deleted"
+msgstr ""
+"Attenzione! Solo Voci di ritenuta \"Da pagare\" possono essere cancellate"
 
 #. module: l10n_it_withholding_tax
 #: code:addons/l10n_it_withholding_tax/models/withholding_tax.py:330

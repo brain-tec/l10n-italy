@@ -1,0 +1,61 @@
+2025-06-01 13:03:16,390 1848183 INFO ? odoo: Odoo version 10.0
+2025-06-01 13:03:16,390 1848183 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_reverse_charge/tests/logs/zero10.l10n-italy.l10n_it_reverse_charge.conf
+2025-06-01 13:03:16,390 1848183 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo10/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/marketplace', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2025-06-01 13:03:16,390 1848183 INFO ? odoo: database: odoo10@localhost:5432
+2025-06-01 13:03:16,406 1848183 INFO ? odoo.service.server: HTTP service (werkzeug) running on NB200Z0.localdomain:19931
+2025-06-01 13:03:16,417 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading 1 modules...
+2025-06-01 13:03:16,489 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: 1 modules loaded in 0.07s, 0 queries
+2025-06-01 13:03:17,222 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading 39 modules...
+2025-06-01 13:03:17,310 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2025-06-01 13:03:17,401 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: 39 modules loaded in 0.18s, 0 queries
+2025-06-01 13:03:17,405 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading 40 modules...
+2025-06-01 13:03:17,639 1848183 WARNING test_l10n_it_reverse_charge_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-06-01 13:03:17,642 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.registry: module l10n_it_reverse_charge: creating or updating database tables
+2025-06-01 13:03:17,862 1848183 INFO test_l10n_it_reverse_charge_10 odoo.models: Storing computed values of account.rc.type.tax fields company_id
+2025-06-01 13:03:17,863 1848183 INFO test_l10n_it_reverse_charge_10 odoo.models: Storing computed values of account.invoice fields amount_rc
+2025-06-01 13:03:17,972 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading l10n_it_reverse_charge/security/ir.model.access.csv
+2025-06-01 13:03:18,048 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading l10n_it_reverse_charge/data/rc_type.xml
+2025-06-01 13:03:18,064 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading l10n_it_reverse_charge/security/ir.model.access.csv
+2025-06-01 13:03:18,101 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading l10n_it_reverse_charge/views/account_invoice_view.xml
+2025-06-01 13:03:18,200 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading l10n_it_reverse_charge/views/account_fiscal_position_view.xml
+2025-06-01 13:03:18,224 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading l10n_it_reverse_charge/views/account_rc_type_view.xml
+2025-06-01 13:03:18,276 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading l10n_it_reverse_charge/views/account_tax_view.xml
+2025-06-01 13:03:18,303 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: loading l10n_it_reverse_charge/security/reverse_charge_security.xml
+2025-06-01 13:03:18,680 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.module: odoo.addons.l10n_it_reverse_charge.tests.test_rc running tests.
+2025-06-01 13:03:18,681 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.test_rc: test_rc (odoo.addons.l10n_it_reverse_charge.tests.test_rc.TestReverseCharge)
+2025-06-01 13:03:18,844 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: ⚠ xref 'z0bug.mycompany' -> 'base.main_company'
+2025-06-01 13:03:18,844 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: ⚠ xref 'z0bug.partner_mycompany' -> 'base.main_partner'
+2025-06-01 13:03:19,479 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: 🎺🎺🎺 Starting test v2.0.22 (debug_level=0, commit=True)
+2025-06-01 13:03:19,481 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: 🎺🎺 Testing module: l10n_it_reverse_charge (10.0.1.8.1)
+2025-06-01 13:03:19,481 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: 🎺🎺 Loading data from: account.account, account.tax, account.journal, account.rc.type, account.rc.type.tax, account.fiscal.position, account.payment.term, account.payment.term.line, product.template, res.partner, account.invoice, account.invoice.line 
+2025-06-01 13:03:23,667 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: ⚠ External reference z0bug.fiscalpos_nl not found
+2025-06-01 13:03:24,036 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: ⚠ External reference z0bug.fiscalpos_li not found
+2025-06-01 13:03:24,103 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: ⚠ External reference z0bug.fiscalpos_li not found
+2025-06-01 13:03:25,718 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.test_rc: 🎺 Testing Reverse Charge
+2025-06-01 13:03:27,452 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.testenv: 🏆🥇 [1;32m26 tests SUCCESSFULLY completed[0m
+2025-06-01 13:03:27,454 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.test_rc: Ran 1 test in 8.773s
+2025-06-01 13:03:27,454 1848183 INFO test_l10n_it_reverse_charge_10 odoo.addons.l10n_it_reverse_charge.tests.test_rc: OK
+2025-06-01 13:03:27,454 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.module: odoo.addons.l10n_it_reverse_charge.tests.test_rc tested in 8.77s, 19393 queries
+2025-06-01 13:03:27,470 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: 40 modules loaded in 10.07s, 19414 queries
+2025-06-01 13:03:27,525 1848183 WARNING test_l10n_it_reverse_charge_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-06-01 13:03:27,723 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: Modules loaded.
+2025-06-01 13:03:27,726 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2025-06-01 13:03:27,727 1848183 INFO test_l10n_it_reverse_charge_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2025-06-01 13:03:27,766 1848183 INFO test_l10n_it_reverse_charge_10 odoo.modules.registry: Registry changed, signaling through the database
+2025-06-01 13:03:27,767 1848183 INFO test_l10n_it_reverse_charge_10 odoo.service.server: Initiating shutdown
+2025-06-01 13:03:27,767 1848183 INFO test_l10n_it_reverse_charge_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_reverse_charge[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_reverse_charge/tests/logs/coverage_l10n_it_reverse_charge_10rc -m
+[34;107mName                                                                  Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------------------------------------
+l10n-italy/l10n_it_reverse_charge/models/account_fiscal_position.py       4      0   100%
+l10n-italy/l10n_it_reverse_charge/models/account_invoice.py             358    139    61%   47, 52, 56, 65-76, 92, 125-127, 133-135, 164-165, 176, 192, 207, 211-214, 225, 236, 251, 261-291, 348, 353, 365, 374, 390-394, 401, 408-437, 440, 456-457, 461-506, 509-521, 524-536, 539-552, 572-573, 589-590, 594, 602, 650, 658
+l10n-italy/l10n_it_reverse_charge/models/account_rc_type.py              32      2    94%   100, 103
+l10n-italy/l10n_it_reverse_charge/models/account_tax.py                  10      5    50%   11-18
+---------------------------------------------------------------------------------------------------
+TOTAL                                                                   404    146    64%
+[0m

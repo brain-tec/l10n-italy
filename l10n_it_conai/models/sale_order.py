@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-23 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2019-25 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -85,10 +85,8 @@ class SaleOrder(models.Model):
             conai_order_lines = {}
             lines_to_delete = []
             for line in order.order_line:
-                if (
-                    line.conai_summary_line
-                    or (line.product_id
-                        and line.product_id == conai_product)
+                if line.conai_summary_line or (
+                    line.product_id and line.product_id == conai_product
                 ):
                     if line.conai_category_id:
                         conai_order_lines[line.conai_category_id] = {
@@ -109,7 +107,7 @@ class SaleOrder(models.Model):
                     _process_category(
                         line.product_id.conai_category2_id
                         or line.product_id.product_tmpl_id.conai_category2_id,
-                        line
+                        line,
                     )
 
             # order.amount_conai = 0.0
@@ -137,9 +135,7 @@ class SaleOrder(models.Model):
                             conai_item["weight"], percent=percent
                         ),
                         "price_unit": conai_item["price_unit"],
-                        "tax_id": [
-                            (6, 0, [x.id for x in conai_item["tax"]])
-                        ],
+                        "tax_id": [(6, 0, [x.id for x in conai_item["tax"]])],
                         "conai_category_id": conai_category.id,
                         "conai_summary_line": True,
                         "conai_manual": False,
@@ -195,11 +191,12 @@ class SaleOrderLine(models.Model):
     conai_summary_line = fields.Boolean("CONAI summary line")
     conai_manual = fields.Boolean("Manual CONAI amount")
 
-    @api.depends("product_id", 'product_uom_qty')
+    @api.depends("product_id", "product_uom_qty")
     def _compute_weight(self):
         if self.product_id:
-            prod_weight = (self.product_id.weight
-                           or self.product_id.product_tmpl_id.weight)
+            prod_weight = (
+                self.product_id.weight or self.product_id.product_tmpl_id.weight
+            )
             line_weight = prod_weight * self.product_uom_qty
             if (line_weight * 1.5) >= self.weight <= (line_weight * 0.7):
                 self.weight = line_weight
@@ -215,7 +212,7 @@ class SaleOrderLine(models.Model):
                 )
             self.evaluate_conai_amount()
 
-    # @api.multi
+    @api.multi
     @api.onchange("price_unit", "product_uom_qty", "discount", "conai_category_id")
     def evaluate_conai_amount(self):
         self._compute_weight()

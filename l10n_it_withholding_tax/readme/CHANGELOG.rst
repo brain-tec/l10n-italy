@@ -1,3 +1,9 @@
+10.0.1.2.9 (2025-06-01)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Depending on l10n_it_account_pay_amt for amount_net_pay
+* [QUA] Test coverage 29% (542: 387+155) [0 TestPoints] - quality rating 20 (target 100)
+
 10.0.1.2.8 (2024-06-09)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

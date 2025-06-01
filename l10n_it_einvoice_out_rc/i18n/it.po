@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_it_einvoice_out_rc
+# 	* l10n_it_einvoice_out_rc
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo (10.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-06 13:30+0000\n"
+"POT-Creation-Date: 2025-06-01 19:32+0000\n"
 "PO-Revision-Date: 2024-06-06 13:30+0000\n"
 "Last-Translator: Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>\n"
 "Language-Team: Zeroincombenze (https://www.zeroincombenze.it)\n"
@@ -43,17 +43,18 @@ msgid "Reverse Charge Type"
 msgstr "Charge reverse invertire"
 
 #. module: l10n_it_einvoice_out_rc
-#: code:addons/l10n_it_einvoice_out_rc/wizard/wizard_export_e_invoice.py:237
+#: code:addons/l10n_it_einvoice_out_rc/wizard/wizard_export_e_invoice.py:136
 #, python-format
 msgid ""
 "Select invoices are of too many fiscal document types: select invoices "
 "exclusively of type 'TD17', 'TD18', 'TD19' or exclusively of other types."
 msgstr ""
 "Selezionare fatture generico di lo trovi anche sull'iPad mini many fiscale "
-"documento tipi: selezionare fatture exclusively di tipo 'TD17', 'TD18', 'TD19' o exclusively di altro tipi."
+"documento tipi: selezionare fatture exclusively di tipo 'TD17', 'TD18', "
+"'TD19' o exclusively di altro tipi."
 
 #. module: l10n_it_einvoice_out_rc
-#: code:addons/l10n_it_einvoice_out_rc/wizard/wizard_export_e_invoice.py:227
+#: code:addons/l10n_it_einvoice_out_rc/wizard/wizard_export_e_invoice.py:126
 #, python-format
 msgid ""
 "Selected invoices are both with and without reverse charge. You should "
@@ -63,7 +64,7 @@ msgstr ""
 "should selected a piccolo impostare di fatture"
 
 #. module: l10n_it_einvoice_out_rc
-#: code:addons/l10n_it_einvoice_out_rc/wizard/wizard_export_e_invoice.py:244
+#: code:addons/l10n_it_einvoice_out_rc/wizard/wizard_export_e_invoice.py:143
 #, python-format
 msgid ""
 "Selected reverse charge invoices have different suppliers. Please select "
@@ -77,5 +78,3 @@ msgstr ""
 msgid "To be used when sending self invoices to the exchange system"
 msgstr ""
 "Sistema self il modulo \" solamente fatture se stesso inviato è used be a"
-
-

@@ -1,5 +1,5 @@
 ===============================
-|icon| Split Payment 10.0.1.1.3
+|icon| Split Payment 10.0.1.1.4
 ===============================
 
 **Italian Split Payment Management**
@@ -129,6 +129,12 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
+10.0.1.1.4 (2025-06-01)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Depends on l10n_it_account_pay_amt
+* [QUA] Test coverage 73% (135: 37+98) [0 TestPoints] - quality rating 42 (target 100)
+
 10.0.1.1.3 (2024-06-28)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -198,7 +204,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2024-06-28
+Last Update / Ultimo aggiornamento: 2025-06-01
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

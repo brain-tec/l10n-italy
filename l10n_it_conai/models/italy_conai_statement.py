@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019-23 SHS-AV s.r.l. <https://www.zeroincombenze.it>
+# Copyright 2019-25 SHS-AV s.r.l. <https://www.zeroincombenze.it>
 #
 # Contributions to development, thanks to:
 # * Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>
@@ -51,13 +51,13 @@ class ItalyConaiStatement(models.Model):
                 "conai_category_id": conai_category_id.id,
                 "conai_exemption_id": invoice.conai_exemption_id
                 and invoice.conai_exemption_id.id,
-                "conai_amount": conai_amount
-                if not inv_line.conai_summary_line
-                else 0.0,
+                "conai_amount": (
+                    conai_amount if not inv_line.conai_summary_line else 0.0
+                ),
                 "weight": weight if not inv_line.conai_summary_line else 0.0,
-                "conai_amount_due": inv_line.price_subtotal
-                if inv_line.conai_summary_line
-                else 0.0,
+                "conai_amount_due": (
+                    inv_line.price_subtotal if inv_line.conai_summary_line else 0.0
+                ),
                 "weight_due": inv_line.quantity if inv_line.conai_summary_line else 0.0,
                 "conai_price_unit": conai_category_id.conai_price_unit,
                 "conai_summary_line": inv_line.conai_summary_line,
@@ -86,10 +86,7 @@ class ItalyConaiStatement(models.Model):
             ]
             for invoice in self.env["account.invoice"].search(domain, order="number"):
                 for invLine in invoice.invoice_line_ids:
-                    if (
-                        not invLine.conai_category_id
-                        and not invLine.conai_category2_id
-                    ):
+                    if not invLine.conai_category_id and not invLine.conai_category2_id:
                         continue
                     if invLine.conai_category_id:
                         weight2 = 0.0

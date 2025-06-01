@@ -1,3 +1,9 @@
+10.0.1.0.6 (2025-06-01)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Depends on l10n_it_account_pay_amt
+* [QUA] Test coverage 76% (100: 24+76) [44 TestPoints] - quality rating 72 (target 100)
+
 10.0.1.0.5 (2024-02-01)
 ~~~~~~~~~~~~~~~~~~~~~~~
 

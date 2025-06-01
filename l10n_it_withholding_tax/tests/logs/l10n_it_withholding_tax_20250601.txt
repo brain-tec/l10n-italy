@@ -1,0 +1,47 @@
+2025-06-01 21:26:59,000 2449471 DAEMON test_l10n_it_withholding_tax_10 run_odoo_debug.sh: cd /home/odoo/10.0/venv_odoo && source ./bin/activate
+2025-06-01 19:27:03,714 2454164 INFO ? odoo: Odoo version 10.0
+2025-06-01 19:27:03,715 2454164 INFO ? odoo: Using configuration file at /home/odoo/10.0/l10n-italy/l10n_it_withholding_tax/tests/logs/zero10.l10n-italy.l10n_it_withholding_tax.conf
+2025-06-01 19:27:03,715 2454164 INFO ? odoo: addons paths: ['/home/odoo/.local/share/Odoo10/addons/10.0', u'/home/odoo/10.0/odoo/addons', u'/home/odoo/10.0/addons', u'/home/odoo/.local/share/Odoo10/addons', u'/home/odoo/10.0/account-analytic', u'/home/odoo/10.0/account-budgeting', u'/home/odoo/10.0/account-closing', u'/home/odoo/10.0/account-consolidation', u'/home/odoo/10.0/account-financial-reporting', u'/home/odoo/10.0/account-financial-tools', u'/home/odoo/10.0/account-fiscal-rule', u'/home/odoo/10.0/account-invoice-reporting', u'/home/odoo/10.0/account-invoicing', u'/home/odoo/10.0/account-payment', u'/home/odoo/10.0/account-reconcile', u'/home/odoo/10.0/bank-payment', u'/home/odoo/10.0/bank-statement-import', u'/home/odoo/10.0/calendar', u'/home/odoo/10.0/commission', u'/home/odoo/10.0/community-data-files', u'/home/odoo/10.0/connector', u'/home/odoo/10.0/contract', u'/home/odoo/10.0/credit-control', u'/home/odoo/10.0/crm', u'/home/odoo/10.0/currency', u'/home/odoo/10.0/data-protection', u'/home/odoo/10.0/delivery-carrier', u'/home/odoo/10.0/e-commerce', u'/home/odoo/10.0/edi', u'/home/odoo/10.0/helpdesk', u'/home/odoo/10.0/hr', u'/home/odoo/10.0/intrastat-extrastat', u'/home/odoo/10.0/knowledge', u'/home/odoo/10.0/l10n-italy', u'/home/odoo/10.0/l10n-italy-supplemental', u'/home/odoo/10.0/maintenance', u'/home/odoo/10.0/management-system', u'/home/odoo/10.0/manufacture', u'/home/odoo/10.0/margin-analysis', u'/home/odoo/10.0/marketplace', u'/home/odoo/10.0/mis-builder', u'/home/odoo/10.0/multi-company', u'/home/odoo/10.0/partner-contact', u'/home/odoo/10.0/product-attribute', u'/home/odoo/10.0/product-kitting', u'/home/odoo/10.0/product-variant', u'/home/odoo/10.0/profiles', u'/home/odoo/10.0/project', u'/home/odoo/10.0/purchase-reporting', u'/home/odoo/10.0/purchase-workflow', u'/home/odoo/10.0/queue', u'/home/odoo/10.0/report-print-send', u'/home/odoo/10.0/reporting-engine', u'/home/odoo/10.0/rma', u'/home/odoo/10.0/sale-financial', u'/home/odoo/10.0/sale-reporting', u'/home/odoo/10.0/sale-workflow', u'/home/odoo/10.0/search-engine', u'/home/odoo/10.0/server-auth', u'/home/odoo/10.0/server-tools', u'/home/odoo/10.0/server-ux', u'/home/odoo/10.0/social', u'/home/odoo/10.0/stock-logistics-barcode', u'/home/odoo/10.0/stock-logistics-reporting', u'/home/odoo/10.0/stock-logistics-tracking', u'/home/odoo/10.0/stock-logistics-transport', u'/home/odoo/10.0/stock-logistics-warehouse', u'/home/odoo/10.0/stock-logistics-workflow', u'/home/odoo/10.0/storage', u'/home/odoo/10.0/timesheet', u'/home/odoo/10.0/uncovered', u'/home/odoo/10.0/web', u'/home/odoo/10.0/webhook', u'/home/odoo/10.0/website', u'/home/odoo/10.0/wms', u'/home/odoo/10.0/zerobug-test']
+2025-06-01 19:27:03,715 2454164 INFO ? odoo: database: odoo10@localhost:5432
+2025-06-01 19:27:03,728 2454164 INFO ? odoo.service.server: HTTP service (werkzeug) running on NB200Z0.localdomain:43017
+2025-06-01 19:27:03,738 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: loading 1 modules...
+2025-06-01 19:27:03,813 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: 1 modules loaded in 0.07s, 0 queries
+2025-06-01 19:27:05,293 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: loading 48 modules...
+2025-06-01 19:27:05,390 2454164 INFO test_l10n_it_withholding_tax_10 odoo.addons.report.models.report: Will use the Wkhtmltopdf binary at /home/odoo/10.0/venv_odoo/bin/wkhtmltopdf
+2025-06-01 19:27:05,539 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: 48 modules loaded in 0.25s, 0 queries
+2025-06-01 19:27:05,545 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: loading 49 modules...
+2025-06-01 19:27:05,869 2454164 WARNING test_l10n_it_withholding_tax_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-06-01 19:27:05,877 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.registry: module l10n_it_withholding_tax: creating or updating database tables
+2025-06-01 19:27:05,928 2454164 WARNING test_l10n_it_withholding_tax_10 py.warnings: /home/odoo/10.0/odoo/models.py:362: UnicodeWarning: Unicode equal comparison failed to convert both arguments to Unicode - interpreting them as being unequal
+  elif not all(cols[field.name][key] == vals[key] for key in vals):
+
+2025-06-01 19:27:06,610 2454164 INFO test_l10n_it_withholding_tax_10 odoo.models: Storing computed values of withholding.tax.statement fields amount, amount_paid
+2025-06-01 19:27:06,611 2454164 INFO test_l10n_it_withholding_tax_10 odoo.models: Storing computed values of account.invoice.withholding.tax fields base_coeff, tax_coeff
+2025-06-01 19:27:06,612 2454164 INFO test_l10n_it_withholding_tax_10 odoo.models: Storing computed values of account.invoice fields withholding_tax_amount
+2025-06-01 19:27:06,771 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: loading l10n_it_withholding_tax/views/account.xml
+2025-06-01 19:27:06,947 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: loading l10n_it_withholding_tax/views/withholding_tax.xml
+2025-06-01 19:27:07,161 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: loading l10n_it_withholding_tax/security/ir.model.access.csv
+2025-06-01 19:27:07,292 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: loading l10n_it_withholding_tax/workflow.xml
+2025-06-01 19:27:07,312 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: loading l10n_it_withholding_tax/security/security.xml
+2025-06-01 19:27:07,526 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: 49 modules loaded in 1.98s, 21 queries
+2025-06-01 19:27:07,592 2454164 WARNING test_l10n_it_withholding_tax_10 odoo.fields: Field account.invoice.amount_total depends on itself; please fix its decorator @api.depends().
+2025-06-01 19:27:07,897 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: Modules loaded.
+2025-06-01 19:27:07,900 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.loading: All post-tested in 0.00s, 0 queries
+2025-06-01 19:27:07,901 2454164 INFO test_l10n_it_withholding_tax_10 odoo.models: Computing parent left and right for table ir_ui_menu...
+2025-06-01 19:27:07,962 2454164 INFO test_l10n_it_withholding_tax_10 odoo.modules.registry: Registry changed, signaling through the database
+2025-06-01 19:27:07,963 2454164 INFO test_l10n_it_withholding_tax_10 odoo.service.server: Initiating shutdown
+2025-06-01 19:27:07,963 2454164 INFO test_l10n_it_withholding_tax_10 odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown.
+
++===================================================================
+| please test [36ml10n_it_withholding_tax[0m (10.0): [32mSUCCESS![0m
++===================================================================
+
+[1;37;44m$ coverage report --rcfile=/home/odoo/10.0/l10n-italy/l10n_it_withholding_tax/tests/logs/coverage_l10n_it_withholding_tax_10rc -m
+[34;107mName                                                                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------------------------------
+/home/odoo/10.0/l10n-italy/l10n_it_withholding_tax/models/account_invoice.py     128     88    31%   36, 43-46, 48-50, 72-83, 86-96, 99-134, 137-172, 175-195, 202-209, 231-232, 235-240
+/home/odoo/10.0/l10n-italy/l10n_it_withholding_tax/models/account_move.py        187    160    14%   14-61, 67, 70-121, 124-148, 155-220, 227-243, 250-256, 259-276, 303-330, 339-355
+/home/odoo/10.0/l10n-italy/l10n_it_withholding_tax/models/withholding_tax.py     227    139    39%   18-34, 37-40, 103-105, 108-118, 125-126, 129-143, 152-177, 200-209, 231-255, 258, 312-322, 328-424, 435, 438-441, 446-449, 454-457, 460-463, 466-472
+------------------------------------------------------------------------------------------------------------
+TOTAL                                                                            542    387    29%
+[0m

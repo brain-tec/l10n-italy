@@ -5,7 +5,7 @@
 #
 {
     "name": "Italian Withholding Tax",
-    "version": "10.0.1.2.8",
+    "version": "10.0.1.2.9",
     "category": "Account",
     "summary": "Italian Withholding Tax",
     "author": ("Odoo Community Association (OCA) and other subjects,Open Force"
@@ -15,7 +15,7 @@
     "license": "AGPL-3",
     "depends": [
         "account",
-        "l10n_it_account",
+        "l10n_it_account_pay_amt",
         "l10n_it_causali_pagamento",
         "l10n_it_einvoice_base",
     ],

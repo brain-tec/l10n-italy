@@ -112,4 +112,3 @@ class TestReverseCharge(SingleTransactionCase):
         _logger.info("🎺 Testing Reverse Charge")
         self._test_rc_1_purchase()
         self._test_rc_1_sale()
-
