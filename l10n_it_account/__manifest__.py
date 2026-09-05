@@ -11,8 +11,9 @@
 
 {
     'name': 'ITA - Contabilità base',
-    'summary': 'Modulo base usato come dipendenza di altri moduli contabili',
-    'version': '12.0.1.4.5_2',
+    'summary': 'Modulo personalizzato dissuaso in favore di modulo OCA',
+    'version': '12.0.1.4.5',
+    "development_status": "Production/Stable",
     'category': 'Hidden',
     'author': "Agile Business Group, Abstract, "
               "Odoo Community Association (OCA)",
@@ -33,10 +34,9 @@
         'views/res_config_settings_views.xml',
         'reports/account_reports_view.xml',
         'views/account_view.xml',
-        'views/account_invoice_view.xml',
     ],
-    'installable': True,
+    "maintainer": "Antonio M. Vigliotti <antoniomaria.vigliotti@gmail.com>",
+    "installable": True,
+    "pre_init_hook": "check_4_depending",
     "post_init_hook": "_l10n_it_account_post_init",
-    'pre_init_hook': 'pre_init_hook',
-    "maintainer": "LibrERP enterprise network",
 }
