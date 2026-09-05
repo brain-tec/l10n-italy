@@ -1,3 +1,27 @@
+10.0.1.12 (2026-08-22)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Cancel invoice now cancels self invoice and self invice payament / Annullo fattura annulla anche auto-fattura e relativo pagamento
+* [QUA] Test coverage 79% (381: 80+301) [36 TestPoints] - quality rating 53 (target 100)
+
+10.0.1.11 (2025-01-15)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Genera autofattura da fattura TD01 con RC locale
+* [QUA] Test coverage 79% (378: 80+298) [36 TestPoints] - quality rating 53 (target 100)
+
+10.0.1.10 (2025-12-16)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Valida anche autofatture importate ma non precedentemente generate (commercialista)
+* [QUA] Test coverage 79% (378: 80+298) [36 TestPoints] - quality rating 53 (target 100)
+
+10.0.1.9 (2025-11-13)
+~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Data for RC self-invoice on fiscal position / Dati auto-fattura in posizione fiscale
+* [QUA] Test coverage 79% (378: 80+298) [36 TestPoints] - quality rating 53 (target 100)
+
 10.0.1.8 (2024-06-28)
 ~~~~~~~~~~~~~~~~~~~~~
 
