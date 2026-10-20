@@ -1,5 +1,5 @@
 ======================================================================
-|icon| ITA - Inversione contabile/l10n_it_reverse_charge 12.0.1.2.7_47
+|icon| ITA - Inversione contabile/l10n_it_reverse_charge 12.0.1.2.7_48
 ======================================================================
 
 **Inversione contabile**
@@ -25,6 +25,9 @@ Inoltre è automatizzata la procedura di annullamento e riapertura della fattura
 Questa modalità è usata tipicamente per i fornitori extra UE per mostrare, nel registro IVA acquisti, una fattura intestata alla propria azienda (autofattura passiva).
 L'autofattura passiva verrà poi totalmente riconciliata con l'autofattura attiva, anch'essa intestata alla propria azienda.
 
+Con il tipo "Autofattura di riscontro" la fattura fornitore è registrata come una normale fattura di acquisto, senza righe di inversione contabile.
+L'autofattura di vendita è comunque generata, ma non è riconciliata con la fattura fornitore: tutte le sue righe, IVA compresa, sono registrate sul conto credito dello stesso partner, quindi l'autofattura si neutralizza da sola (dare = avere).
+
 **English**
 
 Module to handle reverse charge IVA in vendor bills.
@@ -35,6 +38,9 @@ Furthermore, the vendor bill cancellation and reopening procedure is automated.
 It is also possible to use the "additional vendor self billing" mode.
 This mode is typically used for non-EU suppliers to show, in the purchases VAT journal, a vendor bill addressed to your own company (self-bill).
 The self-bill will then be completely reconciled with the self-invoice, which is also addressed to your own company.
+
+With the "Autofattura di riscontro" (matching self invoice) type, the vendor bill is posted as a plain purchase invoice, without reverse charge lines.
+The sale self invoice is still generated, but it is not reconciled with the vendor bill: all its lines, VAT included, are posted on the receivable account of the same partner, so the self invoice neutralizes itself (debit = credit).
 
 
 |it| Nessuna informazione disponibile
@@ -112,6 +118,10 @@ Nella posizione fiscale, impostare il tipo inversione contabile:
   :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
 
+Per il tipo "Autofattura di riscontro" impostare nella posizione fiscale anche "Tipo di Partner" e "Registro per autofattura".
+Come per le altre autofatture, sono riportate nell'autofattura le righe con flag RC, cioè con imposta di acquisto con "Tipo reverse charge" impostato; il "Codice iva vendite" dell'imposta è applicato all'autofattura.
+Nelle fatture fornitore con posizione fiscale "Autofattura di riscontro" è segnalato errore se si imposta un codice IVA senza "Tipo reverse charge"; è accettato qualsiasi tipo reverse charge.
+
 **English**
 
 Create the tax **22% intra EU** - Sale:
@@ -173,6 +183,78 @@ In the fiscal position, set the reverse charge type:
   :width: 600 px
 
 .. figure:: https://raw.githubusercontent.com/zeroincombenze/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
+  :alt: Impostazione posizioni fiscali Extra CEE
+  :width: 600 px
+
+For the "Autofattura di riscontro" (matching self invoice) type, set also "Partner type" and "Self invoice journal" in the fiscal position.
+As for the other self invoices, the self invoice contains the lines with RC flag, i.e. with a purchase tax whose "Reverse charge type" is set; the tax "Sale tax" (Codice iva vendite) is applied on the self invoice.
+In vendor bills with "Autofattura di riscontro" fiscal position, an error is raised when a tax without "Reverse charge type" is set; any reverse charge type is accepted.
+
+
+
+Usage | Utilizzo
+----------------
+
+Creare l'imposta **22% intra UE** - Vendite:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_v_i_ue.png
+   :alt: 22% intra UE - Vendite
+   :width: 600 px
+
+Creare l'imposta **22% intra UE** - Acquisti:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_a_i_ue.png
+  :alt: 22% intra UE - Acquisti
+  :width: 600 px
+
+Creare l'imposta **22% extra UE** - Vendite:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_v_e_ue.png
+   :alt: 22% extra UE - Vendite
+   :width: 600 px
+
+Creare l'imposta **22% extra UE** - Acquisti:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/tax_22_a_e_ue.png
+  :alt: 22% extra UE - Acquisti
+  :width: 600 px
+
+Creare il conto 'Transitorio autofatturazione':
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/temp_account_auto_inv.png
+  :alt: conto transitorio Autofattura
+  :width: 600 px
+
+Il 'Registro pagamento autofattura' deve essere configurato con il conto 'Transitorio autofatturazione' appena creato:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/registro_riconciliazione.png
+  :alt: Registro pagamento autofattura
+  :width: 600 px
+
+Modificare il tipo inversione contabile **Intra-UE (autofattura)**:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/rc_selfinvoice.png
+  :alt: inversione contabile con Autofattura
+  :width: 600 px
+
+Il registro autofattura deve essere di tipo 'Vendita'.
+
+Modificare il tipo inversione contabile **Extra-UE (autofattura)**:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/rc_selfinvoice_extra.png
+  :alt: inversione contabile con Autofattura
+  :width: 600 px
+
+Il 'Registro autofattura passiva' deve essere di tipo 'Acquisto'.
+
+
+Nella posizione fiscale, impostare il tipo inversione contabile:
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_intra.png
+  :alt: Impostazione posizioni fiscali Intra CEE
+  :width: 600 px
+
+.. figure:: https://raw.githubusercontent.com/OCA/l10n-italy/12.0/l10n_it_reverse_charge/static/description/fiscal_pos_extra.png
   :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
 
@@ -277,6 +359,30 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 
 
 
+ChangeLog History | Cronologia modifiche
+----------------------------------------
+
+12.0.1.2.7_48 (2026-10-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash building error message for invalid RC tax / Errore nel messaggio per codice IVA RC non valido
+* [FIX] RC flag on line depended on last tax only / Flag RC di riga dipendeva solo dall'ultima imposta
+* [FIX] Cancel of vendor bill with self invoice failed or removed wrong move / Annullo fattura con autofattura falliva o cancellava registrazione errata
+* [FIX] Payment method not copied to RC supplier line / Metodo di pagamento non copiato su riga fornitore RC
+* [FIX] Reload taxes on non draft invoice / Ricalcolo imposte su fattura non in bozza
+* [FIX] period_id and duedate_manager_id used without check / period_id e duedate_manager_id usati senza controllo
+* [NEW] RC type reply: neutralized self invoice, not reconciled with vendor bill / Tipo RC autofattura di riscontro, non riconciliata con fattura fornitore
+* [IMP] License AGPL-3 as required by dependencies / Licenza AGPL-3 come da dipendenze
+
+12.0.1.2.7_46 (2023-02-15)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [IMP] Self invoice date is equal to purchase invoice and diff from date / Data auto-fattura eguale a fattura fornitori e diversa da data contabile
+* [FIX] Validation error on self invoice in prior year / Errata segnalazione di errore per auto-fatture anno preceente
+* [TEST] Regressione test: 25% (456/340)
+
+
+
 Credits | Ringraziamenti
 ========================
 
@@ -289,7 +395,8 @@ Odoo is a trademark of `Odoo S.A. <https://www.odoo.com/>`__ (formerly OpenERP)
 Authors | Autori
 ----------------
 
-* LibrERP enterprise network and other partners <False>
+* Zeroincombenze srls <False>
+* `Odoo Community Association (OCA) <https://odoo-community.org>`__
 * `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
 
 
@@ -301,15 +408,15 @@ Contributors | Partecipanti
 * `Alex Comba <alex.comba@agilebg.com>`__
 * `Lorenzo Battistini <lorenzo.battistini@agilebg.com>`__
 * `Antonio Maria Vigliotti <antoniomaria.vigliotti@gmail.com>`__
-* `Fabio Giovannelli <fabio.giovannelli@didotech.com>`__
 * `Marco Tosato <marco.tosato@didotech.com>`__
+* `Fabio Giovannelli <fabio.giovannelli@didotech.com>`__
 
 
 
 Maintainer | Manutenzione
 -------------------------
 
-* `LibrERP enterprise network <https://www.librerp.it>`__
+* Zeroincombenze srls <False>
 
 
 
@@ -330,7 +437,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2026-03-07
+Last Update / Ultimo aggiornamento: 2026-10-20
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

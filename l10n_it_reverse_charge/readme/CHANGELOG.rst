@@ -1,7 +1,19 @@
+12.0.1.2.7_48 (2026-10-20)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* [FIX] Crash building error message for invalid RC tax / Errore nel messaggio per codice IVA RC non valido
+* [FIX] RC flag on line depended on last tax only / Flag RC di riga dipendeva solo dall'ultima imposta
+* [FIX] Cancel of vendor bill with self invoice failed or removed wrong move / Annullo fattura con autofattura falliva o cancellava registrazione errata
+* [FIX] Payment method not copied to RC supplier line / Metodo di pagamento non copiato su riga fornitore RC
+* [FIX] Reload taxes on non draft invoice / Ricalcolo imposte su fattura non in bozza
+* [FIX] period_id and duedate_manager_id used without check / period_id e duedate_manager_id usati senza controllo
+* [NEW] RC type reply: neutralized self invoice, not reconciled with vendor bill / Tipo RC autofattura di riscontro, non riconciliata con fattura fornitore
+* [IMP] License AGPL-3 as required by dependencies / Licenza AGPL-3 come da dipendenze
+
 12.0.1.2.7_46 (2023-02-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* [IMP] Self invoice date is equla to purchase invoice and diff from date / Data auto-fattura eguale a fattura fornitori e diversa da data contabile
+* [IMP] Self invoice date is equal to purchase invoice and diff from date / Data auto-fattura eguale a fattura fornitori e diversa da data contabile
 * [FIX] Validation error on self invoice in prior year / Errata segnalazione di errore per auto-fatture anno preceente
 * [TEST] Regressione test: 25% (456/340)
 
