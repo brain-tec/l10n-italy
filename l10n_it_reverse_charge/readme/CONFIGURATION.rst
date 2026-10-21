@@ -63,6 +63,10 @@ Nella posizione fiscale, impostare il tipo inversione contabile:
   :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
 
+Per il tipo "Autofattura di riscontro" impostare nella posizione fiscale anche "Tipo di Partner" e "Registro per autofattura".
+Come per le altre autofatture, sono riportate nell'autofattura le righe con flag RC, cioè con imposta di acquisto con "Tipo reverse charge" impostato; il "Codice iva vendite" dell'imposta è applicato all'autofattura.
+Nelle fatture fornitore con posizione fiscale "Autofattura di riscontro" è segnalato errore se si imposta un codice IVA senza "Tipo reverse charge"; è accettato qualsiasi tipo reverse charge.
+
 **English**
 
 Create the tax **22% intra EU** - Sale:
@@ -126,3 +130,7 @@ In the fiscal position, set the reverse charge type:
 .. figure:: ../static/description/fiscal_pos_extra.png
   :alt: Impostazione posizioni fiscali Extra CEE
   :width: 600 px
+
+For the "Autofattura di riscontro" (matching self invoice) type, set also "Partner type" and "Self invoice journal" in the fiscal position.
+As for the other self invoices, the self invoice contains the lines with RC flag, i.e. with a purchase tax whose "Reverse charge type" is set; the tax "Sale tax" (Codice iva vendite) is applied on the self invoice.
+In vendor bills with "Autofattura di riscontro" fiscal position, an error is raised when a tax without "Reverse charge type" is set; any reverse charge type is accepted.
