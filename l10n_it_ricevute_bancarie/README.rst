@@ -174,7 +174,7 @@ An Enhancement Proposal may be submitted if your idea gains ground.
 ChangeLog History | Cronologia modifiche
 ----------------------------------------
 
-10.0.1.3.17 (2026-08-26)
+10.0.1.3.17 (2026-11-08)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * [QUA] Test coverage 77% (1166: 271+895) [258 TestPoints] - quality rating 66 (target 100)
@@ -203,7 +203,7 @@ Authors | Autori
 * `Odoo Community Association (OCA) <https://odoo-community.org>`__
 * `Agile Business Group sagl <https://www.agilebg.com>`__
 * `Apulia Software s.r.l. <https://www.apuliasoftware.it>`__
-* `SHS-AV s.r.l. <https://www.zeroincombenze.it>`__
+* `Zeroincombenze srls <https://www.zeroincombenze.it>`__
 
 
 
@@ -245,7 +245,7 @@ La distribuzione `Zeroincombenze® <https://www.zeroincombenze.it/>`__ è proget
 
 This module is part of l10n-italy project.
 
-Last Update / Ultimo aggiornamento: 2026-08-26
+Last Update / Ultimo aggiornamento: 2026-11-08
 
 .. |Maturity| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status

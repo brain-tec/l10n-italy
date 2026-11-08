@@ -70,11 +70,11 @@ class RibaConfiguration(models.Model):
         # domain=[("internal_type", "!=", "liquidity")],
     )
     accreditation2_account_debit_id = fields.Many2one(
-        string="Accreditation account (debit side – supplemental)",
+        string="Accreditation account (debit side - supplemental)",
         comodel_name="account.account",
     )
     accreditation2_account_credit_id = fields.Many2one(
-        string="Accreditation account (credit side – supplemental)",
+        string="Accreditation account (credit side - supplemental)",
         comodel_name="account.account",
     )
     liquidity_account_id = fields.Many2one(
